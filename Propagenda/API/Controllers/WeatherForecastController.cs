@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -19,6 +20,7 @@ namespace API.Controllers
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
+        //[Authorize("weatherforecast:read")]
         public IEnumerable<WeatherForecast> Get()
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
@@ -29,5 +31,26 @@ namespace API.Controllers
             })
             .ToArray();
         }
+
+        [HttpGet("abc")]
+        public IActionResult GetAbc()
+        {
+            return Ok(new { Message = "hello" });
+        }
+
+        [HttpGet("abc-private")]
+        [Authorize]
+        public IActionResult GetAbcPrivate()
+        {
+            return Ok(new { Message = "hello" });
+        }
+
+        [HttpGet("abc-private-scoped")]
+        [Authorize("weatherforecast:read")]
+        public IActionResult GetAbcPrivateScoped()
+        {
+            return Ok(new { Message = "hello scoped" });
+        }
+
     }
 }
