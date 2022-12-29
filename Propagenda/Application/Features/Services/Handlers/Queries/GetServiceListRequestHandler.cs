@@ -22,7 +22,7 @@ namespace Application.Features.Services.Handlers.Queries
         }
         public async Task<List<ServiceListDto>> Handle(GetServiceListRequest request, CancellationToken cancellationToken)
         {
-            var services = await _serviceRepository.GetAll();
+            var services = await _serviceRepository.GetServicesWithDetails();
             return _mapper.Map<List<ServiceListDto>>(services);
         }
     }

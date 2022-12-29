@@ -17,8 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\ServiceTypes\Handlers\Commands\" />
-    <Folder Include="Features\ServiceTypes\Requests\Commands\" />
+    <Folder Include="Features\TicketReservations\Handlers\Commands\" />
+    <Folder Include="Features\TicketReservations\Requests\Commands\" />
+    <Folder Include="Features\Tickets\Handlers\Commands\" />
+    <Folder Include="Features\Tickets\Requests\Commands\" />
   </ItemGroup>
 
 </Project>

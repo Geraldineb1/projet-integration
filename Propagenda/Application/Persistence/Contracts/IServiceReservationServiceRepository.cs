@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace Application.Persistence.Contracts
 {
-    public interface ITicketReservation : IGenericRepository<TicketReservation>
+    internal interface IServiceReservationServiceRepository : IGenericRepository<ServiceReservationService>
     {
+
     }
 }

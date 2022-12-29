@@ -1,4 +1,6 @@
 ﻿using Application.DTOs;
+using Application.DTOs.Event;
+using Application.DTOs.Provider;
 using Application.DTOs.Service;
 using AutoMapper;
 using Domain;
@@ -19,6 +21,7 @@ namespace Application.Profiles
             CreateMap<Provider, ProviderDto>().ReverseMap();
             CreateMap<Event, EventDto>().ReverseMap();
             CreateMap<ServiceReservation, ServiceReservationDto>().ReverseMap();
+            CreateMap<ServiceReservationService, ServiceReservationServiceDto>().ReverseMap();
             CreateMap<ServiceType, ServiceTypeDto>().ReverseMap();
             CreateMap<Ticket, TicketDto>().ReverseMap();
             CreateMap<TicketReservation, TicketReservationDto>().ReverseMap();

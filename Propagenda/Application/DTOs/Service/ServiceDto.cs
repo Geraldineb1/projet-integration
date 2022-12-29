@@ -1,4 +1,5 @@
 ﻿using Application.DTOs.Common;
+using Application.DTOs.Provider;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,9 @@ namespace Application.DTOs.Service
         public string LocationArea { get; set; }
         public string LocationAddress { get; set; }
         public bool isActive { get; set; }
+        public ServiceTypeDto ServiceType { get; set; }
         public int ServiceTypeId { get; set; }
         public ProviderDto Provider { get; set; }
+        public int ProviderId { get; set; }
     }
 }

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.DTOs
+namespace Application.DTOs.Provider
 {
     public class ProviderDto : BaseDto
     {
@@ -16,6 +16,6 @@ namespace Application.DTOs
         //public string AccountNb { get; set; }
         public bool IsActive { get; set; }
         public int UserId { get; set; }
-        public ICollection<ServiceDto> Services { get; set; } = new List<ServiceDto>();
+        
     }
 }

@@ -24,7 +24,7 @@ namespace Application.Features.Services.Handlers.Queries
 
         public async Task<ServiceDto> Handle(GetServiceDetailRequest request, CancellationToken cancellationToken)
         {
-            var service = await _serviceRepository.Get(request.Id);
+            var service = await _serviceRepository.GetServiceWithDetails(request.Id);
             return _mapper.Map<ServiceDto>(service);
         }
     }

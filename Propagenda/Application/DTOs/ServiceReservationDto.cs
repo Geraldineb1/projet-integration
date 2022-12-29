@@ -14,7 +14,7 @@ namespace Application.DTOs
         public DateTime RequestDate { get; set; }
         public bool IsAccepted { get; set; }
         public bool IsCompleted { get; set; }
-        public ICollection<ServiceDto> Services { get; set; } = new List<ServiceDto>();
+        
         public int UserId { get; set; }
     }
 }
