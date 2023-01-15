@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Events.Requests.Commands
 {
-    public class CreateEventCommand : IRequest<int>
+    public class UpdateEventCommand : IRequest<Unit>
     {
-        public CreateEventDto EventDto { get; set; }
+        public EventDto EventDto { get; set; }
     }
 }

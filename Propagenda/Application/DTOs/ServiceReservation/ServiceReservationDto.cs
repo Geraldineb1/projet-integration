@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace Application.DTOs
+namespace Application.DTOs.ServiceReservation
 {
     public class ServiceReservationDto : BaseDto
     {

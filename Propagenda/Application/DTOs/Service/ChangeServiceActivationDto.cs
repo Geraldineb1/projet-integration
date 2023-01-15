@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.DTOs
+namespace Application.DTOs.Service
 {
-    public class ServiceTypeDto : BaseDto
+    public class ChangeServiceActivationDto : BaseDto
     {
-        public string Label { get; set; }
-        public string Image { get; set; }
+        public bool isActive { get; set; }
     }
 }

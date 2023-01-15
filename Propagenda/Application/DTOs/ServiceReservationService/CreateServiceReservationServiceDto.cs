@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.DTOs
+namespace Application.DTOs.ServiceReservationService
 {
-    public class ServiceReservationServiceDto
+    public class CreateServiceReservationServiceDto
     {
         public DateTime DateService { get; set; }
     }

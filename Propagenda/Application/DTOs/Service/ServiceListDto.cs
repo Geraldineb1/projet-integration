@@ -1,5 +1,6 @@
 ﻿using Application.DTOs.Common;
 using Application.DTOs.Provider;
+using Application.DTOs.ServiceType;
 using System;
 using System.Collections.Generic;
 using System.Linq;

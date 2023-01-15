@@ -1,4 +1,5 @@
 ﻿using Application.DTOs;
+using Application.DTOs.TicketReservation;
 using Application.Features.TicketReservations.Requests.Queries;
 using Application.Persistence.Contracts;
 using AutoMapper;

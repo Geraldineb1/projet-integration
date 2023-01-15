@@ -1,4 +1,5 @@
 ﻿using Application.DTOs;
+using Application.DTOs.TicketReservation;
 using MediatR;
 using System;
 using System.Collections.Generic;

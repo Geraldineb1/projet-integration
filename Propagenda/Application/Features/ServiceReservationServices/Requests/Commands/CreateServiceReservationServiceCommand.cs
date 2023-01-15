@@ -1,4 +1,5 @@
 ﻿using Application.DTOs;
+using Application.DTOs.ServiceReservationService;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,6 @@ namespace Application.Features.ServiceReservationServices.Requests.Commands
 {
     internal class CreateServiceReservationServiceCommand : IRequest<int>
     {
-        public ServiceReservationServiceDto serviceReservationServiceDto { get; set; }
+        public CreateServiceReservationServiceDto serviceReservationServiceDto { get; set; }
     }
 }

@@ -2,6 +2,11 @@
 using Application.DTOs.Event;
 using Application.DTOs.Provider;
 using Application.DTOs.Service;
+using Application.DTOs.ServiceReservation;
+using Application.DTOs.ServicerReservationService;
+using Application.DTOs.ServiceType;
+using Application.DTOs.Ticket;
+using Application.DTOs.TicketReservation;
 using AutoMapper;
 using Domain;
 using System;

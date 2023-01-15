@@ -1,4 +1,5 @@
 ﻿using Application.DTOs;
+using Application.DTOs.Ticket;
 using Application.Features.Tickets.Requests.Queries;
 using Application.Persistence.Contracts;
 using AutoMapper;

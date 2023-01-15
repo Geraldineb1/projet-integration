@@ -1,4 +1,5 @@
 ﻿using Application.DTOs;
+using Application.DTOs.ServiceType;
 using Application.Features.ServiceTypes.Requests;
 using Application.Features.ServiceTypes.Requests.Queries;
 using Application.Persistence.Contracts;

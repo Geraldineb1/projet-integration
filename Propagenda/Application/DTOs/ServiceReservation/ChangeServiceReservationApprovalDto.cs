@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.DTOs
+namespace Application.DTOs.ServiceReservation
 {
-    public class TicketReservationDto : BaseDto
+    public class ChangeServiceReservationApprovalDto : BaseDto
     {
-        public int TotalNbTickets { get; set; }
+        public bool IsAccepted { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Application.DTOs;
+using Application.DTOs.ServiceReservation;
 using Application.Features.ServiceReservations.Requests.Queries;
 using Application.Persistence.Contracts;
 using AutoMapper;

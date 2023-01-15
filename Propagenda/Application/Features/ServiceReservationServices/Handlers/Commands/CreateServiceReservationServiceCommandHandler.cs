@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 
 namespace Application.Features.ServiceReservationServices.Handlers.Commands
 {
-    internal class ServiceReservationServiceCommandHandler : IRequestHandler<CreateServiceReservationServiceCommand, int>
+    internal class CreateServiceReservationServiceCommandHandler : IRequestHandler<CreateServiceReservationServiceCommand, int>
     {
         private readonly IServiceReservationServiceRepository _serviceReservationServiceRepository;
         private readonly IMapper _mapper;
 
-        public ServiceReservationServiceCommandHandler(IServiceReservationServiceRepository serviceReservationServiceRepository, IMapper mapper)
+        public CreateServiceReservationServiceCommandHandler(IServiceReservationServiceRepository serviceReservationServiceRepository, IMapper mapper)
         {
             _serviceReservationServiceRepository = serviceReservationServiceRepository;
             _mapper = mapper;

@@ -1,4 +1,5 @@
 ﻿using Application.DTOs;
+using Application.DTOs.Ticket;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,6 @@ namespace Application.Features.Tickets.Requests.Commands
 {
     public class CreateTicketCommand : IRequest<int>
     {
-        public TicketDto ticketDto { get; set; }
+        public CreateTicketDto ticketDto { get; set; }
     }
 }

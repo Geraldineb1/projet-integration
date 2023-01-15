@@ -1,4 +1,5 @@
 ﻿using Application.DTOs;
+using Application.DTOs.ServiceType;
 using MediatR;
 using System;
 using System.Collections.Generic;

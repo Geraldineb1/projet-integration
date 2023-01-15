@@ -1,4 +1,5 @@
-﻿using Application.Features.ServiceTypes.Requests.Commands;
+﻿using Application.DTOs.ServiceType.Validators;
+using Application.Features.ServiceTypes.Requests.Commands;
 using Application.Persistence.Contracts;
 using AutoMapper;
 using Domain;
@@ -23,6 +24,14 @@ namespace Application.Features.ServiceTypes.Handlers.Commands
         }
         public async Task<int> Handle(CreateServiceTypeCommand request, CancellationToken cancellationToken)
         {
+            var validator = new CreateServiceTypeDtoValidator();
+            var validationResult = await validator.ValidateAsync(request.ServiceTypeDto);
+
+            if (validationResult.IsValid == false)
+            {
+                throw new Exception();
+            }
+
             var serviceType = _mapper.Map<ServiceType>(request.ServiceTypeDto);
 
             serviceType = await _serviceTypeRepository.Add(serviceType);
