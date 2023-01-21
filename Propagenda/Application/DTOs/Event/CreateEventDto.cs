@@ -9,7 +9,7 @@ namespace Application.DTOs.Event
     public class CreateEventDto
     {
         public string Title { get; set; }
-        public string Descrition { get; set; }
+        public string Description { get; set; }
         public DateTime EventDate { get; set; }
         public string VenueName { get; set; }
         public string VenueAddress { get; set; }
