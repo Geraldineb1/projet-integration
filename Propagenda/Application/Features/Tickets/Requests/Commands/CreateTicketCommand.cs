@@ -11,6 +11,6 @@ namespace Application.Features.Tickets.Requests.Commands
 {
     public class CreateTicketCommand : IRequest<int>
     {
-        public CreateTicketDto ticketDto { get; set; }
+        public CreateTicketDto TicketDto { get; set; }
     }
 }

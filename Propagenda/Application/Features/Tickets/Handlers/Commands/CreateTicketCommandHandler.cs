@@ -1,4 +1,5 @@
-﻿using Application.Features.Tickets.Requests.Commands;
+﻿using Application.DTOs.Ticket.Validators;
+using Application.Features.Tickets.Requests.Commands;
 using Application.Persistence.Contracts;
 using AutoMapper;
 using Domain;
@@ -23,7 +24,13 @@ namespace Application.Features.Tickets.Handlers.Commands
         }
         public async Task<int> Handle(CreateTicketCommand request, CancellationToken cancellationToken)
         {
-            var ticket = _mapper.Map<Ticket>(request.ticketDto);
+
+            var validator = new CreateTicketDtoValidator();
+            var validationResult = await validator.ValidateAsync(request.TicketDto);
+            if (validationResult.IsValid == false)
+                throw new Exception();
+
+            var ticket = _mapper.Map<Ticket>(request.TicketDto);
 
             ticket = await _ticketRepository.Add(ticket);
 
