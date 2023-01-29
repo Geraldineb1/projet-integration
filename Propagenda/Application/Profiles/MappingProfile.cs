@@ -3,8 +3,6 @@ using Application.DTOs.Event;
 using Application.DTOs.Provider;
 using Application.DTOs.Service;
 using Application.DTOs.ServiceReservation;
-using Application.DTOs.ServiceReservationService;
-using Application.DTOs.ServicerReservationService;
 using Application.DTOs.ServiceType;
 using Application.DTOs.Ticket;
 using Application.DTOs.TicketReservation;

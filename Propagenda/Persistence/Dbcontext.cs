@@ -47,7 +47,7 @@ namespace Persistence
         public DbSet<ServiceReservation> ServiceReservations { get; set; }
         public DbSet<ServiceType> ServiceTypes { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
-        public DbSet<TicketReservation> TicketsReservation { get; set; }
+        public DbSet<TicketReservation> TicketReservations { get; set; }
 
 
     }

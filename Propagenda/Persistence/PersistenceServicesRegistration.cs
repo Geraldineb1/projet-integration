@@ -24,6 +24,10 @@ namespace Persistence
             services.AddScoped<IProviderRepository, ProviderRepository>();
             services.AddScoped<IServiceRepository, ServiceRepository>();
             services.AddScoped<IServiceReservationRepository, ServiceReservationRepository>();
+            services.AddScoped<IEventRepository, EventRepository>();
+            services.AddScoped<IServiceTypeRepository, ServiceTypeRepository>();
+            services.AddScoped<ITicketRepository, TicketRepository>();
+            services.AddScoped<ITicketReservationRepository, TicketReservationRepository>();
 
             return services;
 
