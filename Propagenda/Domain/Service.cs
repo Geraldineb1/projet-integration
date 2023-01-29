@@ -21,6 +21,8 @@ namespace Domain
         public Provider Provider { get; set; }
         public int ProviderId { get; set; }
 
+        public IList<ServiceReservation> Reservations { get; set; }
+
 
 
 

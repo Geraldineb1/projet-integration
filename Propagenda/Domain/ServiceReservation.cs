@@ -10,9 +10,13 @@ namespace Domain
     public class ServiceReservation : BaseDomainEntity
     { 
         public DateTime RequestDate { get; set; }
+
+        public DateTime DateService { get; set; }
         public bool IsAccepted { get; set; }
         public bool IsCompleted { get; set; }
         public int UserId { get; set; }
+
+        public IList<Service> Services { get; set; }
 
     }
 }

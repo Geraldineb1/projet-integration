@@ -18,6 +18,6 @@ namespace Application.DTOs.Event
         public int NbSoldTickets { get; set; }
         public int TicketPrice { get; set; }
 
-        //TODO link Ticket + user + service rsv
+        
     }
 }

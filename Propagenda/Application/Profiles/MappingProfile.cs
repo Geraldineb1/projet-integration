@@ -41,9 +41,6 @@ namespace Application.Profiles
             CreateMap<ServiceReservation, ChangeServiceReservationApprovalDto>().ReverseMap();
             CreateMap<ServiceReservation, ChangeServiceReservationCompletionDto>().ReverseMap();
 
-            CreateMap<ServiceReservationService, ServiceReservationServiceDto>().ReverseMap();
-            CreateMap<ServiceReservationService, CreateServiceReservationServiceDto>().ReverseMap();
-
             CreateMap<ServiceType, ServiceTypeDto>().ReverseMap();
             CreateMap<ServiceType, CreateServiceTypeDto>().ReverseMap();
 

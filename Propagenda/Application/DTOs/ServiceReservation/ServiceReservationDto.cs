@@ -12,9 +12,10 @@ namespace Application.DTOs.ServiceReservation
     public class ServiceReservationDto : BaseDto
     {
         public DateTime RequestDate { get; set; }
+        public DateTime DateService { get; set; }
         public bool IsAccepted { get; set; }
         public bool IsCompleted { get; set; }
-        
+        public IList<ServiceDto> Services { get; set; }
         public int UserId { get; set; }
     }
 }

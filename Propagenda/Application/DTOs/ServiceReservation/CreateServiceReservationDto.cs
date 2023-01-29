@@ -9,6 +9,7 @@ namespace Application.DTOs.ServiceReservation
     public class CreateServiceReservationDto
     {
         public DateTime RequestDate { get; set; }
+        public DateTime DateService { get; set; }
         public bool IsAccepted { get; set; }
         public bool IsCompleted { get; set; }
 

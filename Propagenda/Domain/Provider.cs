@@ -16,7 +16,7 @@ namespace Domain
         public bool IsActive { get; set; }
         public int UserId { get; set; }
         
-        public ICollection<Service> Services { get; set; }
+        public IList<Service> Services { get; set; }
 
     }
 }

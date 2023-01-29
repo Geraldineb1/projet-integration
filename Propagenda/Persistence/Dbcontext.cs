@@ -18,6 +18,11 @@ namespace Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(PropagendaDbContext).Assembly);
+
+            modelBuilder.Entity<Service>()
+                    .HasMany(t => t.Reservations)
+                    .WithMany(t => t.Services)
+                    .UsingEntity(j => j.ToTable("ServiceReservationService"));
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
@@ -25,8 +30,9 @@ namespace Persistence
             foreach (var entry in ChangeTracker.Entries<BaseDomainEntity>())
             {
                 //entry.Entity.Las
-                /*if(entry.State == EntityState.Added)
+                /*if (entry.State == EntityState.Added)
                 {
+                    
 
                 }*/
 
@@ -39,7 +45,6 @@ namespace Persistence
         public DbSet<Provider> Providers { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<ServiceReservation> ServiceReservations { get; set; }
-        public DbSet<ServiceReservationService> ServiceReservationServices { get; set; }
         public DbSet<ServiceType> ServiceTypes { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<TicketReservation> TicketsReservation { get; set; }
