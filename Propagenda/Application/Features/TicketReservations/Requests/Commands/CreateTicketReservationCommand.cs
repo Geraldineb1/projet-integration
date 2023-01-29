@@ -11,6 +11,6 @@ namespace Application.Features.TicketReservations.Requests.Commands
 {
     public class CreateTicketReservationCommand : IRequest<int>
     {
-        public CreateTicketReservationDto ticketReservationDto { get; set; }
+        public CreateTicketReservationDto TicketReservationDto { get; set; }
     }
 }

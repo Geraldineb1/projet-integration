@@ -1,4 +1,5 @@
-﻿using Application.Features.ServiceReservations.Requests.Commands;
+﻿using Application.DTOs.ServiceReservation.Validators;
+using Application.Features.ServiceReservations.Requests.Commands;
 using Application.Persistence.Contracts;
 using AutoMapper;
 using Domain;
@@ -23,7 +24,12 @@ namespace Application.Features.ServiceReservations.Handlers.Commands
         }
         public async Task<int> Handle(CreateServiceReservationCommand request, CancellationToken cancellationToken)
         {
-            var serviceRerservation = _mapper.Map<ServiceReservation>(request.serviceReservationDto);
+            var validator = new CreateServiceReservationDtoValidator();
+            var validationResult = await validator.ValidateAsync(request.ServiceReservationDto);
+            if (validationResult.IsValid == false)
+                throw new Exception();
+
+            var serviceRerservation = _mapper.Map<ServiceReservation>(request.ServiceReservationDto);
 
             serviceRerservation = await _serviceReservationRepository.Add(serviceRerservation);
 

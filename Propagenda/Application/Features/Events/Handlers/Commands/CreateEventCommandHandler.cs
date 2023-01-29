@@ -1,4 +1,5 @@
-﻿using Application.Features.Events.Requests.Commands;
+﻿using Application.DTOs.Event.Validators;
+using Application.Features.Events.Requests.Commands;
 using Application.Persistence.Contracts;
 using AutoMapper;
 using MediatR;
@@ -22,6 +23,11 @@ namespace Application.Features.Events.Handlers.Commands
         }
         public async Task<int> Handle(CreateEventCommand request, CancellationToken cancellationToken)
         {
+            var validator = new CreateEventDtoValidator();
+            var validationResult = await validator.ValidateAsync(request.EventDto);
+            if (validationResult.IsValid == false)
+                throw new Exception();
+
             var eventToCreate = _mapper.Map<Domain.Event>(request.EventDto);
 
             eventToCreate = await _eventRepository.Add(eventToCreate);

@@ -11,6 +11,6 @@ namespace Application.Features.ServiceReservations.Requests.Commands
 {
     public class CreateServiceReservationCommand : IRequest<int>
     {
-        public CreateServiceReservationDto serviceReservationDto { get; set; }
+        public CreateServiceReservationDto ServiceReservationDto { get; set; }
     }
 }
