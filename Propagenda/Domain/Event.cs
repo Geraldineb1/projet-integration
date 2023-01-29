@@ -20,6 +20,8 @@ namespace Domain
 
         //TODO link Ticket + user + service rsv
 
+        public ICollection<Ticket> Tickets { get; set; }
+
 
 
     }

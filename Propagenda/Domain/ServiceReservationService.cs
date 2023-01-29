@@ -11,5 +11,11 @@ namespace Domain
     {
         public DateTime DateService { get; set; }
 
+        public int ServiceId { get; set; }
+        public Service Service { get; set; }
+
+        public int ServiceReservationId { get; set; }
+        public ServiceReservation ServiceReservation { get; set; }
+
     }
 }

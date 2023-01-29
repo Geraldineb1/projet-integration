@@ -12,5 +12,8 @@ namespace Domain
         public int TotalNbTickets { get; set; }
 
         // TODO FK
+
+        public int EventId { get; set; }
+        public Event Event { get; set; }
     }
 }
