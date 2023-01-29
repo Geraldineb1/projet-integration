@@ -1,4 +1,5 @@
-﻿using Application.Features.ServiceTypes.Requests.Commands;
+﻿using Application.Exceptions;
+using Application.Features.ServiceTypes.Requests.Commands;
 using Application.Persistence.Contracts;
 using AutoMapper;
 using MediatR;
@@ -23,6 +24,10 @@ namespace Application.Features.ServiceTypes.Handlers.Commands
         public async Task<Unit> Handle(DeleteServiceTypeCommand request, CancellationToken cancellationToken)
         {
             var serviceType = await _serviceTypeRepository.Get(request.Id);
+
+            if (serviceType == null)
+                throw new NotFoundException(nameof(serviceType), request.Id);
+
             await _serviceTypeRepository.Delete(serviceType);
             return Unit.Value;
         }

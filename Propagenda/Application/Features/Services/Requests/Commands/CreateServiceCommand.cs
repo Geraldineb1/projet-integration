@@ -10,6 +10,6 @@ namespace Application.Features.Services.Requests.Commands
 {
     public class CreateServiceCommand : IRequest<int>
     {
-        public ServiceDto serviceDto { get; set; }
+        public CreateServiceDto serviceDto { get; set; }
     }
 }

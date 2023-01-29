@@ -1,4 +1,5 @@
 ﻿using Application.DTOs.ServiceType.Validators;
+using Application.Exceptions;
 using Application.Features.ServiceTypes.Requests.Commands;
 using Application.Persistence.Contracts;
 using AutoMapper;
@@ -29,7 +30,7 @@ namespace Application.Features.ServiceTypes.Handlers.Commands
 
             if (validationResult.IsValid == false)
             {
-                throw new Exception();
+                throw new ValidationException(validationResult);
             }
 
             var serviceType = _mapper.Map<ServiceType>(request.ServiceTypeDto);

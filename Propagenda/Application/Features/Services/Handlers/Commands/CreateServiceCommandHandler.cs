@@ -1,33 +1,51 @@
-﻿using Application.Features.Services.Requests.Commands;
+﻿using Application.DTOs.Service.Validators;
+using Application.Features.Services.Requests.Commands;
 using Application.Persistence.Contracts;
+using Application.Responses;
 using AutoMapper;
 using Domain;
+using FluentValidation;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Features.Services.Handlers.Commands
 {
-    public class CreateServiceCommandHandler : IRequestHandler<CreateServiceCommand, int>
+    public class CreateServiceCommandHandler : IRequestHandler<CreateServiceCommand, BaseCommandResponse>
     {
         private readonly IServiceRepository _serviceRepository;
+        private readonly IServiceTypeRepository _serviceTRepository;
+        private readonly IProviderRepository _provRepository;
         private readonly IMapper _mapper;
 
-        public CreateServiceCommandHandler(IServiceRepository serviceRepository, IMapper mapper)
+        public CreateServiceCommandHandler(IServiceRepository serviceRepository,IServiceTypeRepository serviceTRepository, 
+            IProviderRepository provRepository, IMapper mapper)
         {
             _serviceRepository = serviceRepository;
+            _serviceTRepository = serviceTRepository;
+            _provRepository = provRepository;
             _mapper = mapper;
         }
-        public async Task<int> Handle(CreateServiceCommand request, CancellationToken cancellationToken)
+        public async Task<BaseCommandResponse> Handle(CreateServiceCommand request, CancellationToken cancellationToken)
         {
-            var serviceRerservation = _mapper.Map<Service>(request.serviceDto);
+            var response = new BaseCommandResponse();
+            var validator = new CreateServiceDtoValidator(_serviceTRepository, _provRepository);
+            var validationResult = await validator.ValidateAsync(request.serviceDto);
 
-            serviceRerservation = await _serviceRepository.Add(serviceRerservation);
+            if (validationResult.IsValid == false)
+            {
+                response.Success = false;
+                response.Message = "Creation Failed";
+                response.Errors = validationResult.Errors.Select(q => q.ErrorMessage).ToList();
+            }
 
-            return serviceRerservation.Id;
+            var service = _mapper.Map<Service>(request.serviceDto);
+
+            service = await _serviceRepository.Add(service);
+
+            response.Success = true;
+            response.Message = "Creation Succesful";
+            response.Id = service.Id;
+
+            return response;
         }
     }
 }

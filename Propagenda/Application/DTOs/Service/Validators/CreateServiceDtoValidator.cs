@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Application.DTOs.Service.Validators
 {
-    public class CreateServiceValidator : AbstractValidator<CreateServiceDto>
+    public class CreateServiceDtoValidator : AbstractValidator<CreateServiceDto>
     {
         private readonly IServiceTypeRepository _serviceTypeRepository;
         private readonly IProviderRepository _providerRepository;
-        public CreateServiceValidator(IServiceTypeRepository serviceTypeRepository, IProviderRepository providerRepository)
+        public CreateServiceDtoValidator(IServiceTypeRepository serviceTypeRepository, IProviderRepository providerRepository)
         {
             _serviceTypeRepository = serviceTypeRepository;
             _providerRepository = providerRepository;
