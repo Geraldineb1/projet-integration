@@ -1,4 +1,5 @@
-﻿using Application.Features.TicketReservations.Requests.Commands;
+﻿using Application.DTOs.TicketReservation.Validators;
+using Application.Features.TicketReservations.Requests.Commands;
 using Application.Persistence.Contracts;
 using AutoMapper;
 using Domain;
@@ -23,7 +24,13 @@ namespace Application.Features.TicketReservations.Handlers.Commands
         }
         public async Task<int> Handle(CreateTicketReservationCommand request, CancellationToken cancellationToken)
         {
-            var ticketRerservation = _mapper.Map<TicketReservation>(request.ticketReservationDto);
+            var validator = new CreateTicketReservationDtoValidator();
+            var validationResult = await validator.ValidateAsync(request.TicketReservationDto);
+            if (validationResult.IsValid == false)
+                throw new Exception();
+
+
+            var ticketRerservation = _mapper.Map<TicketReservation>(request.TicketReservationDto);
 
             ticketRerservation = await _ticketReservationRepository.Add(ticketRerservation);
 

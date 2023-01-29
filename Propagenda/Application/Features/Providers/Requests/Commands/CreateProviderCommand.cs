@@ -10,6 +10,6 @@ namespace Application.Features.Providers.Requests.Commands
 {
     public class CreateProviderCommand : IRequest<int>
     {
-        public ProviderDto ProviderDto { get; set; }
+        public CreateProviderDto ProviderDto { get; set; }
     }
 }

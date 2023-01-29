@@ -24,12 +24,11 @@ namespace Application.Features.Providers.Handlers.Commands
         }
         public async Task<int> Handle(CreateProviderCommand request, CancellationToken cancellationToken)
         {
-            //
             var validator = new CreateProviderDtoValidator();
-            var validationResult = await validator.ValidateAsync(request.ProviderTypeDto);
+            var validationResult = await validator.ValidateAsync(request.ProviderDto);
             if (validationResult.IsValid == false)
                 throw new Exception();
-            //
+
 
             var provider = _mapper.Map<Provider>(request.ProviderDto);
 
