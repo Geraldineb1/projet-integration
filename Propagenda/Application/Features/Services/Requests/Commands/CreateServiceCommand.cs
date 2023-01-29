@@ -1,4 +1,5 @@
 ﻿using Application.DTOs.Service;
+using Application.Responses;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Services.Requests.Commands
 {
-    public class CreateServiceCommand : IRequest<int>
+    public class CreateServiceCommand : IRequest<BaseCommandResponse>
     {
         public CreateServiceDto serviceDto { get; set; }
     }
