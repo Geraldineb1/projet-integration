@@ -35,7 +35,7 @@ namespace Application.DTOs.Event.Validators
         .NotEmpty().GreaterThan(0).WithMessage("{PropertyName} must be greater than 0.")
         .NotNull();
 
-            RuleFor(p => p.NbSoldTickets)
+        RuleFor(p => p.NbSoldTickets)
             .NotEmpty().GreaterThan(0).WithMessage("{PropertyName} must be at least 0.");
         RuleFor(p => p.TicketPrice)
         .NotEmpty().GreaterThan(0).WithMessage("{PropertyName} must be greater than 0.")

@@ -1,4 +1,5 @@
-﻿using Application.Features.Providers.Requests.Commands;
+﻿using Application.DTOs.Provider.Validators;
+using Application.Features.Providers.Requests.Commands;
 using Application.Persistence.Contracts;
 using AutoMapper;
 using Domain;
@@ -23,6 +24,13 @@ namespace Application.Features.Providers.Handlers.Commands
         }
         public async Task<int> Handle(CreateProviderCommand request, CancellationToken cancellationToken)
         {
+            //
+            var validator = new CreateProviderDtoValidator();
+            var validationResult = await validator.ValidateAsync(request.ProviderTypeDto);
+            if (validationResult.IsValid == false)
+                throw new Exception();
+            //
+
             var provider = _mapper.Map<Provider>(request.ProviderDto);
 
             provider = await _providerRepository.Add(provider);
