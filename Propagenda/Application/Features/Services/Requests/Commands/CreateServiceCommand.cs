@@ -11,6 +11,6 @@ namespace Application.Features.Services.Requests.Commands
 {
     public class CreateServiceCommand : IRequest<BaseCommandResponse>
     {
-        public CreateServiceDto serviceDto { get; set; }
+        public CreateServiceDto ServiceDto { get; set; }
     }
 }
