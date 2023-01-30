@@ -12,5 +12,6 @@ namespace Domain
         public Event Event { get; set; }
         public int EventId { get; set; }
         public int TicketReservationId { get; set; }
+        public TicketReservation TicketReservation { get; set; }
     }
 }

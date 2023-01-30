@@ -210,6 +210,8 @@ namespace Persistence.Migrations
 
                     b.HasIndex("EventId");
 
+                    b.HasIndex("TicketReservationId");
+
                     b.ToTable("Tickets");
                 });
 
@@ -221,7 +223,7 @@ namespace Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("EventId")
+                    b.Property<int?>("EventId")
                         .HasColumnType("int");
 
                     b.Property<int>("TotalNbTickets")
@@ -271,23 +273,27 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Ticket", b =>
                 {
                     b.HasOne("Domain.Event", "Event")
-                        .WithMany("Tickets")
-                        .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Event");
-                });
-
-            modelBuilder.Entity("Domain.TicketReservation", b =>
-                {
-                    b.HasOne("Domain.Event", "Event")
                         .WithMany()
                         .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Domain.TicketReservation", "TicketReservation")
+                        .WithMany("Tickets")
+                        .HasForeignKey("TicketReservationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Event");
+
+                    b.Navigation("TicketReservation");
+                });
+
+            modelBuilder.Entity("Domain.TicketReservation", b =>
+                {
+                    b.HasOne("Domain.Event", null)
+                        .WithMany("TicketReservation")
+                        .HasForeignKey("EventId");
                 });
 
             modelBuilder.Entity("ServiceServiceReservation", b =>
@@ -307,7 +313,7 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Event", b =>
                 {
-                    b.Navigation("Tickets");
+                    b.Navigation("TicketReservation");
                 });
 
             modelBuilder.Entity("Domain.Provider", b =>
@@ -318,6 +324,11 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.ServiceType", b =>
                 {
                     b.Navigation("Services");
+                });
+
+            modelBuilder.Entity("Domain.TicketReservation", b =>
+                {
+                    b.Navigation("Tickets");
                 });
 #pragma warning restore 612, 618
         }

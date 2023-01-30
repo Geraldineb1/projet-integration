@@ -20,7 +20,7 @@ namespace Domain
 
         //TODO link Ticket + user + service rsv
 
-        public IList<Ticket> Tickets { get; set; }
+        public IList<TicketReservation> TicketReservation { get; set; }
 
 
 
