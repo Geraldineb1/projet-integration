@@ -28,7 +28,7 @@ namespace Application.Features.Services.Handlers.Commands
         {
             var response = new BaseCommandResponse();
             var validator = new CreateServiceDtoValidator(_serviceTRepository, _provRepository);
-            var validationResult = await validator.ValidateAsync(request.serviceDto);
+            var validationResult = await validator.ValidateAsync(request.ServiceDto);
 
             if (validationResult.IsValid == false)
             {
@@ -37,7 +37,7 @@ namespace Application.Features.Services.Handlers.Commands
                 response.Errors = validationResult.Errors.Select(q => q.ErrorMessage).ToList();
             }
 
-            var service = _mapper.Map<Service>(request.serviceDto);
+            var service = _mapper.Map<Service>(request.ServiceDto);
 
             service = await _serviceRepository.Add(service);
 

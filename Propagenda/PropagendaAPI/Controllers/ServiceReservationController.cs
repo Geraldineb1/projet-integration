@@ -29,7 +29,6 @@ namespace PropagendaAPI.Controllers
 
         // GET api/<ServiceReservationController>/5
         [HttpGet("{id}")]
-        [HttpGet("{id}")]
         public async Task<ActionResult<ServiceReservationDto>> Get(int id)
         {
             var servicesRsvp = await _mediator.Send(new GetServiceReservationDetailRequest { Id = id });

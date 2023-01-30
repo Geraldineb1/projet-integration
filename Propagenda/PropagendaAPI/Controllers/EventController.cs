@@ -48,6 +48,7 @@ namespace PropagendaAPI.Controllers
         }
 
         // PUT api/<EventController>/5
+        [HttpPut]
         public async Task<ActionResult> Put([FromBody] EventDto Event)
         {
             var command = new UpdateEventCommand { EventDto = Event };
