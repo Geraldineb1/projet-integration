@@ -1,11 +1,8 @@
-﻿using Application.DTOs.Event;
-using Application.DTOs.Ticket;
+﻿using Application.DTOs.Ticket;
 using Application.Features.Tickets.Requests.Commands;
 using Application.Features.Tickets.Requests.Queries;
-using Domain;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System.Net.Sockets;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 

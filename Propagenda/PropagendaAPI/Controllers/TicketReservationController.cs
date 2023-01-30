@@ -1,10 +1,8 @@
-﻿using Application.DTOs.Ticket;
-using Application.DTOs.TicketReservation;
+﻿using Application.DTOs.TicketReservation;
 using Application.Features.TicketReservations.Requests.Commands;
 using Application.Features.TicketReservations.Requests.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
