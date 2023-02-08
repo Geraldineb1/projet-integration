@@ -17,8 +17,7 @@ namespace Application.DTOs.ServiceType.Validators
                 .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
             RuleFor(p => p.Image)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
-                .MaximumLength(250).WithMessage("{PropertyName} must not exceed 250 characters.");
+                .NotNull();
         }
     }
 }
