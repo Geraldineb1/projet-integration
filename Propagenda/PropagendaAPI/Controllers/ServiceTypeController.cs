@@ -1,7 +1,9 @@
 ﻿using Application.DTOs.ServiceType;
 using Application.Features.ServiceTypes.Requests.Commands;
 using Application.Features.ServiceTypes.Requests.Queries;
+using Application.Responses;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -10,6 +12,7 @@ namespace PropagendaAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ServiceTypeController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -21,6 +24,7 @@ namespace PropagendaAPI.Controllers
 
         // GET: api/<ServiceTypeController>
         [HttpGet]
+        
         public async Task<ActionResult<List<ServiceTypeDto>>> Get()
         {
             var serviceTypes = await _mediator.Send(new GetServiceTypeListRequest());
@@ -38,7 +42,9 @@ namespace PropagendaAPI.Controllers
 
         // POST api/<ServiceTypeController>
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] CreateServiceTypeDto serviceType)
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateServiceTypeDto serviceType)
         {
             var command = new CreateServiceTypeCommand { ServiceTypeDto = serviceType };
             var response = await _mediator.Send(command);
@@ -46,7 +52,7 @@ namespace PropagendaAPI.Controllers
         }
 
         // PUT api/<ServiceTypeController>
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<ActionResult> Put([FromBody] ServiceTypeDto serviceType)
         {
             var command = new UpdateServiceTypeCommand { ServiceTypeDto = serviceType };

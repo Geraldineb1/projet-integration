@@ -1,6 +1,9 @@
 using Application;
+using Identity;
 using Microsoft.OpenApi.Models;
 using Persistence;
+using PropagendaMVC.Contracts;
+using PropagendaMVC.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,9 +11,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.ConfigureApplicationServices();
 //builder.Services.ConfigureInfrastructureServices(builder.Configuration);
 builder.Services.ConfigurePersistenceServices(builder.Configuration);
+builder.Services.ConfigureIdentityServices(builder.Configuration);
+builder.Services.AddHttpContextAccessor();
 
-builder.Services.AddControllers();
 AddSwaggerDoc(builder.Services);
+builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -32,6 +37,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Propagenda.Api v1"));
 }
 
+app.UseAuthentication();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
@@ -45,7 +51,7 @@ void AddSwaggerDoc(IServiceCollection services)
 {
     services.AddSwaggerGen(c =>
     {
-        /*c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+        c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
         {
             Description = @"JWT Authorization header using the Bearer scheme. 
                       Enter 'Bearer' [space] and then your token in the text input below.
@@ -73,7 +79,7 @@ void AddSwaggerDoc(IServiceCollection services)
                         },
                         new List<string>()
                       }
-                    });*/
+                    });
 
         c.SwaggerDoc("v1", new OpenApiInfo
         {

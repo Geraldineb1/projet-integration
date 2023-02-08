@@ -3,6 +3,7 @@ using Application.DTOs.ServiceType.Validators;
 using Application.Exceptions;
 using Application.Features.ServiceTypes.Requests.Commands;
 using Application.Persistence.Contracts;
+using Application.Responses;
 using AutoMapper;
 using Domain;
 using MediatR;
@@ -14,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.ServiceTypes.Handlers.Commands
 {
-    public class CreateServiceTypeCommandHandler : IRequestHandler<CreateServiceTypeCommand, int>
+    public class CreateServiceTypeCommandHandler : IRequestHandler<CreateServiceTypeCommand, BaseCommandResponse>
     {
         private readonly IServiceTypeRepository _serviceTypeRepository;
         private readonly IMapper _mapper;
@@ -24,22 +25,27 @@ namespace Application.Features.ServiceTypes.Handlers.Commands
             _serviceTypeRepository = serviceTypeRepository;
             _mapper = mapper;
         }
-        public async Task<int> Handle(CreateServiceTypeCommand request, CancellationToken cancellationToken)
+        public async Task<BaseCommandResponse> Handle(CreateServiceTypeCommand request, CancellationToken cancellationToken)
         {
-
+            var response = new BaseCommandResponse();
             var validator = new CreateServiceTypeDtoValidator();
             var validationResult = await validator.ValidateAsync(request.ServiceTypeDto);
 
             if (validationResult.IsValid == false)
             {
-                throw new ValidationException(validationResult);
+                response.Success = false;
+                response.Message = "Creation failed";
+                response.Errors = validationResult.Errors.Select(x => x.ErrorMessage).ToList();
             }
 
             var serviceType = _mapper.Map<ServiceType>(request.ServiceTypeDto);
 
             serviceType = await _serviceTypeRepository.Add(serviceType);
+            response.Success = true;
+            response.Message = "creation Succesful";
+            response.Id = serviceType.Id;
 
-            return serviceType.Id;
+            return response;
         }
     }
 }
