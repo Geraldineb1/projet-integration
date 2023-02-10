@@ -11,10 +11,7 @@ namespace Domain
     {
         public int TotalNbTickets { get; set; }
 
-        
-
-        /*public int EventId { get; set; }
-        public Event Event { get; set; }*/
+        public int UserID { get; set; }
 
         public IList<Ticket> Tickets { get; set; }
     }

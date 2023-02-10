@@ -18,7 +18,7 @@ namespace Domain
         public int NbSoldTickets { get; set; }
         public int TicketPrice { get; set; }
 
-        //TODO link Ticket + user + service rsv
+        public int UserId { get; set; }
 
         public IList<TicketReservation> TicketReservation { get; set; }
 
