@@ -17,7 +17,8 @@ namespace Persistence
         {
             services.AddDbContext<PropagendaDbContext>(options =>
                 options.UseSqlServer(
-                    configuration.GetConnectionString("PropagendaConnectionString")));
+                    configuration.GetConnectionString("PropagendaConnectionString"),
+                        b => b.MigrationsAssembly(typeof(PropagendaDbContext).Assembly.FullName)));
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
@@ -28,6 +29,7 @@ namespace Persistence
             services.AddScoped<IServiceTypeRepository, ServiceTypeRepository>();
             services.AddScoped<ITicketRepository, TicketRepository>();
             services.AddScoped<ITicketReservationRepository, TicketReservationRepository>();
+
 
             return services;
 

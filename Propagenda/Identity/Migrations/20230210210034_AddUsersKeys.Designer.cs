@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Identity.Migrations
 {
     [DbContext(typeof(PropagendaIdentityDbContext))]
-    [Migration("20230203140622_ADDUsers")]
-    partial class ADDUsers
+    [Migration("20230210210034_AddUsersKeys")]
+    partial class AddUsersKeys
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,241 @@ namespace Identity.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("Domain.Event", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Descrition")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EventDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("NbSoldTickets")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TicketPrice")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TicketsAmount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("VenueAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VenueName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("Event");
+                });
+
+            modelBuilder.Entity("Domain.Provider", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Bio")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Link")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Provider");
+                });
+
+            modelBuilder.Entity("Domain.Service", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LocationAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LocationArea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProviderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ServiceTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isActive")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProviderId");
+
+                    b.HasIndex("ServiceTypeId");
+
+                    b.ToTable("Service");
+                });
+
+            modelBuilder.Entity("Domain.ServiceReservation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("DateService")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsAccepted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsCompleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("RequestDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("ServiceReservation");
+                });
+
+            modelBuilder.Entity("Domain.ServiceType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Label")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ServiceType");
+                });
+
+            modelBuilder.Entity("Domain.Ticket", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("EventId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TicketReservationId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EventId");
+
+                    b.HasIndex("TicketReservationId");
+
+                    b.ToTable("Ticket");
+                });
+
+            modelBuilder.Entity("Domain.TicketReservation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int?>("EventId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalNbTickets")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("EventId");
+
+                    b.ToTable("TicketReservation");
+                });
 
             modelBuilder.Entity("Identity.Models.ApplicationUser", b =>
                 {
@@ -106,7 +341,7 @@ namespace Identity.Migrations
                             Id = "8e445865-a24d-4543-a6c6-9443d048cdb9",
                             AccessFailedCount = 0,
                             Address = "rue de la paix 25",
-                            ConcurrencyStamp = "d1471e22-e2da-4e3f-985e-5f50b4a4805d",
+                            ConcurrencyStamp = "413c8a68-7db3-49d9-a087-cbcab86c0825",
                             Email = "admin@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -114,9 +349,9 @@ namespace Identity.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEK0Wg5UkwZHKsW+q6W8cBLCONxVxGMlEX89wilSZQUvMrYKHrxaHobx3jfHEvJ1JLw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGSP+v79/0PK8sHgO//bRqF3RijJOECkr8ynMnZQHcff2ETDV27/Lnz/y33cU+W6cA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "017106c5-d2c2-498e-81b6-bdf34de902e8",
+                            SecurityStamp = "1ed87de6-9dee-4923-9223-824f8d684d1b",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -125,7 +360,7 @@ namespace Identity.Migrations
                             Id = "8baaf0ce-bcf9-46b9-ac86-a16040b6c487",
                             AccessFailedCount = 0,
                             Address = "rue de la paix 25",
-                            ConcurrencyStamp = "743176bc-ae2d-4eb4-b8f0-2db568f5107d",
+                            ConcurrencyStamp = "25d307ac-9af9-4130-8340-c070a172630b",
                             Email = "user@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -133,9 +368,9 @@ namespace Identity.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@LOCALHOST.COM",
                             NormalizedUserName = "USER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAELv/wM1ig4PLP0WH9TYUr0pGlOaqB04VuCqPyW2Rq3CembJdpSeWpLHQfQeN4v2frw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBVhyvieo/pYbyVeXSqtg/q1DsrC90w8o7uy0vUUgs3D6NdrEKfq/a8LE7uEu+DStg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "77874cee-7a94-4e13-b223-a3d08e5b5d25",
+                            SecurityStamp = "05653d5d-1bf5-44d2-9787-2ec84a7102a2",
                             TwoFactorEnabled = false,
                             UserName = "user@localhost.com"
                         },
@@ -144,7 +379,7 @@ namespace Identity.Migrations
                             Id = "6987522e-758b-403b-88b7-0c362a353ba7",
                             AccessFailedCount = 0,
                             Address = "rue de la paix 25",
-                            ConcurrencyStamp = "c7da703a-a03e-43bb-b378-8cdd908e943b",
+                            ConcurrencyStamp = "bb0f4509-32c4-45b2-bc2f-eee3e82af84d",
                             Email = "clien@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -152,9 +387,9 @@ namespace Identity.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "CLIENT@LOCALHOST.COM",
                             NormalizedUserName = "CLIENT@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEK0P7ZQxFZ0JMJHTRTQALoHVqnPHouJPdmfEGhI6JXcc4pmycZcxj1EXThPl53JzhA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELWuKShOjLNwceiUfGP1vO5ZVhKZXqtwtKRGQoCI1dQ88mu2vUxMGEmyLXaA5J496g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0c0cea4d-799e-4cc9-ad82-4bf8f88166f8",
+                            SecurityStamp = "a9ef18a0-7a76-498c-bb89-2e4e4ed8fed2",
                             TwoFactorEnabled = false,
                             UserName = "client@localhost.com"
                         });
@@ -190,21 +425,21 @@ namespace Identity.Migrations
                         new
                         {
                             Id = "cac43a6e-f7bb-4448-baaf-1add431ccbbf",
-                            ConcurrencyStamp = "13ca8f30-79b1-4152-b6ae-b9d5dd1bed89",
+                            ConcurrencyStamp = "9347aedb-1269-438e-8ac7-c461ee03bde4",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
                             Id = "cbc43a8e-f7bb-4445-baaf-1add431ffbbf",
-                            ConcurrencyStamp = "ae7b8266-dd2e-4198-afd2-3ccc8b7b98dd",
+                            ConcurrencyStamp = "4ab213c8-6d82-4f70-80c8-7754addb1aae",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "cbc43a9e-f7bb-4445-baaf-1add431ffbbf",
-                            ConcurrencyStamp = "3a943b28-1b1a-4f01-b01d-bd79a6b64e02",
+                            ConcurrencyStamp = "d261c972-e63a-4ad8-bad0-a9b0dd28c752",
                             Name = "Client",
                             NormalizedName = "CLIENT"
                         });
@@ -333,6 +568,84 @@ namespace Identity.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("ServiceServiceReservation", b =>
+                {
+                    b.Property<int>("ReservationsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ServicesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ReservationsId", "ServicesId");
+
+                    b.HasIndex("ServicesId");
+
+                    b.ToTable("ServiceServiceReservation");
+                });
+
+            modelBuilder.Entity("Domain.Event", b =>
+                {
+                    b.HasOne("Identity.Models.ApplicationUser", null)
+                        .WithMany("Events")
+                        .HasForeignKey("ApplicationUserId");
+                });
+
+            modelBuilder.Entity("Domain.Service", b =>
+                {
+                    b.HasOne("Domain.Provider", "Provider")
+                        .WithMany("Services")
+                        .HasForeignKey("ProviderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.ServiceType", "ServiceType")
+                        .WithMany("Services")
+                        .HasForeignKey("ServiceTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Provider");
+
+                    b.Navigation("ServiceType");
+                });
+
+            modelBuilder.Entity("Domain.ServiceReservation", b =>
+                {
+                    b.HasOne("Identity.Models.ApplicationUser", null)
+                        .WithMany("ServicesReservations")
+                        .HasForeignKey("ApplicationUserId");
+                });
+
+            modelBuilder.Entity("Domain.Ticket", b =>
+                {
+                    b.HasOne("Domain.Event", "Event")
+                        .WithMany()
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.TicketReservation", "TicketReservation")
+                        .WithMany("Tickets")
+                        .HasForeignKey("TicketReservationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Event");
+
+                    b.Navigation("TicketReservation");
+                });
+
+            modelBuilder.Entity("Domain.TicketReservation", b =>
+                {
+                    b.HasOne("Identity.Models.ApplicationUser", null)
+                        .WithMany("TicketReservations")
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("Domain.Event", null)
+                        .WithMany("TicketReservation")
+                        .HasForeignKey("EventId");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -382,6 +695,50 @@ namespace Identity.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("ServiceServiceReservation", b =>
+                {
+                    b.HasOne("Domain.ServiceReservation", null)
+                        .WithMany()
+                        .HasForeignKey("ReservationsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Service", null)
+                        .WithMany()
+                        .HasForeignKey("ServicesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Event", b =>
+                {
+                    b.Navigation("TicketReservation");
+                });
+
+            modelBuilder.Entity("Domain.Provider", b =>
+                {
+                    b.Navigation("Services");
+                });
+
+            modelBuilder.Entity("Domain.ServiceType", b =>
+                {
+                    b.Navigation("Services");
+                });
+
+            modelBuilder.Entity("Domain.TicketReservation", b =>
+                {
+                    b.Navigation("Tickets");
+                });
+
+            modelBuilder.Entity("Identity.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("Events");
+
+                    b.Navigation("ServicesReservations");
+
+                    b.Navigation("TicketReservations");
                 });
 #pragma warning restore 612, 618
         }

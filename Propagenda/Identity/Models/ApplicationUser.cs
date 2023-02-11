@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Domain;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,8 @@ namespace Identity.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Address { get; set; }
+        public IList<TicketReservation>? TicketReservations { get; set; }
+        public IList<Event>? Events { get; set; }
+        public IList<ServiceReservation>? ServicesReservations { get; set; }
     }
 }
