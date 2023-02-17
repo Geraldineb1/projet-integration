@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Identity.Configurations
+namespace Persistence.Configurations.Entities
 {
     public class UserConfiguration : IEntityTypeConfiguration<ApplicationUser>
     {
@@ -19,7 +19,7 @@ namespace Identity.Configurations
             builder.HasData(
                  new ApplicationUser
                  {
-                     Id = "8e445865-a24d-4543-a6c6-9443d048cdb9",
+                     Id = "279fc88b-0a5e-4bec-b074-eee865a0c9ae",
                      Email = "admin@localhost.com",
                      NormalizedEmail = "ADMIN@LOCALHOST.COM",
                      FirstName = "System",
@@ -27,25 +27,25 @@ namespace Identity.Configurations
                      UserName = "admin@localhost.com",
                      Address = "rue de la paix 25",
                      NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                     PasswordHash = hasher.HashPassword(null, "TestAdmin!"),
+                     PasswordHash = hasher.HashPassword(null, "TestAdmin2023!"),
                      EmailConfirmed = true
                  },
                  new ApplicationUser
                  {
-                     Id = "8baaf0ce-bcf9-46b9-ac86-a16040b6c487",
-                     Email = "user@localhost.com",
-                     NormalizedEmail = "USER@LOCALHOST.COM",
+                     Id = "047a1feb-b527-43af-8194-f1e3c92b7607",
+                     Email = "employee@localhost.com",
+                     NormalizedEmail = "EMPLOYEE@LOCALHOST.COM",
                      FirstName = "System",
-                     LastName = "User",
-                     UserName = "user@localhost.com",
+                     LastName = "Employee",
+                     UserName = "employee@localhost.com",
                      Address = "rue de la paix 25",
-                     NormalizedUserName = "USER@LOCALHOST.COM",
-                     PasswordHash = hasher.HashPassword(null, "TestEmployee!"),
+                     NormalizedUserName = "EMPLOYEE@LOCALHOST.COM",
+                     PasswordHash = hasher.HashPassword(null, "TestEmployee2023!"),
                      EmailConfirmed = true
                  },
                  new ApplicationUser
                  {
-                     Id = "6987522e-758b-403b-88b7-0c362a353ba7",
+                     Id = "ed742fb6-87ff-40a9-a30b-717211f5d456",
                      Email = "clien@localhost.com",
                      NormalizedEmail = "CLIENT@LOCALHOST.COM",
                      FirstName = "System",
@@ -53,7 +53,7 @@ namespace Identity.Configurations
                      UserName = "client@localhost.com",
                      Address = "rue de la paix 25",
                      NormalizedUserName = "CLIENT@LOCALHOST.COM",
-                     PasswordHash = hasher.HashPassword(null, "TestClient!"),
+                     PasswordHash = hasher.HashPassword(null, "TestClient2023!"),
                      EmailConfirmed = true
                  }
             );

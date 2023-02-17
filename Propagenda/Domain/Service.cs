@@ -17,9 +17,7 @@ namespace Domain
         public string LocationAddress { get; set; }
         public bool isActive { get; set; }
         public ServiceType ServiceType { get; set; }
-        public int ServiceTypeId { get; set; }
         public Provider Provider { get; set; }
-        public int ProviderId { get; set; }
 
         public IList<ServiceReservation> Reservations { get; set; }
 

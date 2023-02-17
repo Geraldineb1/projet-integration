@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Identity.Models
+namespace Domain
 {
     public class ApplicationUser : IdentityUser
     {
@@ -16,5 +16,6 @@ namespace Identity.Models
         public IList<TicketReservation>? TicketReservations { get; set; }
         public IList<Event>? Events { get; set; }
         public IList<ServiceReservation>? ServicesReservations { get; set; }
+        public IList<Provider> Providers { get; set; }
     }
 }

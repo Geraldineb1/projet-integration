@@ -19,9 +19,9 @@ namespace Persistence
                 .Build();*/
 
             var builder = new DbContextOptionsBuilder<PropagendaDbContext>();
-            var connectionString = "Server=LHA11301\\SQLROXY;Database=Propagenda2023;Trusted_Connection=True; MultipleActiveResultSets=true";
+            var connectionString = "Server=LHA11301\\SQLROXY;Database=PropagendaTFE;Trusted_Connection=True; MultipleActiveResultSets=true";
 
-            builder.UseSqlServer(connectionString);
+            builder.UseSqlServer(connectionString).EnableSensitiveDataLogging();
 
             return new PropagendaDbContext(builder.Options);
         }

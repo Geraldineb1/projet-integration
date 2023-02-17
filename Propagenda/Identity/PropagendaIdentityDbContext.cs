@@ -1,5 +1,5 @@
-﻿using Identity.Configurations;
-using Identity.Models;
+﻿using Domain;
+using Identity.Configurations;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;

@@ -1,5 +1,4 @@
 using Application;
-using Identity;
 using Microsoft.OpenApi.Models;
 using Persistence;
 using PropagendaMVC.Contracts;
@@ -11,7 +10,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.ConfigureApplicationServices();
 //builder.Services.ConfigureInfrastructureServices(builder.Configuration);
 builder.Services.ConfigurePersistenceServices(builder.Configuration);
-builder.Services.ConfigureIdentityServices(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
 
 AddSwaggerDoc(builder.Services);

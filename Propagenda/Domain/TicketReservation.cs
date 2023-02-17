@@ -11,7 +11,8 @@ namespace Domain
     {
         public int TotalNbTickets { get; set; }
 
-        public int UserId { get; set; }
+
+        public ApplicationUser User { get; set; }
 
         public IList<Ticket> Tickets { get; set; }
     }

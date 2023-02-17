@@ -27,8 +27,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropagendaAPI", "Propagenda
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropagendaMVC", "PropagendaMVC\PropagendaMVC.csproj", "{CF5A93C4-D406-4F57-BB71-674A1E73B18D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity", "Identity\Identity.csproj", "{57AD4C33-4131-4A17-A4DB-B7B0E858194C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,10 +57,6 @@ Global
 		{CF5A93C4-D406-4F57-BB71-674A1E73B18D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF5A93C4-D406-4F57-BB71-674A1E73B18D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF5A93C4-D406-4F57-BB71-674A1E73B18D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{57AD4C33-4131-4A17-A4DB-B7B0E858194C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{57AD4C33-4131-4A17-A4DB-B7B0E858194C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{57AD4C33-4131-4A17-A4DB-B7B0E858194C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{57AD4C33-4131-4A17-A4DB-B7B0E858194C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,7 +72,6 @@ Global
 		{FF899196-00D0-42F7-A531-21F9E35C1A86} = {FF27111F-1BCE-477D-8FD3-D1F6D06F19D4}
 		{10E85D6E-E162-4967-85B5-FB36C68AED32} = {970C860E-75B6-4A79-A663-8309FFB2E4B5}
 		{CF5A93C4-D406-4F57-BB71-674A1E73B18D} = {93A3BE20-D246-4770-B078-778CCAAA08BB}
-		{57AD4C33-4131-4A17-A4DB-B7B0E858194C} = {FF27111F-1BCE-477D-8FD3-D1F6D06F19D4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2A6D6BC2-151A-41B7-8C8F-D92E44C3DA35}

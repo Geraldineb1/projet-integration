@@ -14,7 +14,7 @@ namespace Domain
         public string Link { get; set; }
         //public string AccountNb { get; set; }
         public bool IsActive { get; set; }
-        public int UserId { get; set; }
+        public ApplicationUser User { get; set; }
         
         public IList<Service> Services { get; set; }
 

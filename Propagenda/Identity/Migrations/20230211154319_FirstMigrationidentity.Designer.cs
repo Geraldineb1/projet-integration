@@ -4,6 +4,7 @@ using Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Identity.Migrations
 {
     [DbContext(typeof(PropagendaIdentityDbContext))]
-    partial class PropagendaIdentityDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230211154319_FirstMigrationidentity")]
+    partial class FirstMigrationidentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -104,7 +106,7 @@ namespace Identity.Migrations
                             Id = "8e445865-a24d-4543-a6c6-9443d048cdb9",
                             AccessFailedCount = 0,
                             Address = "rue de la paix 25",
-                            ConcurrencyStamp = "6e9a3463-baa8-4852-85ce-97b1226afee1",
+                            ConcurrencyStamp = "18e7db7a-f275-4b25-9f18-da604e25e539",
                             Email = "admin@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -112,9 +114,9 @@ namespace Identity.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEM6iOCaZILCavx3s7MkBTNuDfqDYUe/vw6cdW+CekTe4ST6h4NeH3Tf50/t6s7roMA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBWHtqYMypKFrDsHBVUdops5KeUb37ZV/5o6nQOkFl238SMgotN/2siCFJgoFy88iQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0adcd582-f573-4e38-8c78-6614be8b015c",
+                            SecurityStamp = "c87be659-311e-4d18-a900-bf39cc792544",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -123,7 +125,7 @@ namespace Identity.Migrations
                             Id = "8baaf0ce-bcf9-46b9-ac86-a16040b6c487",
                             AccessFailedCount = 0,
                             Address = "rue de la paix 25",
-                            ConcurrencyStamp = "daec9519-e850-450f-899e-4a3b61d90204",
+                            ConcurrencyStamp = "a404dacd-d5b2-405a-9b36-61a0b588edb8",
                             Email = "user@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -131,9 +133,9 @@ namespace Identity.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@LOCALHOST.COM",
                             NormalizedUserName = "USER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEG8OsokhxbRQvRKxuJQJCdszGM2xyaeoLx6q33LGtRiRl8ZBLbRDVpl2agUkwiW83w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAV9ykUteoZ7SIioNXHwQ7qrt4d0j3+f494ZbfLMOwJQOJ7/YwQItBBK0GVFpUsFjQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d4454968-500b-4e0a-82c5-1d95cc1f6462",
+                            SecurityStamp = "d591002f-7ccd-4f74-94c9-88ed0253b043",
                             TwoFactorEnabled = false,
                             UserName = "user@localhost.com"
                         },
@@ -142,7 +144,7 @@ namespace Identity.Migrations
                             Id = "6987522e-758b-403b-88b7-0c362a353ba7",
                             AccessFailedCount = 0,
                             Address = "rue de la paix 25",
-                            ConcurrencyStamp = "fd4043d1-85f3-4f9f-b355-d9968d167efe",
+                            ConcurrencyStamp = "410c0144-b4ab-45f9-b090-5f48a14d8af8",
                             Email = "clien@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -150,9 +152,9 @@ namespace Identity.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "CLIENT@LOCALHOST.COM",
                             NormalizedUserName = "CLIENT@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAb6d/7NhzowDOQfJyDeKwUvQpNdsw7Y26SKZe0VVWQzsJUaUkP/EcPTAlwIXoap3Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFumrcC+BypZHY0bd0Fr1a5hR3kNEeJ1qcj49604BH3tYxLNGWNj9W+UmAfauQ+ImQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e6cabf4b-022c-420c-936a-34386713b8d1",
+                            SecurityStamp = "a89b9bac-c8c2-4ff3-9f6b-9e412930f447",
                             TwoFactorEnabled = false,
                             UserName = "client@localhost.com"
                         });
@@ -186,7 +188,10 @@ namespace Identity.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId1")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
@@ -200,7 +205,7 @@ namespace Identity.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("Event");
                 });
@@ -228,13 +233,16 @@ namespace Identity.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId1")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("Provider");
                 });
@@ -308,13 +316,16 @@ namespace Identity.Migrations
                     b.Property<DateTime>("RequestDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("UserId")
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId1")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("ServiceReservation");
                 });
@@ -377,7 +388,10 @@ namespace Identity.Migrations
                     b.Property<int>("TotalNbTickets")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId1")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
@@ -385,7 +399,7 @@ namespace Identity.Migrations
 
                     b.HasIndex("EventId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("TicketReservation");
                 });
@@ -420,21 +434,21 @@ namespace Identity.Migrations
                         new
                         {
                             Id = "cac43a6e-f7bb-4448-baaf-1add431ccbbf",
-                            ConcurrencyStamp = "7c448f78-da10-430a-b1ea-fdf93602e9da",
+                            ConcurrencyStamp = "4941ff9a-3f4c-48ba-8b23-462410db55eb",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
                             Id = "cbc43a8e-f7bb-4445-baaf-1add431ffbbf",
-                            ConcurrencyStamp = "f264f939-ff24-4880-8d08-8d4d5e200b3f",
+                            ConcurrencyStamp = "b4af2440-72ac-4225-8794-11c1e4bf25f5",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "cbc43a9e-f7bb-4445-baaf-1add431ffbbf",
-                            ConcurrencyStamp = "70ad98cd-7685-46e1-b5e2-7ef6d34e2dbb",
+                            ConcurrencyStamp = "6d54e46f-56ea-4aae-8ad3-8f662bbfd3fe",
                             Name = "Client",
                             NormalizedName = "CLIENT"
                         });
@@ -582,7 +596,7 @@ namespace Identity.Migrations
                 {
                     b.HasOne("Domain.ApplicationUser", "User")
                         .WithMany("Events")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("UserId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -593,7 +607,7 @@ namespace Identity.Migrations
                 {
                     b.HasOne("Domain.ApplicationUser", "User")
                         .WithMany("Providers")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("UserId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -623,7 +637,7 @@ namespace Identity.Migrations
                 {
                     b.HasOne("Domain.ApplicationUser", "User")
                         .WithMany("ServicesReservations")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("UserId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -657,7 +671,7 @@ namespace Identity.Migrations
 
                     b.HasOne("Domain.ApplicationUser", "User")
                         .WithMany("TicketReservations")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("UserId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

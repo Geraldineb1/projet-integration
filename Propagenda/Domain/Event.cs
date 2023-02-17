@@ -17,8 +17,7 @@ namespace Domain
         public int TicketsAmount { get; set; }
         public int NbSoldTickets { get; set; }
         public int TicketPrice { get; set; }
-
-        public int UserId { get; set; }
+        public ApplicationUser User { get; set; }
 
         public IList<TicketReservation> TicketReservation { get; set; }
 

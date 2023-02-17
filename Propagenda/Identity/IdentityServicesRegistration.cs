@@ -1,7 +1,7 @@
 ﻿using Application.Models.Identity;
 using Application.Persistence.Identity;
+using Domain;
 using Identity;
-using Identity.Models;
 using Identity.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;

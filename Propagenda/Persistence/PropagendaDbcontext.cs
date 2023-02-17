@@ -1,7 +1,9 @@
 ﻿using Application.Persistence.Contracts;
 using Domain;
 using Domain.Common;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Persistence.Configurations.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Persistence
 {
-    public class PropagendaDbContext : DbContext
+    public class PropagendaDbContext : IdentityDbContext<ApplicationUser>
     {
         public PropagendaDbContext(DbContextOptions<PropagendaDbContext> options) : base(options)
         {
@@ -18,12 +20,16 @@ namespace Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(PropagendaDbContext).Assembly);
 
             modelBuilder.Entity<Service>()
                     .HasMany(t => t.Reservations)
                     .WithMany(t => t.Services)
                     .UsingEntity(j => j.ToTable("ServiceReservationService"));
+
+           
         }
 
         public DbSet<Event> Events { get; set; }
