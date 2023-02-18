@@ -18,5 +18,12 @@ namespace Persistence.Repositories
             _dbContext.Entry(provider).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task ChangeApprovalStatus(Provider provider, bool isApproved)
+        {
+            provider.IsApproved = isApproved;
+            _dbContext.Entry(provider).State = EntityState.Modified;
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }

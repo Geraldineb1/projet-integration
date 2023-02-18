@@ -12,7 +12,7 @@ namespace Application.DTOs.Provider.Validators
     {
         public CreateProviderDtoValidator()
         {
-            RuleFor(p => p.Name)
+            /*RuleFor(p => p.Name)
             .NotEmpty().WithMessage("{PropertyName} is required.")
             .NotNull()
             .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
@@ -29,8 +29,8 @@ namespace Application.DTOs.Provider.Validators
             //        .NotNull()
             //        .MaximumLength(250).WithMessage("{PropertyName} must not exceed 50 characters.");
             RuleFor(p => p.UserId)
-            .NotEmpty().GreaterThan(0).WithMessage("{PropertyName} must be greater than 0.")
-            .NotNull();
+            .NotEmpty()
+            .NotNull();*/
 
 
         }

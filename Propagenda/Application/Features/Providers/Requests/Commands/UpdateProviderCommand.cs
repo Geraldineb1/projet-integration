@@ -13,5 +13,6 @@ namespace Application.Features.Providers.Requests.Commands
         public int Id { get; set; }
         public UpdateProviderDto ProviderDto { get; set; }
         public ChangeProviderActivationDto ChangeProviderActivationDto { get; set; }
+        public ChangeProviderApprovalDto ChangeProviderApprovalDto { get; set; }
     }
 }

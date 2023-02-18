@@ -1,6 +1,7 @@
 ﻿using Application.DTOs.Provider;
 using Application.Features.Providers.Requests.Commands;
 using Application.Features.Providers.Requests.Queries;
+using Application.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Persistence;
@@ -39,7 +40,7 @@ namespace PropagendaAPI.Controllers
 
         // POST api/<ProviderController>
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] CreateProviderDto provider)
+        public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateProviderDto provider)
         {
             var command = new CreateProviderCommand { ProviderDto = provider };
             var response = await _mediator.Send(command);

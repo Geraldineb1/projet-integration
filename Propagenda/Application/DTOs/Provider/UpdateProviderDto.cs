@@ -13,6 +13,6 @@ namespace Application.DTOs.Provider
         public string Bio { get; set; }
         public string Link { get; set; }
         //public string AccountNb { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
     }
 }

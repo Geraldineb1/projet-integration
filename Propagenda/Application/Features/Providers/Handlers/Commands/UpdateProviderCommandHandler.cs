@@ -36,6 +36,10 @@ namespace Application.Features.Providers.Handlers.Commands
             {
                 await _providerRepository.ChangeActivationStatus(provider, request.ChangeProviderActivationDto.IsActive);
             }
+            else if (request.ChangeProviderApprovalDto != null)
+            {
+                await _providerRepository.ChangeApprovalStatus(provider, request.ChangeProviderApprovalDto.IsApproved);
+            }
 
             return Unit.Value;
         }

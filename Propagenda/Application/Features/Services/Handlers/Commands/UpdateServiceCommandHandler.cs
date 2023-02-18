@@ -36,7 +36,11 @@ namespace Application.Features.Services.Handlers.Commands
             {
                 await _serviceRepository.ChangeActivationStatus(eventToUpdate, request.ChangeServiceActivationDto.isActive);
             }
-            
+            else if (request.ChangeServiceApprovalDto != null)
+            {
+                await _serviceRepository.ChangeApprovalStatus(eventToUpdate, request.ChangeServiceApprovalDto.isApproved);
+            }
+
 
             return Unit.Value;
         }

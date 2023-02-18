@@ -13,8 +13,9 @@ namespace Application.Features.Services.Requests.Commands
         public int Id { get; set; }
         public UpdateServiceDto ServiceDto { get; set; }
         public ChangeServiceActivationDto ChangeServiceActivationDto { get; set; }
+        public ChangeServiceApprovalDto ChangeServiceApprovalDto { get; set; }
 
 
-        
+
     }
 }
