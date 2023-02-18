@@ -32,6 +32,13 @@ namespace Persistence.Configurations.Entities
                     Name = "Client",
                     NormalizedName = "CLIENT"
                 }
+                ,
+                new IdentityRole
+                {
+                    Id = "8d012e04-e5c3-4ee0-baed-53d4778470a6",
+                    Name = "Provider",
+                    NormalizedName = "PROVIDER"
+                }
             );
         }
     }
