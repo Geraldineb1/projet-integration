@@ -1,10 +1,10 @@
 ﻿    <ul class="navbar-nav">
         @if (User.Identity.IsAuthenticated)
                         {
-                            @if (!User.IsInRole("Provider"))
+                            @if (!User.IsInRole("Client"))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link " href="#" title="Manage">
+                                    <a class="nav-link " title="Manage" asp-controller="Providers" asp-action="Create">
                                         JOIN THE TEAM
                                     </a>
                                 </li>

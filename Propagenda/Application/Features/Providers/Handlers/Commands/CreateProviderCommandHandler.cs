@@ -1,40 +1,60 @@
 ﻿using Application.DTOs.Provider.Validators;
 using Application.Features.Providers.Requests.Commands;
 using Application.Persistence.Contracts;
+using Application.Responses;
 using AutoMapper;
 using Domain;
 using MediatR;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Application.Features.Providers.Handlers.Commands
 {
-    public class CreateProviderCommandHandler : IRequestHandler<CreateProviderCommand, int>
+    public class CreateProviderCommandHandler : IRequestHandler<CreateProviderCommand, BaseCommandResponse>
     {
         private readonly IProviderRepository _providerRepository;
         private readonly IMapper _mapper;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public CreateProviderCommandHandler(IProviderRepository providerRepository, IMapper mapper)
+        public CreateProviderCommandHandler(IProviderRepository providerRepository, IMapper mapper, IHttpContextAccessor httpContextAccessor, UserManager<ApplicationUser> userManager)
         {
             _providerRepository = providerRepository;
             _mapper = mapper;
+            _httpContextAccessor = httpContextAccessor;
+            _userManager = userManager;
         }
-        public async Task<int> Handle(CreateProviderCommand request, CancellationToken cancellationToken)
+        public async Task<BaseCommandResponse> Handle(CreateProviderCommand request, CancellationToken cancellationToken)
         {
+            var response = new BaseCommandResponse();
             var validator = new CreateProviderDtoValidator();
             var validationResult = await validator.ValidateAsync(request.ProviderDto);
             if (validationResult.IsValid == false)
-                throw new Exception();
+            {
+                response.Success = false;
+                response.Message = "Creation failed";
+                response.Errors = validationResult.Errors.Select(x => x.ErrorMessage).ToList();
+            }
 
 
             var provider = _mapper.Map<Provider>(request.ProviderDto);
+            provider.User = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+            _userManager.AddToRoleAsync(provider.User, "Provider");
+                    
 
             provider = await _providerRepository.Add(provider);
+            
+            response.Success = true;
+            response.Message = "creation Succesful";
+            response.Id = provider.Id;
 
-            return provider.Id;
+            return response;
         }
     }
 }

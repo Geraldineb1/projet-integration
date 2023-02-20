@@ -17,7 +17,7 @@ namespace Domain
         public bool IsApproved { get; set; }
         public ApplicationUser User { get; set; }
         
-        public IList<Service> Services { get; set; }
+        public IList<Service>? Services { get; set; }
 
     }
 }
