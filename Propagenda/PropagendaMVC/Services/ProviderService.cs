@@ -60,11 +60,11 @@ namespace PropagendaMVC.Services
             }
         }*/
 
-        public async Task<ProviderVM> GetProviderDetails(int id)
+        public async Task<ViewProviderVM> GetProviderDetails(int id)
         {
             AddBearerToken();
             var provider = await _client.ProviderGETAsync(id);
-            return _mapper.Map<ProviderVM>(provider);
+            return _mapper.Map<ViewProviderVM>(provider);
         }
 
         public async Task<List<ProviderVM>> GetProviders()

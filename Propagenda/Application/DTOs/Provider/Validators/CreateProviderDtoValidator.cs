@@ -28,9 +28,7 @@ namespace Application.DTOs.Provider.Validators
             //        .NotEmpty().WithMessage("{PropertyName} is required.")
             //        .NotNull()
             //        .MaximumLength(250).WithMessage("{PropertyName} must not exceed 50 characters.");
-            RuleFor(p => p.UserId)
-            .NotEmpty()
-            .NotNull();
+            
 
 
         }
