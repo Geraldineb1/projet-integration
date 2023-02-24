@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using PropagendaMVC.Contracts;
 using PropagendaMVC.Services;
 using PropagendaMVC.Services.Base;
@@ -17,6 +18,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 {
     options.LoginPath = new PathString("/users/login");
 });
+
 
 builder.Services.AddTransient<IAuthenticateService, AuthenticationService>();
 

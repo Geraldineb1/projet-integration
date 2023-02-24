@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Providers.Requests.Queries
 {
-    public class GetProviderDetailRequest : IRequest<ProviderDto>
+    public class GetProviderDetailRequest : IRequest<UpdateProviderDto>
     {
         public int Id { get; set; }
     }

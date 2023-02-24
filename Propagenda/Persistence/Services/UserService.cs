@@ -32,6 +32,19 @@ namespace Persistence.Services
             };
         }
 
+        public async Task<ApplicationUser> GetUser(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            return new ApplicationUser
+            {
+                Email = user.Email,
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Address = user.Address
+            };
+        }
+
         public async Task<List<Client>> GetClients()
         {
             var clients = await _userManager.GetUsersInRoleAsync("Client");

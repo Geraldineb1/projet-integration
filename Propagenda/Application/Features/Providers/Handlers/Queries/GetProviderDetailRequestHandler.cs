@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Providers.Handlers.Queries
 {
-    public class GetProviderDetailRequestHandler : IRequestHandler<GetProviderDetailRequest, ProviderDto>
+    public class GetProviderDetailRequestHandler : IRequestHandler<GetProviderDetailRequest, UpdateProviderDto>
     {
         private readonly IProviderRepository _providerRepository;
         private readonly IMapper _mapper;
@@ -22,10 +22,10 @@ namespace Application.Features.Providers.Handlers.Queries
             _providerRepository = providerRepository;
             _mapper = mapper;
         }
-        public async Task<ProviderDto> Handle(GetProviderDetailRequest request, CancellationToken cancellationToken)
+        public async Task<UpdateProviderDto> Handle(GetProviderDetailRequest request, CancellationToken cancellationToken)
         {
             var provider = await _providerRepository.Get(request.Id);
-            return _mapper.Map<ProviderDto>(provider);
+            return _mapper.Map<UpdateProviderDto>(provider);
         }
     }
 }

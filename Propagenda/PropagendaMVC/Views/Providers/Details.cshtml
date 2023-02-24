@@ -1,14 +1,15 @@
-﻿@model PropagendaMVC.Models.ViewProviderVM;
+﻿@model PropagendaMVC.Models.UpdateProviderViewVM;
 @using System.Security.Claims;
 
 @{
     ViewData["Title"] = "Details";
+    var currentuserID = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "uid").Value;
 }
 
 <h1>Details</h1>
 
 <div>
-    <h4>ViewProvider</h4>
+    <h4>ViewProvider @currentuserID + @Html.DisplayFor(model => model.UserId)</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -35,9 +36,9 @@
 @if (User.Identity.IsAuthenticated)
 {
     
-    @if( User.FindFirstValue(ClaimTypes.NameIdentifier) == Model.UserId || User.IsInRole("Administrator") || User.IsInRole("Employee")){
+    @if( ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(x => x.Type == "uid").Value == Model.UserId || User.IsInRole("Administrator") || User.IsInRole("Employee")){
     <div>
-        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+        @Html.ActionLink("Edit", "Edit", new {  id = Model.Id  }) |
     
     </div>
     }

@@ -13,7 +13,8 @@ namespace PropagendaMVC
             CreateMap<RegisterVM, RegistrationRequest>().ReverseMap();
             CreateMap<CreateProviderDto, CreateProviderVM>().ReverseMap();
             CreateMap<ProviderDto, ProviderVM>().ReverseMap();
-            CreateMap<ProviderDto, ViewProviderVM>().ReverseMap();
+            CreateMap<UpdateProviderDto, UpdateProviderVM>().ReverseMap();
+            CreateMap<ProviderDto, UpdateProviderVM>().ReverseMap();
         }
     }
 }

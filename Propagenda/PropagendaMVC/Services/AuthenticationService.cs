@@ -13,7 +13,7 @@ namespace PropagendaMVC.Services
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
         private JwtSecurityTokenHandler _tokenHandler;
-        private IMapper _mapper;
+        private readonly IMapper _mapper;
 
         public AuthenticationService(IClient client, ILocalStorageService localStorage, IHttpContextAccessor httpContextAccessor,
             IMapper mapper)

@@ -1,6 +1,7 @@
 ﻿using Application.Models.Identity;
 using Application.Persistence.Identity;
 using Domain;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -28,6 +29,7 @@ namespace Persistence.Services
             _jwtSettings = jwtSettings.Value;
             _signInManager = signInManager;
         }
+
 
         public async Task<AuthResponse> Login(AuthRequest request)
         {

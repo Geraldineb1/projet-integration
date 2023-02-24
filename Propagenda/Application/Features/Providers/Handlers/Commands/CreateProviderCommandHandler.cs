@@ -1,6 +1,7 @@
 ﻿using Application.DTOs.Provider.Validators;
 using Application.Features.Providers.Requests.Commands;
 using Application.Persistence.Contracts;
+using Application.Persistence.Identity;
 using Application.Responses;
 using AutoMapper;
 using Domain;
@@ -20,16 +21,14 @@ namespace Application.Features.Providers.Handlers.Commands
     {
         private readonly IProviderRepository _providerRepository;
         private readonly IMapper _mapper;
-        private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IAuthService _authenticationService;
 
-        public CreateProviderCommandHandler(IProviderRepository providerRepository, IMapper mapper, IHttpContextAccessor httpContextAccessor, UserManager<ApplicationUser> userManager)
+        public CreateProviderCommandHandler(IProviderRepository providerRepository, IMapper mapper, IAuthService authenticationService)
         {
             _providerRepository = providerRepository;
             _mapper = mapper;
-            _httpContextAccessor = httpContextAccessor;
-            _userManager = userManager;
-        }
+            _authenticationService = authenticationService;
+    }
         public async Task<BaseCommandResponse> Handle(CreateProviderCommand request, CancellationToken cancellationToken)
         {
             var response = new BaseCommandResponse();
@@ -44,9 +43,7 @@ namespace Application.Features.Providers.Handlers.Commands
 
 
             var provider = _mapper.Map<Provider>(request.ProviderDto);
-            provider.User = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
-            _userManager.AddToRoleAsync(provider.User, "Provider");
-                    
+            
 
             provider = await _providerRepository.Add(provider);
             

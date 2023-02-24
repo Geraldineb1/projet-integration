@@ -20,13 +20,30 @@ namespace PropagendaMVC.Models
         public bool IsActive { get; set; }
         [Required]
         public bool IsApproved { get; set; }
+        public string UserId { get; set; }
 
     }
 
-    public class ViewProviderVM : ProviderVM
+    public class UpdateProviderVM
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Bio { get; set; }
+        public string Link { get; set; }
+        public bool IsActive { get; set; }
+        public string UserId { get; set; }
+    }
+    public class UpdateProviderViewVM
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Bio { get; set; }
+        public string Link { get; set; }
+        public bool IsActive { get; set; }
         public string UserId { get; set; }
     }
 
-    
+
+
+
 }

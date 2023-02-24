@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using PropagendaMVC.Contracts;
 using PropagendaMVC.Models;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace PropagendaMVC.Controllers
 {
@@ -39,6 +41,7 @@ namespace PropagendaMVC.Controllers
         {
             try
             {
+                provider.UserId = ""; 
                 var response = await _serviceProvider.CreateProvider(provider);
                 if (response.Success)
                 {
@@ -50,32 +53,43 @@ namespace PropagendaMVC.Controllers
             {
                 ModelState.AddModelError("", ex.Message);
             }
+            
 
             return View(provider);
         }
 
-        /*// GET: ProvidersController/Edit/5
-        public ActionResult Edit(int id)
+
+        // GET: ProvidersController/Edit/5
+        public async Task<ActionResult> Edit(int id)
         {
-            return View();
+            var model = await _serviceProvider.GetProviderDetails(id);
+            return View(model);
         }
 
         // POST: ProvidersController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(int id, UpdateProviderVM provider)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                
+                var response = await _serviceProvider.UpdateProvider(id, provider);
+                if (response.Success)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+
+                ModelState.AddModelError("", response.ValidationErrors);
             }
-            catch
+            catch(Exception ex)
             {
-                return View();
+                ModelState.AddModelError("", ex.Message);
             }
+            return View(provider);
         }
 
-        // GET: ProvidersController/Delete/5
+        /*// GET: ProvidersController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
@@ -95,5 +109,7 @@ namespace PropagendaMVC.Controllers
                 return View();
             }
         }*/
+
+
     }
 }

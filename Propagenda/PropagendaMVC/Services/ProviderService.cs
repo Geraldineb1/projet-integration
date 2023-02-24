@@ -1,21 +1,27 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using PropagendaMVC.Contracts;
 using PropagendaMVC.Models;
 using PropagendaMVC.Services.Base;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace PropagendaMVC.Services
 {
     public class ProviderService : BaseHttpService, IProviderService
     {
-        private readonly ILocalStorageService _localStorageService;
+        
         private readonly IMapper _mapper;
         private readonly IClient _httpclient;
+        private JwtSecurityTokenHandler _tokenHandler;
 
         public ProviderService(IMapper mapper, IClient httpclient, ILocalStorageService localStorageService) : base(httpclient, localStorageService)
         {
-            this._localStorageService = localStorageService;
+            
             this._mapper = mapper;
             this._httpclient = httpclient;
+            this._tokenHandler = new JwtSecurityTokenHandler();
         }
 
         public async Task<Response<int>> CreateProvider(CreateProviderVM provider)
@@ -23,8 +29,21 @@ namespace PropagendaMVC.Services
             try
             {
                 var response = new Response<int>();
+                var token = _localStorage.GetStorageValue<String>("token");
+                if (token != string.Empty)
+                {
+                    //Get Claims from token and Build auth user object
+                    var tokenContent = _tokenHandler.ReadJwtToken(token);
+                    var claims = ParseClaims(tokenContent);
+                    var userId = claims[3].Value;
+                    provider.UserId = userId;
+                }
+
+
                 CreateProviderDto createProvider = _mapper.Map<CreateProviderDto>(provider);
+                
                 AddBearerToken();
+                
                 BaseCommandResponse apiResponse = await _client.ProviderPOSTAsync(createProvider);
                 if (apiResponse.Success)
                 {
@@ -60,11 +79,12 @@ namespace PropagendaMVC.Services
             }
         }*/
 
-        public async Task<ViewProviderVM> GetProviderDetails(int id)
+        public async Task<UpdateProviderVM> GetProviderDetails(int id)
         {
             AddBearerToken();
             var provider = await _client.ProviderGETAsync(id);
-            return _mapper.Map<ViewProviderVM>(provider);
+            
+            return _mapper.Map<UpdateProviderVM>(provider);
         }
 
         public async Task<List<ProviderVM>> GetProviders()
@@ -74,19 +94,27 @@ namespace PropagendaMVC.Services
             return _mapper.Map<List<ProviderVM>>(providers);
         }
 
-        /*public async Task<Response<int>> UpdateServiceType(int id, ServiceTypeVM serviceType)
+        public async Task<Response<int>> UpdateProvider(int id, UpdateProviderVM provider)
         {
             try
             {
-                ServiceTypeDto serviceTypeDto = _mapper.Map<ServiceTypeDto>(serviceType);
+                
+                UpdateProviderDto providerDto = _mapper.Map<UpdateProviderDto>(provider);
                 AddBearerToken();
-                await _client.ServiceTypePUTAsync(id.ToString(), serviceTypeDto);
+                await _client.ProviderPUTAsync(id, providerDto);
                 return new Response<int>() { Success = true };
             }
             catch (ApiException ex)
             {
                 return ConvertApiExceptions<int>(ex);
             }
-        }*/
+        }
+
+        private IList<Claim> ParseClaims(JwtSecurityToken tokenContent)
+        {
+            var claims = tokenContent.Claims.ToList();
+            claims.Add(new Claim(ClaimTypes.Name, tokenContent.Subject));
+            return claims;
+        }
     }
 }

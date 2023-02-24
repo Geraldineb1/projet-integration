@@ -1,5 +1,8 @@
 ﻿using Application.Persistence.Contracts;
+using Application.Persistence.Identity;
 using Domain;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Persistence.Repositories
@@ -7,9 +10,25 @@ namespace Persistence.Repositories
     public class ProviderRepository : GenericRepository<Provider>, IProviderRepository
     {
         private readonly PropagendaDbContext _dbContext;
-        public ProviderRepository(PropagendaDbContext dbContext) : base(dbContext)
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IUserService _userService;
+        public ProviderRepository(PropagendaDbContext dbContext, UserManager<ApplicationUser> userManager, IHttpContextAccessor httpContextAccessor, IUserService userService) : base(dbContext)
         {
             _dbContext = dbContext;
+            _userManager = userManager;
+            _httpContextAccessor = httpContextAccessor;
+            _userService = userService;
+        }
+
+        public async Task<Provider> Add(Provider provider)
+        {
+            await _dbContext.AddAsync(provider);
+            var user = await _userService.GetUser(provider.UserId);
+            await _userManager.AddToRoleAsync(user, "Provider");
+
+            await _dbContext.SaveChangesAsync();
+            return provider;
         }
 
         public async Task ChangeActivationStatus(Provider provider, bool isActive)

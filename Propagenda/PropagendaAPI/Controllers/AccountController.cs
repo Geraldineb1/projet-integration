@@ -1,6 +1,8 @@
 ﻿using Application.Models.Identity;
 using Application.Persistence.Identity;
+using Domain;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace PropagendaAPI.Controllers
@@ -26,5 +28,8 @@ namespace PropagendaAPI.Controllers
         {
             return Ok(await _authenticationService.Register(request));
         }
+
+        
+        
     }
 }

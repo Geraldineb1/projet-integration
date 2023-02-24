@@ -1,4 +1,5 @@
 ﻿using Application.Models.Identity;
+using Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace Application.Persistence.Identity
     public interface IUserService
     {
         Task<List<Client>> GetClients();
+        Task<ApplicationUser> GetUser(string id);
     }
 }

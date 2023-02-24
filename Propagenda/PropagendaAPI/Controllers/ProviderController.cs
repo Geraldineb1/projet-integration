@@ -32,7 +32,7 @@ namespace PropagendaAPI.Controllers
 
         // GET api/<ProviderController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ProviderDto>> Get(int id)
+        public async Task<ActionResult<UpdateProviderDto>> Get(int id)
         {
             var provider = await _mediator.Send(new GetProviderDetailRequest { Id = id });
             return Ok(provider);
@@ -49,9 +49,9 @@ namespace PropagendaAPI.Controllers
 
         // PUT api/<ProviderController>/5
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put([FromBody] UpdateProviderDto provider)
+        public async Task<ActionResult> Put(int id, [FromBody] UpdateProviderDto provider)
         {
-            var command = new UpdateProviderCommand { ProviderDto = provider };
+            var command = new UpdateProviderCommand { Id = id, ProviderDto = provider };
             await _mediator.Send(command);
             return NoContent();
         }
