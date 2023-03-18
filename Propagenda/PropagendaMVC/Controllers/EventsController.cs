@@ -5,10 +5,10 @@ using PropagendaMVC.Models;
 
 namespace PropagendaMVC.Controllers
 {
-    public class EventController : Controller
+    public class EventsController : Controller
     {
         private readonly IEventService _eventService;
-        public EventController(IEventService eventService)
+        public EventsController(IEventService eventService)
         {
             this._eventService = eventService;
         }
@@ -40,7 +40,7 @@ namespace PropagendaMVC.Controllers
         {
             try
             {
-                var response = await _event.CreateEvent(Event);
+                var response = await _eventService.CreateEvent(Event);
                 if (response.Success)
                 {
                     return RedirectToAction(nameof(Index));
@@ -58,7 +58,7 @@ namespace PropagendaMVC.Controllers
         // GET: EventController/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
-            var model = await _event.GetEventDetails(id);
+            var model = await _eventService.GetEventDetails(id);
             return View(model);
         }
 
@@ -69,7 +69,7 @@ namespace PropagendaMVC.Controllers
         {
             try
             {
-                var response = await _event.UpdateEvent(id, serviceType);
+                var response = await _eventService.UpdateEvent(id, serviceType);
                 if (response.Success)
                 {
                     return RedirectToAction(nameof(Index));
@@ -87,13 +87,13 @@ namespace PropagendaMVC.Controllers
 
 
         // POST: EventController/Delete/5
-        [HttpPost]
+        /*[HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(int id)
         {
             try
             {
-                var response = await _event.DeleteEvent(id);
+                var response = await _eventService.DeleteEvent(id);
                 if (response.Success)
                 {
                     return RedirectToAction(nameof(Index));
@@ -106,6 +106,6 @@ namespace PropagendaMVC.Controllers
             }
 
             return BadRequest();
-        }
+        }*/
     }
 }

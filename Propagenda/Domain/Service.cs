@@ -9,6 +9,10 @@ namespace Domain
 {
     public class Service : BaseDomainEntity
     {
+        public Service()
+        {
+            this.Reservations = new List<ServiceReservation>();
+        }
         public string Title { get; set; }
         public string Description { get; set; }
         public string Image { get; set; }
@@ -17,10 +21,13 @@ namespace Domain
         public string LocationAddress { get; set; }
         public bool isActive { get; set; }
         public bool isApproved { get; set; }
-        public ServiceType ServiceType { get; set; }
-        public Provider Provider { get; set; }
+        public ServiceType? ServiceType { get; set; }
+        public int ServiceTypeId { get; set; }
 
-        public IList<ServiceReservation> Reservations { get; set; }
+        public Provider Provider { get; set; }
+        public int ProviderId { get; set; }
+
+        public virtual IList<ServiceReservation> Reservations { get; set; }
 
 
 

@@ -15,7 +15,7 @@ namespace PropagendaMVC.Models
 
 
         [Required]
-        public string Descrition { get; set; } // il y a une faute de frappe en DB: c'est Descrition au lieu de description
+        public string Description { get; set; } // il y a une faute de frappe en DB: c'est Descrition au lieu de description
 
 
         [Required]
@@ -27,12 +27,13 @@ namespace PropagendaMVC.Models
 
 
         [Required]
-        public string Venueddress { get; set; }
+        public string VenueAddress { get; set; }
 
 
         [Required]
         public int TicketsAmount { get; set; }
+        public int TicketPrice { get; set; }
 
-        // je suppose qu'on ne doit pas reprendre l'user ID ici?
+        public string UserId { get; set; }
     }
 }

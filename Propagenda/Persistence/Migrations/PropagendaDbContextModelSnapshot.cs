@@ -104,7 +104,7 @@ namespace Persistence.Migrations
                             Id = "279fc88b-0a5e-4bec-b074-eee865a0c9ae",
                             AccessFailedCount = 0,
                             Address = "rue de la paix 25",
-                            ConcurrencyStamp = "3b7c001d-c18e-44d8-84f0-32c8c8db6fb2",
+                            ConcurrencyStamp = "804c31ad-af5d-4555-8db6-bde0423da8b2",
                             Email = "admin@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -112,9 +112,9 @@ namespace Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPSv3n2g1oDQojjAmbQuT68vDetT7juoyJ8V+4OjQKUyU8phrzs9FmQ9thvwqCruBg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENIiprR7Rt/SrGhQLmymJao9iQAPLBuqVxVPAmVJcbw9aJSjKyGtBTk2HUy+xo9GXg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "65600320-da22-43b1-bd61-27b06e5223a0",
+                            SecurityStamp = "b48d0dd4-b313-4bd1-8c2f-70f7c44db708",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -123,7 +123,7 @@ namespace Persistence.Migrations
                             Id = "047a1feb-b527-43af-8194-f1e3c92b7607",
                             AccessFailedCount = 0,
                             Address = "rue de la paix 25",
-                            ConcurrencyStamp = "62f77a9f-3fef-473d-bd55-f9d6ded16c9c",
+                            ConcurrencyStamp = "a0926487-c4ea-4b16-934b-33cb5af18a8c",
                             Email = "employee@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -131,9 +131,9 @@ namespace Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "EMPLOYEE@LOCALHOST.COM",
                             NormalizedUserName = "EMPLOYEE@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEB9rc1acB+Cor5dlQk3D+1Cfdy0j1C4dkFyIxqwTBB+6Uk3FBeXy+mA8C/G6iDPqKg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENC+HNjW6rroeaAx59aMFDbJgSBiWiL6dv6xSilJWrfjoDZQ4fQZ91Bk8hIsbpMRFw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9ed442e0-2806-4b2e-a360-c7e7c52cef1b",
+                            SecurityStamp = "f3592ee2-8270-41c1-a7b3-51041134a9a8",
                             TwoFactorEnabled = false,
                             UserName = "employee@localhost.com"
                         },
@@ -142,7 +142,7 @@ namespace Persistence.Migrations
                             Id = "ed742fb6-87ff-40a9-a30b-717211f5d456",
                             AccessFailedCount = 0,
                             Address = "rue de la paix 25",
-                            ConcurrencyStamp = "fed8a968-5d5a-4dd4-9aaf-f639bff6b030",
+                            ConcurrencyStamp = "716e965d-8e59-4afa-9f7f-b73ac9f8a89c",
                             Email = "clien@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -150,9 +150,9 @@ namespace Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "CLIENT@LOCALHOST.COM",
                             NormalizedUserName = "CLIENT@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGLI96w5atZXmoLIeaQMMHfgJ6sVXLArxLQutqi7iA7RyflPLFaNqmH8uEpqcxa6bw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOYV8Arm6zHICUp7tilyivcRkjwpFxkbYwT3LaASCDCa5xD8XXBJPnPbAVCP1jl8Bg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "52a11a53-5f9f-47b3-9a96-5ab8b4b35b04",
+                            SecurityStamp = "342c7c28-960d-47d9-a23c-e7559698051d",
                             TwoFactorEnabled = false,
                             UserName = "client@localhost.com"
                         });
@@ -166,7 +166,11 @@ namespace Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Descrition")
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -186,9 +190,6 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("VenueAddress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -199,7 +200,7 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Events");
                 });
@@ -211,6 +212,10 @@ namespace Persistence.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Bio")
                         .IsRequired()
@@ -230,13 +235,9 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Providers");
                 });
@@ -301,6 +302,10 @@ namespace Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<DateTime>("DateService")
                         .HasColumnType("datetime2");
 
@@ -313,12 +318,9 @@ namespace Persistence.Migrations
                     b.Property<DateTime>("RequestDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("ServiceReservations");
                 });
@@ -375,6 +377,9 @@ namespace Persistence.Migrations
                     b.Property<int>("EventId")
                         .HasColumnType("int");
 
+                    b.Property<int>("TicketNumber")
+                        .HasColumnType("int");
+
                     b.Property<int>("TicketReservationId")
                         .HasColumnType("int");
 
@@ -384,7 +389,7 @@ namespace Persistence.Migrations
 
                     b.HasIndex("TicketReservationId");
 
-                    b.ToTable("Tickets");
+                    b.ToTable("Tickets", (string)null);
                 });
 
             modelBuilder.Entity("Domain.TicketReservation", b =>
@@ -395,20 +400,21 @@ namespace Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int?>("EventId")
                         .HasColumnType("int");
 
                     b.Property<int>("TotalNbTickets")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("EventId");
+                    b.HasIndex("ApplicationUserId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("EventId");
 
                     b.ToTable("TicketReservations");
                 });
@@ -443,28 +449,28 @@ namespace Persistence.Migrations
                         new
                         {
                             Id = "cac43a6e-f7bb-4448-baaf-1add431ccbbf",
-                            ConcurrencyStamp = "aa676f0d-d7e0-4d96-9a53-8e4d7cf1e61d",
+                            ConcurrencyStamp = "f069b9c4-3919-4bb1-a40f-b2a588aa5d4f",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
                             Id = "cbc43a8e-f7bb-4445-baaf-1add431ffbbf",
-                            ConcurrencyStamp = "46c2245e-6b43-4537-a0bd-1679ae3948bd",
+                            ConcurrencyStamp = "0fae4acb-e304-475a-ba49-88a0b1a68e2a",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "cbc43a9e-f7bb-4445-baaf-1add431ffbbf",
-                            ConcurrencyStamp = "a5d74ca1-2d52-4b8b-af36-15e07327a227",
+                            ConcurrencyStamp = "1088cfc0-2bd0-4555-b6cf-04c9c63c8f91",
                             Name = "Client",
                             NormalizedName = "CLIENT"
                         },
                         new
                         {
                             Id = "8d012e04-e5c3-4ee0-baed-53d4778470a6",
-                            ConcurrencyStamp = "27c34a66-ca14-4302-84c5-38d0649eee6d",
+                            ConcurrencyStamp = "d255d21d-e5b8-4052-a43c-a4585f4ae8cd",
                             Name = "Provider",
                             NormalizedName = "PROVIDER"
                         });
@@ -605,27 +611,29 @@ namespace Persistence.Migrations
 
                     b.HasIndex("ServicesId");
 
-                    b.ToTable("ServiceReservationService", (string)null);
+                    b.ToTable("ServiceServiceReservation");
                 });
 
             modelBuilder.Entity("Domain.Event", b =>
                 {
-                    b.HasOne("Domain.ApplicationUser", "User")
+                    b.HasOne("Domain.ApplicationUser", "ApplicationUser")
                         .WithMany("Events")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("User");
+                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("Domain.Provider", b =>
                 {
-                    b.HasOne("Domain.ApplicationUser", "User")
+                    b.HasOne("Domain.ApplicationUser", "ApplicationUser")
                         .WithMany("Providers")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("ApplicationUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("User");
+                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("Domain.Service", b =>
@@ -649,17 +657,19 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.ServiceReservation", b =>
                 {
-                    b.HasOne("Domain.ApplicationUser", "User")
+                    b.HasOne("Domain.ApplicationUser", "ApplicationUser")
                         .WithMany("ServicesReservations")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("User");
+                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("Domain.Ticket", b =>
                 {
-                    b.HasOne("Domain.Event", "Event")
-                        .WithMany()
+                    b.HasOne("Domain.Event", "Events")
+                        .WithMany("TicketList")
                         .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -667,25 +677,26 @@ namespace Persistence.Migrations
                     b.HasOne("Domain.TicketReservation", "TicketReservation")
                         .WithMany("Tickets")
                         .HasForeignKey("TicketReservationId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Event");
+                    b.Navigation("Events");
 
                     b.Navigation("TicketReservation");
                 });
 
             modelBuilder.Entity("Domain.TicketReservation", b =>
                 {
+                    b.HasOne("Domain.ApplicationUser", "ApplicationUser")
+                        .WithMany("TicketReservations")
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Domain.Event", null)
                         .WithMany("TicketReservation")
                         .HasForeignKey("EventId");
 
-                    b.HasOne("Domain.ApplicationUser", "User")
-                        .WithMany("TicketReservations")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
+                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -767,6 +778,8 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Event", b =>
                 {
+                    b.Navigation("TicketList");
+
                     b.Navigation("TicketReservation");
                 });
 

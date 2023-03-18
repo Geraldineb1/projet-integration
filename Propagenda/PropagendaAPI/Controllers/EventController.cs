@@ -2,6 +2,7 @@
 using Application.Features.Event.Requests.Queries;
 using Application.Features.Events.Requests.Commands;
 using Application.Features.Events.Requests.Queries;
+using Application.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -40,7 +41,7 @@ namespace PropagendaAPI.Controllers
 
         // POST api/<EventController>
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] CreateEventDto Event)
+        public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateEventDto Event)
         {
             var command = new CreateEventCommand { EventDto = Event };
             var response = await _mediator.Send(command);
@@ -48,8 +49,8 @@ namespace PropagendaAPI.Controllers
         }
 
         // PUT api/<EventController>/5
-        [HttpPut]
-        public async Task<ActionResult> Put([FromBody] EventDto Event)
+        [HttpPut("{id}")]
+        public async Task<ActionResult> Put( [FromBody] EventDto Event)
         {
             var command = new UpdateEventCommand { EventDto = Event };
             await _mediator.Send(command);

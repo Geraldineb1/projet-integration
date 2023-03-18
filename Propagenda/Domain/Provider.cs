@@ -15,8 +15,9 @@ namespace Domain
         //public string AccountNb { get; set; }
         public bool IsActive { get; set; }
         public bool IsApproved { get; set; }
-        public ApplicationUser User { get; set; }
-        public string UserId { get; set; }
+
+        public ApplicationUser? ApplicationUser { get; set; }
+        public string? ApplicationUserId { get; set; }
         
         public IList<Service>? Services { get; set; }
 

@@ -36,7 +36,7 @@ namespace PropagendaMVC.Services
                     var tokenContent = _tokenHandler.ReadJwtToken(token);
                     var claims = ParseClaims(tokenContent);
                     var userId = claims[3].Value;
-                    provider.UserId = userId;
+                    provider.ApplicationUserId = userId;
                 }
 
 

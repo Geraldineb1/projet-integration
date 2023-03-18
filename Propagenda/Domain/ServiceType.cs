@@ -13,7 +13,7 @@ namespace Domain
         public string Label { get; set; }
         public string Image { get; set; }
         
-        public IList<Service> Services { get; set; }
+        public IList<Service>? Services { get; set; }
 
 
     }

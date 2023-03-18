@@ -21,10 +21,10 @@ namespace Persistence.Repositories
             _userService = userService;
         }
 
-        public async Task<Provider> Add(Provider provider)
+        new public async Task<Provider> Add(Provider provider)
         {
             await _dbContext.AddAsync(provider);
-            var user = await _userService.GetUser(provider.UserId);
+            var user = await _userService.GetUser(provider.ApplicationUserId);
             await _userManager.AddToRoleAsync(user, "Provider");
 
             await _dbContext.SaveChangesAsync();

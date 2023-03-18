@@ -178,23 +178,24 @@ namespace Persistence.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Descrition = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EventDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     VenueName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     VenueAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TicketsAmount = table.Column<int>(type: "int", nullable: false),
                     NbSoldTickets = table.Column<int>(type: "int", nullable: false),
                     TicketPrice = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Events", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Events_AspNetUsers_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Events_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -207,16 +208,18 @@ namespace Persistence.Migrations
                     Bio = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Link = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    IsApproved = table.Column<bool>(type: "bit", nullable: false),
+                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Providers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Providers_AspNetUsers_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Providers_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -229,16 +232,17 @@ namespace Persistence.Migrations
                     DateService = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsAccepted = table.Column<bool>(type: "bit", nullable: false),
                     IsCompleted = table.Column<bool>(type: "bit", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ServiceReservations", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ServiceReservations_AspNetUsers_UserId",
-                        column: x => x.UserId,
+                        name: "FK_ServiceReservations_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -248,17 +252,18 @@ namespace Persistence.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TotalNbTickets = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     EventId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TicketReservations", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TicketReservations_AspNetUsers_UserId",
-                        column: x => x.UserId,
+                        name: "FK_TicketReservations_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_TicketReservations_Events_EventId",
                         column: x => x.EventId,
@@ -279,6 +284,7 @@ namespace Persistence.Migrations
                     LocationArea = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LocationAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     isActive = table.Column<bool>(type: "bit", nullable: false),
+                    isApproved = table.Column<bool>(type: "bit", nullable: false),
                     ServiceTypeId = table.Column<int>(type: "int", nullable: false),
                     ProviderId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -305,6 +311,7 @@ namespace Persistence.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    TicketNumber = table.Column<int>(type: "int", nullable: false),
                     EventId = table.Column<int>(type: "int", nullable: false),
                     TicketReservationId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -321,12 +328,11 @@ namespace Persistence.Migrations
                         name: "FK_Tickets_TicketReservations_TicketReservationId",
                         column: x => x.TicketReservationId,
                         principalTable: "TicketReservations",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "ServiceReservationService",
+                name: "ServiceServiceReservation",
                 columns: table => new
                 {
                     ReservationsId = table.Column<int>(type: "int", nullable: false),
@@ -334,19 +340,19 @@ namespace Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ServiceReservationService", x => new { x.ReservationsId, x.ServicesId });
+                    table.PrimaryKey("PK_ServiceServiceReservation", x => new { x.ReservationsId, x.ServicesId });
                     table.ForeignKey(
-                        name: "FK_ServiceReservationService_ServiceReservations_ReservationsId",
+                        name: "FK_ServiceServiceReservation_ServiceReservations_ReservationsId",
                         column: x => x.ReservationsId,
                         principalTable: "ServiceReservations",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
-                        name: "FK_ServiceReservationService_Services_ServicesId",
+                        name: "FK_ServiceServiceReservation_Services_ServicesId",
                         column: x => x.ServicesId,
                         principalTable: "Services",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.InsertData(
@@ -354,9 +360,10 @@ namespace Persistence.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "cac43a6e-f7bb-4448-baaf-1add431ccbbf", "b07a9f16-96dc-4a38-863c-6bfafd6e10de", "Employee", "EMPLOYEE" },
-                    { "cbc43a8e-f7bb-4445-baaf-1add431ffbbf", "38e7d2be-e8c9-4ab9-9cea-ab538b680fba", "Administrator", "ADMINISTRATOR" },
-                    { "cbc43a9e-f7bb-4445-baaf-1add431ffbbf", "1b8063e2-7520-4992-bcf0-fef5c1fa1b79", "Client", "CLIENT" }
+                    { "8d012e04-e5c3-4ee0-baed-53d4778470a6", "5745d67f-2691-44d3-a143-fd4d1de4edad", "Provider", "PROVIDER" },
+                    { "cac43a6e-f7bb-4448-baaf-1add431ccbbf", "e7a95b19-5120-48aa-80a9-b7b3beea469f", "Employee", "EMPLOYEE" },
+                    { "cbc43a8e-f7bb-4445-baaf-1add431ffbbf", "4dd5f711-6459-4221-93bb-596b8f1628d1", "Administrator", "ADMINISTRATOR" },
+                    { "cbc43a9e-f7bb-4445-baaf-1add431ffbbf", "d376bc84-94a6-4178-93bf-239e0035546e", "Client", "CLIENT" }
                 });
 
             migrationBuilder.InsertData(
@@ -364,9 +371,9 @@ namespace Persistence.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "Address", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "047a1feb-b527-43af-8194-f1e3c92b7607", 0, "rue de la paix 25", "2be65a00-1b33-456b-831d-d83ddfa30e86", "employee@localhost.com", true, "System", "Employee", false, null, "EMPLOYEE@LOCALHOST.COM", "EMPLOYEE@LOCALHOST.COM", "AQAAAAEAACcQAAAAEJ5Eo3yFj8TptQEvYOx/yN5v0S7AERBm4/GqCOtZbGZ8FG+HwHZTtaTePR9iyTQp9w==", null, false, "42c11ec9-1405-4c55-a2c2-7eb32d323197", false, "employee@localhost.com" },
-                    { "279fc88b-0a5e-4bec-b074-eee865a0c9ae", 0, "rue de la paix 25", "3d16c186-f99f-4222-b3a3-b0920644662e", "admin@localhost.com", true, "System", "Admin", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAEAACcQAAAAEMvbQta374GiVm3IsXnH+KeaK2GRFfKd28Su79BqdvxyWZ1wMVgHByIjIsuDegt1wg==", null, false, "428bb435-f4de-4e81-8e82-7d17d1d6387b", false, "admin@localhost.com" },
-                    { "ed742fb6-87ff-40a9-a30b-717211f5d456", 0, "rue de la paix 25", "a49ebe73-5f8f-4be2-83f5-9ab28edde7fa", "clien@localhost.com", true, "System", "Client", false, null, "CLIENT@LOCALHOST.COM", "CLIENT@LOCALHOST.COM", "AQAAAAEAACcQAAAAEIXMLxliX5FS+JzrEfFF0N33Y3d2y1BAznAUJHFyPwiiZswhAwKFMwNS7xD0upxvow==", null, false, "7032dfb7-6f9f-4600-a37c-8d226cd5fbb6", false, "client@localhost.com" }
+                    { "047a1feb-b527-43af-8194-f1e3c92b7607", 0, "rue de la paix 25", "428ccb9d-fada-4537-9297-bd3875b113ab", "employee@localhost.com", true, "System", "Employee", false, null, "EMPLOYEE@LOCALHOST.COM", "EMPLOYEE@LOCALHOST.COM", "AQAAAAEAACcQAAAAEHiegjk2/m/BZ0cv5BwOLb2PiMKig7sc6+SBSEl9/E3GAjJ5kDgmQFkvLe3UMCxXlw==", null, false, "537633f8-7161-4a73-8243-4a5cfa95598c", false, "employee@localhost.com" },
+                    { "279fc88b-0a5e-4bec-b074-eee865a0c9ae", 0, "rue de la paix 25", "7996eeb6-962b-4b0a-bdc7-940be784939f", "admin@localhost.com", true, "System", "Admin", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAEAACcQAAAAEBFMqvQs10ieiWC+3Kdiu1JDyjAgORQ4bcyRjxHJtbx9LUMAN6E1eM4eUppEvFCfWw==", null, false, "19726abe-c24b-4e1c-9884-2d0ff9404f4d", false, "admin@localhost.com" },
+                    { "ed742fb6-87ff-40a9-a30b-717211f5d456", 0, "rue de la paix 25", "9379f69c-d025-4495-8db8-4073ee04befa", "clien@localhost.com", true, "System", "Client", false, null, "CLIENT@LOCALHOST.COM", "CLIENT@LOCALHOST.COM", "AQAAAAEAACcQAAAAEGIZ2hfAZ6BEvQyGTtddj3l3j6g0wdYb9uayquUbDzScVxhAhMRokrgYyPBzmbEDCA==", null, false, "a0b2c447-bc93-4732-b0f1-7264b6b5fb40", false, "client@localhost.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -434,24 +441,19 @@ namespace Persistence.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Events_UserId",
+                name: "IX_Events_ApplicationUserId",
                 table: "Events",
-                column: "UserId");
+                column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Providers_UserId",
+                name: "IX_Providers_ApplicationUserId",
                 table: "Providers",
-                column: "UserId");
+                column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ServiceReservations_UserId",
+                name: "IX_ServiceReservations_ApplicationUserId",
                 table: "ServiceReservations",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ServiceReservationService_ServicesId",
-                table: "ServiceReservationService",
-                column: "ServicesId");
+                column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Services_ProviderId",
@@ -464,14 +466,19 @@ namespace Persistence.Migrations
                 column: "ServiceTypeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ServiceServiceReservation_ServicesId",
+                table: "ServiceServiceReservation",
+                column: "ServicesId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TicketReservations_ApplicationUserId",
+                table: "TicketReservations",
+                column: "ApplicationUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_TicketReservations_EventId",
                 table: "TicketReservations",
                 column: "EventId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TicketReservations_UserId",
-                table: "TicketReservations",
-                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tickets_EventId",
@@ -502,7 +509,7 @@ namespace Persistence.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "ServiceReservationService");
+                name: "ServiceServiceReservation");
 
             migrationBuilder.DropTable(
                 name: "Tickets");

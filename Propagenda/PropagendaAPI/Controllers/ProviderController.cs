@@ -32,7 +32,7 @@ namespace PropagendaAPI.Controllers
 
         // GET api/<ProviderController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<UpdateProviderDto>> Get(int id)
+        public async Task<ActionResult<ProviderDto>> Get(int id)
         {
             var provider = await _mediator.Send(new GetProviderDetailRequest { Id = id });
             return Ok(provider);

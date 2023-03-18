@@ -41,7 +41,7 @@ namespace PropagendaMVC.Controllers
         {
             try
             {
-                provider.UserId = ""; 
+                provider.ApplicationUserId = ""; 
                 var response = await _serviceProvider.CreateProvider(provider);
                 if (response.Success)
                 {
@@ -63,7 +63,13 @@ namespace PropagendaMVC.Controllers
         public async Task<ActionResult> Edit(int id)
         {
             var model = await _serviceProvider.GetProviderDetails(id);
-            return View(model);
+            UpdateProviderVM providerVM = new UpdateProviderVM();
+            providerVM.Name = model.Name;
+            providerVM.Bio = model.Bio;
+            providerVM.Link = model.Link;
+            providerVM.IsActive = model.IsActive;
+            
+            return View(providerVM);
         }
 
         // POST: ProvidersController/Edit/5

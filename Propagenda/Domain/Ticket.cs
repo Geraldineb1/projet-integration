@@ -9,8 +9,11 @@ namespace Domain
 {
     public class Ticket : BaseDomainEntity
     {
-        public Event Event { get; set; }
+        public int TicketNumber { get; set; }
         public int EventId { get; set; }
+        public Event Events { get; set; }
+
+        public int TicketReservationId { get; set; }
         public TicketReservation TicketReservation { get; set; }
     }
 }

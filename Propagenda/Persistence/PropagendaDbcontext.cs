@@ -24,12 +24,20 @@ namespace Persistence
 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(PropagendaDbContext).Assembly);
 
-            modelBuilder.Entity<Service>()
+            /*modelBuilder.Entity<Service>()
                     .HasMany(t => t.Reservations)
                     .WithMany(t => t.Services)
-                    .UsingEntity(j => j.ToTable("ServiceReservationService"));
+                    .UsingEntity(j => j.ToTable("ServiceReservationService"));*/
+            
+            modelBuilder.Entity<Ticket>(Entity =>
+            {
+                Entity.ToTable("Tickets");
+                Entity.HasOne(t => t.TicketReservation).WithMany(tr => tr.Tickets).HasForeignKey("TicketReservationId").OnDelete(DeleteBehavior.ClientSetNull);
+            });
 
-           
+            
+
+
         }
 
         public DbSet<Event> Events { get; set; }
