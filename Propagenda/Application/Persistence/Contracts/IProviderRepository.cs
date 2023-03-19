@@ -6,5 +6,7 @@ namespace Application.Persistence.Contracts
     {
         Task ChangeActivationStatus(Provider provider, bool isActive);
         Task ChangeApprovalStatus(Provider provider, bool isApproved);
+
+        Task<IReadOnlyList<Provider>> GetAllToApprove();
     }
 }
