@@ -30,6 +30,15 @@ namespace PropagendaAPI.Controllers
             return Ok(providers);
         }
 
+        // GET: api/<ProviderController/AllToApprove>
+        /*[HttpGet]
+        public async Task<ActionResult<List<ProviderDto>>> AllToApprove()
+        {
+            var providers = await _mediator.Send(new GetProvidersToApproveListRequest());
+
+            return Ok(providers);
+        }*/
+
         // GET api/<ProviderController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult<ProviderDto>> Get(int id)

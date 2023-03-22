@@ -21,6 +21,11 @@ namespace Persistence.Repositories
             _userService = userService;
         }
 
+        public async Task<IReadOnlyList<Provider>> GetAllToApprove()
+        {
+            return await _dbContext.Set<Provider>().Where(p => p.IsApproved == false).ToListAsync();
+        }
+
         new public async Task<Provider> Add(Provider provider)
         {
             await _dbContext.AddAsync(provider);
