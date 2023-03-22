@@ -1,6 +1,7 @@
 ﻿using Application.DTOs.Service;
 using Application.Features.Services.Requests.Commands;
 using Application.Features.Services.Requests.Queries;
+using Application.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -37,7 +38,7 @@ namespace PropagendaAPI.Controllers
 
         // POST api/<ServiceController>
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] CreateServiceDto service)
+        public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateServiceDto service)
         {
             var command = new CreateServiceCommand { ServiceDto = service };
             var response = await _mediator.Send(command);

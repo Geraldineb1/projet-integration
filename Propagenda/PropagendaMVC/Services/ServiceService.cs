@@ -25,7 +25,7 @@ namespace PropagendaMVC.Services
                 var response = new Response<int>();
                 CreateServiceDto createService = _mapper.Map<CreateServiceDto>(service);
                 AddBearerToken();
-                var apiResponse = await _client.ServicePOSTAsync(createService);
+                BaseCommandResponse apiResponse = await _client.ServicePOSTAsync(createService);
                 if (apiResponse.Success)
                 {
                     response.Data = apiResponse.Id;
