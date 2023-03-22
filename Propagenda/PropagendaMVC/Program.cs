@@ -28,6 +28,7 @@ builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddScoped<IServiceTypeService, ServiceTypeService>();
 builder.Services.AddScoped<IProviderService, ProviderService>();
 builder.Services.AddScoped<IEventService, EventService>();
+builder.Services.AddScoped<IServiceService, ServiceService>();
 
 builder.Services.AddSingleton<ILocalStorageService, LocalStorageService>();
 builder.Services.AddControllersWithViews();

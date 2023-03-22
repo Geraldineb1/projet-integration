@@ -3,7 +3,7 @@
 
 @{
     ViewData["Title"] = "Details";
-    var currentuserID = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "uid").Value;
+    var currentuserID = (User.Identity.IsAuthenticated)?((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "uid").Value:"";
 }
 
 <h1>Details</h1>
