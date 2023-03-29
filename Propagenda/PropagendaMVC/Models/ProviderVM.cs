@@ -20,7 +20,6 @@ namespace PropagendaMVC.Models
         public bool IsActive { get; set; }
         [Required]
         public bool IsApproved { get; set; }
-        public string ApplicationUserId { get; set; }
 
     }
 

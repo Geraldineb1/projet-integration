@@ -29,7 +29,7 @@ namespace PropagendaMVC.Services
             try
             {
                 var response = new Response<int>();
-                var token = _localStorage.GetStorageValue<String>("token");
+                /*var token = _localStorage.GetStorageValue<String>("token");
                 if (token != string.Empty)
                 {
                     //Get Claims from token and Build auth user object
@@ -37,7 +37,7 @@ namespace PropagendaMVC.Services
                     var claims = ParseClaims(tokenContent);
                     var userId = claims[3].Value;
                     provider.ApplicationUserId = userId;
-                }
+                }*/
 
 
                 CreateProviderDto createProvider = _mapper.Map<CreateProviderDto>(provider);

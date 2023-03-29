@@ -22,18 +22,23 @@ namespace Application.Features.Providers.Handlers.Commands
         private readonly IProviderRepository _providerRepository;
         private readonly IMapper _mapper;
         private readonly IAuthService _authenticationService;
+        IHttpContextAccessor _httpContextAccessor;
 
-        public CreateProviderCommandHandler(IProviderRepository providerRepository, IMapper mapper, IAuthService authenticationService)
+        public CreateProviderCommandHandler(IProviderRepository providerRepository, IMapper mapper, IHttpContextAccessor httpContextAccessor, IAuthService authenticationService)
         {
             _providerRepository = providerRepository;
             _mapper = mapper;
             _authenticationService = authenticationService;
+            _httpContextAccessor = httpContextAccessor;
     }
         public async Task<BaseCommandResponse> Handle(CreateProviderCommand request, CancellationToken cancellationToken)
         {
             var response = new BaseCommandResponse();
             var validator = new CreateProviderDtoValidator();
             var validationResult = await validator.ValidateAsync(request.ProviderDto);
+            var userId = _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(
+                    q => q.Type == "uid")?.Value;
+
             if (validationResult.IsValid == false)
             {
                 response.Success = false;
@@ -43,6 +48,7 @@ namespace Application.Features.Providers.Handlers.Commands
 
 
             var provider = _mapper.Map<Provider>(request.ProviderDto);
+            provider.ApplicationUserId = userId;
             
 
             provider = await _providerRepository.Add(provider);

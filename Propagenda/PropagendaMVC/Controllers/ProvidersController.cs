@@ -41,7 +41,6 @@ namespace PropagendaMVC.Controllers
         {
             try
             {
-                provider.ApplicationUserId = ""; 
                 var response = await _serviceProvider.CreateProvider(provider);
                 if (response.Success)
                 {

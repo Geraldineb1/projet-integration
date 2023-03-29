@@ -27,15 +27,7 @@ namespace PropagendaMVC.Services
             try
             {
                 var response = new Response<int>();
-                var token = _localStorage.GetStorageValue<String>("token");
-                if (token != string.Empty)
-                {
-                    //Get Claims from token and Build auth user object
-                    var tokenContent = _tokenHandler.ReadJwtToken(token);
-                    var claims = ParseClaims(tokenContent);
-                    var userId = claims[3].Value;
-                    singleEvent.UserId = userId;
-                }
+               
 
                 CreateEventDto createEvent = _mapper.Map<CreateEventDto>(singleEvent);
                 AddBearerToken();

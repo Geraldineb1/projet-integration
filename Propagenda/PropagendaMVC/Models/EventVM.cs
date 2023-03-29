@@ -19,7 +19,7 @@ namespace PropagendaMVC.Models
 
 
         [Required]
-        public DateTime EventDate { get; set; }
+        public DateTimeOffset EventDate { get; set; }
 
 
         [Required]
@@ -34,6 +34,5 @@ namespace PropagendaMVC.Models
         public int TicketsAmount { get; set; }
         public int TicketPrice { get; set; }
 
-        public string UserId { get; set; }
     }
 }
