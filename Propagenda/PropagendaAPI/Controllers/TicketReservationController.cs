@@ -1,6 +1,7 @@
 ﻿using Application.DTOs.TicketReservation;
 using Application.Features.TicketReservations.Requests.Commands;
 using Application.Features.TicketReservations.Requests.Queries;
+using Application.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,7 +39,7 @@ namespace PropagendaAPI.Controllers
 
         // POST api/<TicketReservationController>
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] CreateTicketReservationDto TicketReservation)
+        public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateTicketReservationDto TicketReservation)
         {
             var command = new CreateTicketReservationCommand { TicketReservationDto = TicketReservation };
             var response = await _mediator.Send(command);

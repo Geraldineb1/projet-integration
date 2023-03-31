@@ -29,7 +29,7 @@ namespace Application.Features.Providers.Handlers.Commands
             _providerRepository = providerRepository;
             _mapper = mapper;
             _authenticationService = authenticationService;
-            _httpContextAccessor = httpContextAccessor;
+            this._httpContextAccessor = httpContextAccessor;
     }
         public async Task<BaseCommandResponse> Handle(CreateProviderCommand request, CancellationToken cancellationToken)
         {

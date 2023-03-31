@@ -10,6 +10,7 @@ namespace Application.Features.Events.Requests.Commands
 {
     public class UpdateEventCommand : IRequest<Unit>
     {
+        public int Id { get; set; }
         public EventDto EventDto { get; set; }
     }
 }

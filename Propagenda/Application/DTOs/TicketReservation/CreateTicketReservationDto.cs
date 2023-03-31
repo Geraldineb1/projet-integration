@@ -9,5 +9,6 @@ namespace Application.DTOs.TicketReservation
     public class CreateTicketReservationDto
     {
         public int TotalNbTickets { get; set; }
+        public int EventId { get; set; }
     }
 }

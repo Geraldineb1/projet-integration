@@ -50,12 +50,12 @@ namespace PropagendaAPI.Controllers
 
         // PUT api/<EventController>/5
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put( [FromBody] EventDto Event)
+        public async Task<ActionResult> Put(int id, [FromBody] EventDto Event)
         {
-            var command = new UpdateEventCommand { EventDto = Event };
+            var command = new UpdateEventCommand { Id = id, EventDto = Event };
             await _mediator.Send(command);
             return NoContent();
         }
-   
+
     }
 }

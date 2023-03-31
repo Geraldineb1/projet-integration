@@ -8,5 +8,7 @@ namespace Application.Persistence.Contracts
         Task ChangeApprovalStatus(Provider provider, bool isApproved);
 
         Task<IReadOnlyList<Provider>> GetAllToApprove();
+
+
     }
 }
