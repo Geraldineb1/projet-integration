@@ -24,7 +24,7 @@ namespace Application.Features.TicketReservations.Handlers.Queries
         }
         public async Task<List<TicketReservationDto>> Handle(GetTicketReservationListRequest request, CancellationToken cancellationToken)
         {
-            var ticketReservations = await _tRRepository.GetAll();
+            var ticketReservations = await _tRRepository.GetAllWithEvent();
             return _mapper.Map<List<TicketReservationDto>>(ticketReservations);
         }
     }

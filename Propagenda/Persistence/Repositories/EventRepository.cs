@@ -1,5 +1,6 @@
 ﻿using Application.Persistence.Contracts;
 using Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace Persistence.Repositories
 {
@@ -10,5 +11,7 @@ namespace Persistence.Repositories
         {
             _dbContext = dbContext;
         }
+
+        
     }
 }

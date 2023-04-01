@@ -86,7 +86,7 @@ namespace PropagendaMVC.Services
             {
                 EventDto eventDto = _mapper.Map<EventDto>(singleEvent);
                 AddBearerToken();
-                await _client.EventPUTAsync(id.ToString(), eventDto);
+                await _client.EventPUTAsync(id, eventDto);
                 return new Response<int>() { Success = true };
             }
             catch (ApiException ex)
@@ -95,11 +95,6 @@ namespace PropagendaMVC.Services
             }
         }
 
-        private IList<Claim> ParseClaims(JwtSecurityToken tokenContent)
-        {
-            var claims = tokenContent.Claims.ToList();
-            claims.Add(new Claim(ClaimTypes.Name, tokenContent.Subject));
-            return claims;
-        }
+       
     }
 }

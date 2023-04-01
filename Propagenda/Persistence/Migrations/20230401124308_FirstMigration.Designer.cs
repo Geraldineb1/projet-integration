@@ -12,8 +12,8 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(PropagendaDbContext))]
-    [Migration("20230317115126_UpdateUsers")]
-    partial class UpdateUsers
+    [Migration("20230401124308_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -106,7 +106,7 @@ namespace Persistence.Migrations
                             Id = "279fc88b-0a5e-4bec-b074-eee865a0c9ae",
                             AccessFailedCount = 0,
                             Address = "rue de la paix 25",
-                            ConcurrencyStamp = "804c31ad-af5d-4555-8db6-bde0423da8b2",
+                            ConcurrencyStamp = "b420920b-f027-4ff8-9e38-1ff502155466",
                             Email = "admin@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -114,9 +114,9 @@ namespace Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAENIiprR7Rt/SrGhQLmymJao9iQAPLBuqVxVPAmVJcbw9aJSjKyGtBTk2HUy+xo9GXg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEK0flLSGESwdeDAoQu0BkCai7iXL62GNaelVhragi4f0WkFWCxlCX27DCCC+6gkFOA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b48d0dd4-b313-4bd1-8c2f-70f7c44db708",
+                            SecurityStamp = "21e1562a-44ca-490a-afd8-2e4075946684",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -125,7 +125,7 @@ namespace Persistence.Migrations
                             Id = "047a1feb-b527-43af-8194-f1e3c92b7607",
                             AccessFailedCount = 0,
                             Address = "rue de la paix 25",
-                            ConcurrencyStamp = "a0926487-c4ea-4b16-934b-33cb5af18a8c",
+                            ConcurrencyStamp = "96992006-87b9-4a31-b8bd-30c0a023c907",
                             Email = "employee@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -133,9 +133,9 @@ namespace Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "EMPLOYEE@LOCALHOST.COM",
                             NormalizedUserName = "EMPLOYEE@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAENC+HNjW6rroeaAx59aMFDbJgSBiWiL6dv6xSilJWrfjoDZQ4fQZ91Bk8hIsbpMRFw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFejhZXQ4Dfz0vXPHHWQzbY98ygLIEKnMDQ7R+h1pvCWYTRa83/Uy5JBNwy+fgJ5yg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f3592ee2-8270-41c1-a7b3-51041134a9a8",
+                            SecurityStamp = "bad0ecd8-e94c-4702-8c06-f7916c6150ab",
                             TwoFactorEnabled = false,
                             UserName = "employee@localhost.com"
                         },
@@ -144,7 +144,7 @@ namespace Persistence.Migrations
                             Id = "ed742fb6-87ff-40a9-a30b-717211f5d456",
                             AccessFailedCount = 0,
                             Address = "rue de la paix 25",
-                            ConcurrencyStamp = "716e965d-8e59-4afa-9f7f-b73ac9f8a89c",
+                            ConcurrencyStamp = "a22061e5-b1da-44e1-a860-ea8c0792cdef",
                             Email = "clien@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -152,9 +152,9 @@ namespace Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "CLIENT@LOCALHOST.COM",
                             NormalizedUserName = "CLIENT@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOYV8Arm6zHICUp7tilyivcRkjwpFxkbYwT3LaASCDCa5xD8XXBJPnPbAVCP1jl8Bg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEL2WDYDlJoIFXJuURLV3LR1NdgKd1NEKvkjGlU+Z4u0W8wvl4hZ7+WFqIrEmXFo58g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "342c7c28-960d-47d9-a23c-e7559698051d",
+                            SecurityStamp = "475d5e53-4587-491e-a882-20479f8182cf",
                             TwoFactorEnabled = false,
                             UserName = "client@localhost.com"
                         });
@@ -216,7 +216,6 @@ namespace Persistence.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("ApplicationUserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Bio")
@@ -382,16 +381,11 @@ namespace Persistence.Migrations
                     b.Property<int>("TicketNumber")
                         .HasColumnType("int");
 
-                    b.Property<int>("TicketReservationId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("EventId");
 
-                    b.HasIndex("TicketReservationId");
-
-                    b.ToTable("Tickets", (string)null);
+                    b.ToTable("Tickets");
                 });
 
             modelBuilder.Entity("Domain.TicketReservation", b =>
@@ -406,7 +400,7 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("EventId")
+                    b.Property<int>("EventId")
                         .HasColumnType("int");
 
                     b.Property<int>("TotalNbTickets")
@@ -451,28 +445,28 @@ namespace Persistence.Migrations
                         new
                         {
                             Id = "cac43a6e-f7bb-4448-baaf-1add431ccbbf",
-                            ConcurrencyStamp = "f069b9c4-3919-4bb1-a40f-b2a588aa5d4f",
+                            ConcurrencyStamp = "d855dcda-b3e8-47d0-84e9-3d6a0807d949",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
                             Id = "cbc43a8e-f7bb-4445-baaf-1add431ffbbf",
-                            ConcurrencyStamp = "0fae4acb-e304-475a-ba49-88a0b1a68e2a",
+                            ConcurrencyStamp = "d03cf493-b22a-4658-bd48-ec7f98447994",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "cbc43a9e-f7bb-4445-baaf-1add431ffbbf",
-                            ConcurrencyStamp = "1088cfc0-2bd0-4555-b6cf-04c9c63c8f91",
+                            ConcurrencyStamp = "f0893e21-2f9b-4ec8-bacf-1d1592edf34f",
                             Name = "Client",
                             NormalizedName = "CLIENT"
                         },
                         new
                         {
                             Id = "8d012e04-e5c3-4ee0-baed-53d4778470a6",
-                            ConcurrencyStamp = "d255d21d-e5b8-4052-a43c-a4585f4ae8cd",
+                            ConcurrencyStamp = "c6384bf5-10bd-4c4f-bfd8-d75f525d8f19",
                             Name = "Provider",
                             NormalizedName = "PROVIDER"
                         });
@@ -631,9 +625,7 @@ namespace Persistence.Migrations
                 {
                     b.HasOne("Domain.ApplicationUser", "ApplicationUser")
                         .WithMany("Providers")
-                        .HasForeignKey("ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ApplicationUserId");
 
                     b.Navigation("ApplicationUser");
                 });
@@ -670,20 +662,13 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Ticket", b =>
                 {
-                    b.HasOne("Domain.Event", "Events")
+                    b.HasOne("Domain.Event", "Event")
                         .WithMany("TicketList")
                         .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.TicketReservation", "TicketReservation")
-                        .WithMany("Tickets")
-                        .HasForeignKey("TicketReservationId")
-                        .IsRequired();
-
-                    b.Navigation("Events");
-
-                    b.Navigation("TicketReservation");
+                    b.Navigation("Event");
                 });
 
             modelBuilder.Entity("Domain.TicketReservation", b =>
@@ -694,11 +679,15 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Event", null)
+                    b.HasOne("Domain.Event", "Event")
                         .WithMany("TicketReservation")
-                        .HasForeignKey("EventId");
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("ApplicationUser");
+
+                    b.Navigation("Event");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -793,11 +782,6 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.ServiceType", b =>
                 {
                     b.Navigation("Services");
-                });
-
-            modelBuilder.Entity("Domain.TicketReservation", b =>
-                {
-                    b.Navigation("Tickets");
                 });
 #pragma warning restore 612, 618
         }

@@ -6,61 +6,22 @@
     var currentuserID = (User.Identity.IsAuthenticated)?((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "uid").Value:"";
 }
 
-<h1>Details</h1>
 
-<div>
-    <h4>EventVM</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EventDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EventDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.VenueName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.VenueName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.VenueAddress)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.VenueAddress)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TicketsAmount)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TicketsAmount)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TicketPrice)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TicketPrice)
-        </dd>
-    </dl>
+
+<div class="container-fluid">
+    <div class="row">
+        <h1>@Html.DisplayFor(model => model.Title)</h1>
+    </div>
+    <div class="row">
+        <div class="col-6"> 
+            <p>@Html.DisplayFor(model => model.Description)</p>
+        </div>
+        <div class="col-6"> 
+            <p>@Html.DisplayFor(model => model.EventDate)</p>
+            <p>@Html.DisplayFor(model => model.TicketPrice) €</p>
+            <p>@Html.DisplayFor(model => model.VenueName) <br/>@Html.DisplayFor(model => model.VenueAddress)</p>
+        </div>
+    </div>
 </div>
 @if (User.Identity.IsAuthenticated)
 {
@@ -76,4 +37,14 @@
         @Html.ActionLink("Edit", "Edit", new {  id = Model.Id  }) |
     
     </div>
+
+   
+
+     @Html.ActionLink("Tickets", "Create", "TicketReservations", new {  id = Model.Id  }) 
+}
+else
+{
+    <a class="nav-link" asp-action="Login" asp-controller="Users">
+        Tickets
+    </a>
 }

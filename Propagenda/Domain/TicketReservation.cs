@@ -14,6 +14,8 @@ namespace Domain
         public ApplicationUser ApplicationUser { get; set; }
         public string ApplicationUserId { get; set; }
 
-        public IList<Ticket>? Tickets { get; set; }
+        /*public IList<Ticket>? Tickets { get; set; }*/
+        public int EventId { get; set; }
+        public Event Event { get; set; }
     }
 }

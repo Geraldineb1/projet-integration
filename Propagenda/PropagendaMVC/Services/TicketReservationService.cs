@@ -53,11 +53,11 @@ namespace PropagendaMVC.Services
             return _mapper.Map<TicketReservationVM>(ticketReservation);
         }
 
-        public async Task<List<TicketReservationVM>> GetTicketReservations()
+        public async Task<List<TicketReservationListVM>> GetTicketReservations()
         {
             AddBearerToken();
             var ticketReservations = await _client.TicketReservationAllAsync();
-            return _mapper.Map<List<TicketReservationVM>>(ticketReservations);
+            return _mapper.Map<List<TicketReservationListVM>>(ticketReservations);
         }
 
     }

@@ -209,7 +209,7 @@ namespace Persistence.Migrations
                     Link = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     IsApproved = table.Column<bool>(type: "bit", nullable: false),
-                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -218,8 +218,7 @@ namespace Persistence.Migrations
                         name: "FK_Providers_AspNetUsers_ApplicationUserId",
                         column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -253,7 +252,7 @@ namespace Persistence.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TotalNbTickets = table.Column<int>(type: "int", nullable: false),
                     ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    EventId = table.Column<int>(type: "int", nullable: true)
+                    EventId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -268,7 +267,28 @@ namespace Persistence.Migrations
                         name: "FK_TicketReservations_Events_EventId",
                         column: x => x.EventId,
                         principalTable: "Events",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Tickets",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TicketNumber = table.Column<int>(type: "int", nullable: false),
+                    EventId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tickets", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Tickets_Events_EventId",
+                        column: x => x.EventId,
+                        principalTable: "Events",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -306,32 +326,6 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tickets",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TicketNumber = table.Column<int>(type: "int", nullable: false),
-                    EventId = table.Column<int>(type: "int", nullable: false),
-                    TicketReservationId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tickets", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Tickets_Events_EventId",
-                        column: x => x.EventId,
-                        principalTable: "Events",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Tickets_TicketReservations_TicketReservationId",
-                        column: x => x.TicketReservationId,
-                        principalTable: "TicketReservations",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "ServiceServiceReservation",
                 columns: table => new
                 {
@@ -346,13 +340,13 @@ namespace Persistence.Migrations
                         column: x => x.ReservationsId,
                         principalTable: "ServiceReservations",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ServiceServiceReservation_Services_ServicesId",
                         column: x => x.ServicesId,
                         principalTable: "Services",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -360,10 +354,10 @@ namespace Persistence.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "8d012e04-e5c3-4ee0-baed-53d4778470a6", "5745d67f-2691-44d3-a143-fd4d1de4edad", "Provider", "PROVIDER" },
-                    { "cac43a6e-f7bb-4448-baaf-1add431ccbbf", "e7a95b19-5120-48aa-80a9-b7b3beea469f", "Employee", "EMPLOYEE" },
-                    { "cbc43a8e-f7bb-4445-baaf-1add431ffbbf", "4dd5f711-6459-4221-93bb-596b8f1628d1", "Administrator", "ADMINISTRATOR" },
-                    { "cbc43a9e-f7bb-4445-baaf-1add431ffbbf", "d376bc84-94a6-4178-93bf-239e0035546e", "Client", "CLIENT" }
+                    { "8d012e04-e5c3-4ee0-baed-53d4778470a6", "c6384bf5-10bd-4c4f-bfd8-d75f525d8f19", "Provider", "PROVIDER" },
+                    { "cac43a6e-f7bb-4448-baaf-1add431ccbbf", "d855dcda-b3e8-47d0-84e9-3d6a0807d949", "Employee", "EMPLOYEE" },
+                    { "cbc43a8e-f7bb-4445-baaf-1add431ffbbf", "d03cf493-b22a-4658-bd48-ec7f98447994", "Administrator", "ADMINISTRATOR" },
+                    { "cbc43a9e-f7bb-4445-baaf-1add431ffbbf", "f0893e21-2f9b-4ec8-bacf-1d1592edf34f", "Client", "CLIENT" }
                 });
 
             migrationBuilder.InsertData(
@@ -371,9 +365,9 @@ namespace Persistence.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "Address", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "047a1feb-b527-43af-8194-f1e3c92b7607", 0, "rue de la paix 25", "428ccb9d-fada-4537-9297-bd3875b113ab", "employee@localhost.com", true, "System", "Employee", false, null, "EMPLOYEE@LOCALHOST.COM", "EMPLOYEE@LOCALHOST.COM", "AQAAAAEAACcQAAAAEHiegjk2/m/BZ0cv5BwOLb2PiMKig7sc6+SBSEl9/E3GAjJ5kDgmQFkvLe3UMCxXlw==", null, false, "537633f8-7161-4a73-8243-4a5cfa95598c", false, "employee@localhost.com" },
-                    { "279fc88b-0a5e-4bec-b074-eee865a0c9ae", 0, "rue de la paix 25", "7996eeb6-962b-4b0a-bdc7-940be784939f", "admin@localhost.com", true, "System", "Admin", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAEAACcQAAAAEBFMqvQs10ieiWC+3Kdiu1JDyjAgORQ4bcyRjxHJtbx9LUMAN6E1eM4eUppEvFCfWw==", null, false, "19726abe-c24b-4e1c-9884-2d0ff9404f4d", false, "admin@localhost.com" },
-                    { "ed742fb6-87ff-40a9-a30b-717211f5d456", 0, "rue de la paix 25", "9379f69c-d025-4495-8db8-4073ee04befa", "clien@localhost.com", true, "System", "Client", false, null, "CLIENT@LOCALHOST.COM", "CLIENT@LOCALHOST.COM", "AQAAAAEAACcQAAAAEGIZ2hfAZ6BEvQyGTtddj3l3j6g0wdYb9uayquUbDzScVxhAhMRokrgYyPBzmbEDCA==", null, false, "a0b2c447-bc93-4732-b0f1-7264b6b5fb40", false, "client@localhost.com" }
+                    { "047a1feb-b527-43af-8194-f1e3c92b7607", 0, "rue de la paix 25", "96992006-87b9-4a31-b8bd-30c0a023c907", "employee@localhost.com", true, "System", "Employee", false, null, "EMPLOYEE@LOCALHOST.COM", "EMPLOYEE@LOCALHOST.COM", "AQAAAAEAACcQAAAAEFejhZXQ4Dfz0vXPHHWQzbY98ygLIEKnMDQ7R+h1pvCWYTRa83/Uy5JBNwy+fgJ5yg==", null, false, "bad0ecd8-e94c-4702-8c06-f7916c6150ab", false, "employee@localhost.com" },
+                    { "279fc88b-0a5e-4bec-b074-eee865a0c9ae", 0, "rue de la paix 25", "b420920b-f027-4ff8-9e38-1ff502155466", "admin@localhost.com", true, "System", "Admin", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAEAACcQAAAAEK0flLSGESwdeDAoQu0BkCai7iXL62GNaelVhragi4f0WkFWCxlCX27DCCC+6gkFOA==", null, false, "21e1562a-44ca-490a-afd8-2e4075946684", false, "admin@localhost.com" },
+                    { "ed742fb6-87ff-40a9-a30b-717211f5d456", 0, "rue de la paix 25", "a22061e5-b1da-44e1-a860-ea8c0792cdef", "clien@localhost.com", true, "System", "Client", false, null, "CLIENT@LOCALHOST.COM", "CLIENT@LOCALHOST.COM", "AQAAAAEAACcQAAAAEL2WDYDlJoIFXJuURLV3LR1NdgKd1NEKvkjGlU+Z4u0W8wvl4hZ7+WFqIrEmXFo58g==", null, false, "475d5e53-4587-491e-a882-20479f8182cf", false, "client@localhost.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -484,11 +478,6 @@ namespace Persistence.Migrations
                 name: "IX_Tickets_EventId",
                 table: "Tickets",
                 column: "EventId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Tickets_TicketReservationId",
-                table: "Tickets",
-                column: "TicketReservationId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -512,6 +501,9 @@ namespace Persistence.Migrations
                 name: "ServiceServiceReservation");
 
             migrationBuilder.DropTable(
+                name: "TicketReservations");
+
+            migrationBuilder.DropTable(
                 name: "Tickets");
 
             migrationBuilder.DropTable(
@@ -524,16 +516,13 @@ namespace Persistence.Migrations
                 name: "Services");
 
             migrationBuilder.DropTable(
-                name: "TicketReservations");
+                name: "Events");
 
             migrationBuilder.DropTable(
                 name: "Providers");
 
             migrationBuilder.DropTable(
                 name: "ServiceTypes");
-
-            migrationBuilder.DropTable(
-                name: "Events");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

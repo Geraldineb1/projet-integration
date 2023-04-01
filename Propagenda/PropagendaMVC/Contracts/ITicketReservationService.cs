@@ -5,7 +5,7 @@ namespace PropagendaMVC.Contracts
 {
     public interface ITicketReservationService
     {
-        Task<List<TicketReservationVM>> GetTicketReservations();
+        Task<List<TicketReservationListVM>> GetTicketReservations();
         Task<TicketReservationVM> GetTicketReservationDetails(int id);
         Task<Response<int>> CreateTicketReservation(CreateTicketReservationVM ticketReservation);
     }

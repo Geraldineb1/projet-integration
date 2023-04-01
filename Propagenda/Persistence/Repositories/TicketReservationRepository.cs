@@ -1,5 +1,6 @@
 ﻿using Application.Persistence.Contracts;
 using Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace Persistence.Repositories
 {
@@ -9,6 +10,14 @@ namespace Persistence.Repositories
         public TicketReservationRepository(PropagendaDbContext dbContext) : base(dbContext)
         {
             _dbContext = dbContext;
+        }
+
+        public async Task<IReadOnlyList<TicketReservation>> GetAllWithEvent()
+        {
+            var events = await _dbContext.TicketReservations
+                .Include(q => q.Event)
+                .ToListAsync();
+            return events;
         }
     }
 }

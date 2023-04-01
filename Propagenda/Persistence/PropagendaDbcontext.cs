@@ -29,11 +29,11 @@ namespace Persistence
                     .WithMany(t => t.Services)
                     .UsingEntity(j => j.ToTable("ServiceReservationService"));*/
             
-            modelBuilder.Entity<Ticket>(Entity =>
+            /*modelBuilder.Entity<Ticket>(Entity =>
             {
                 Entity.ToTable("Tickets");
                 Entity.HasOne(t => t.TicketReservation).WithMany(tr => tr.Tickets).HasForeignKey("TicketReservationId").OnDelete(DeleteBehavior.ClientSetNull);
-            });
+            });*/
 
             
 
