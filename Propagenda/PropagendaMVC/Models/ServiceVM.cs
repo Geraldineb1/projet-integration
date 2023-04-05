@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PropagendaMVC.Services.Base;
+using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 
 namespace PropagendaMVC.Models
@@ -30,10 +31,35 @@ namespace PropagendaMVC.Models
             public string LocationAddress { get; set; }
 
             [Required]
-            public bool isActive { get; set; }
+            public int ServiceTypeId { get; set; }
 
             [Required]
-            public bool isApproved { get; set; }
+            public int ProviderId { get; set; }
+            public bool isActive { get; set; }
+
+            
+            
+        }
+        public class ServiceListVM
+        {
+            public int Id { get; set; }
+            public string Title { get; set; }
+
+            public string Description { get; set; }
+
+            [Display(Name = "Type Image")]
+            public string Image { get; set; }
+
+            public int Price { get; set; }
+
+            public string LocationArea { get; set; }
+
+            public string LocationAddress { get; set; }
+
+            public ServiceTypeDto Servicetype { get; set; }
+
+            public ProviderDto Provider { get; set; }
+            public bool isActive { get; set; }
         }
 
     

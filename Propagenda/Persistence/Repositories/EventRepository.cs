@@ -12,6 +12,14 @@ namespace Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        
+        public async Task ChangeNbSoldTickets(Event singleEvent, int nbSoldTickets)
+        {
+            singleEvent.NbSoldTickets += nbSoldTickets;
+            _dbContext.Entry(singleEvent).State = EntityState.Modified;
+            await _dbContext.SaveChangesAsync();
+        }
+
+
+
     }
 }

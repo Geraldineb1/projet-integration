@@ -55,6 +55,7 @@ namespace Application.Features.TicketReservations.Handlers.Commands
                 ticketRerservation.ApplicationUserId = userId;
 
                 ticketRerservation = await _ticketReservationRepository.Add(ticketRerservation);
+                await _eventRepository.ChangeNbSoldTickets(singleEvent, request.TicketReservationDto.TotalNbTickets);
 
                 response.Success = true;
                 response.Message = "creation Succesful";

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PropagendaMVC.Services.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace PropagendaMVC.Models
 {
@@ -31,6 +32,17 @@ namespace PropagendaMVC.Models
         public string Link { get; set; }
         public bool IsActive { get; set; }
         public string ApplicationUserId { get; set; }
+    }
+
+    public class ProviderWithServicesVM
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Bio { get; set; }
+        public string Link { get; set; }
+        public bool IsActive { get; set; }
+        public string ApplicationUserId { get; set; }
+        public List<ServiceDto> Services { get; set; }
     }
     
 

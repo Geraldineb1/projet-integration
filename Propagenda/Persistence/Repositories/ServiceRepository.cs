@@ -29,6 +29,7 @@ namespace Persistence.Repositories
         {
             var services = await _dbContext.Services
                 .Include(q => q.ServiceType)
+                .Include(q => q.Provider)
                 .ToListAsync();
             return services;
         }
@@ -37,6 +38,7 @@ namespace Persistence.Repositories
         {
             var service = await _dbContext.Services
                 .Include(q => q.ServiceType)
+                .Include(q => q.Provider)
                 .FirstOrDefaultAsync(q => q.Id == id);
             return service;
         }

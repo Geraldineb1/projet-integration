@@ -157,12 +157,12 @@ namespace PropagendaMVC.Services.Base
 
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task ServicePUTAsync(string id, UpdateServiceDto body);
+        System.Threading.Tasks.Task ServicePUTAsync(int id, UpdateServiceDto body);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task ServicePUTAsync(string id, UpdateServiceDto body, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task ServicePUTAsync(int id, UpdateServiceDto body, System.Threading.CancellationToken cancellationToken);
 
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -1530,7 +1530,7 @@ namespace PropagendaMVC.Services.Base
 
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task ServicePUTAsync(string id, UpdateServiceDto body)
+        public virtual System.Threading.Tasks.Task ServicePUTAsync(int id, UpdateServiceDto body)
         {
             return ServicePUTAsync(id, body, System.Threading.CancellationToken.None);
         }
@@ -1538,7 +1538,7 @@ namespace PropagendaMVC.Services.Base
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task ServicePUTAsync(string id, UpdateServiceDto body, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task ServicePUTAsync(int id, UpdateServiceDto body, System.Threading.CancellationToken cancellationToken)
         {
             if (id == null)
                 throw new System.ArgumentNullException("id");
@@ -3602,6 +3602,9 @@ namespace PropagendaMVC.Services.Base
 
         [Newtonsoft.Json.JsonProperty("applicationUserId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string ApplicationUserId { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("services", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.ICollection<ServiceDto> Services { get; set; }
 
     }
 

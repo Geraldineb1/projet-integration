@@ -24,7 +24,7 @@ namespace Application.Features.Providers.Handlers.Queries
         }
         public async Task<ProviderDto> Handle(GetProviderDetailRequest request, CancellationToken cancellationToken)
         {
-            var provider = await _providerRepository.Get(request.Id);
+            var provider = await _providerRepository.GetProviderWithServices(request.Id);
             return _mapper.Map<ProviderDto>(provider);
         }
     }

@@ -47,9 +47,9 @@ namespace PropagendaAPI.Controllers
 
         // PUT api/<ServiceController>/5
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put([FromBody] UpdateServiceDto service)
+        public async Task<ActionResult> Put(int id, [FromBody] UpdateServiceDto service)
         {
-            var command = new UpdateServiceCommand { ServiceDto = service };
+            var command = new UpdateServiceCommand {Id = id, ServiceDto = service };
             await _mediator.Send(command);
             return NoContent();
         }

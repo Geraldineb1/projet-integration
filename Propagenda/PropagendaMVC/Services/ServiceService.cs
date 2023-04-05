@@ -67,20 +67,20 @@ namespace PropagendaMVC.Services
                 return _mapper.Map<ServiceVM>(service);
             }
 
-            public async Task<List<ServiceVM>> GetServices()
+            public async Task<List<ServiceListVM>> GetServices()
             {
                 AddBearerToken();
                 var services = await _client.ServiceAllAsync();
-                return _mapper.Map<List<ServiceVM>>(services);
+                return _mapper.Map<List<ServiceListVM>>(services);
             }
 
         public async Task<Response<int>> UpdateService(int id, ServiceVM service)
         {
             try
             {
-                ServiceDto serviceDto = _mapper.Map<ServiceDto>(service);
+                UpdateServiceDto serviceDto = _mapper.Map<UpdateServiceDto>(service);
                 AddBearerToken();
-                //await _client.ServicePUTAsync(id.ToString(), serviceDto);
+                await _client.ServicePUTAsync(id, serviceDto);
                 return new Response<int>() { Success = true };
             }
             catch (ApiException ex)

@@ -21,6 +21,18 @@ namespace Persistence.Repositories
             _userService = userService;
         }
 
+        public async Task<Provider> GetProviderWithServices(int id)
+        {
+            var provider = await _dbContext.Providers
+                
+                 .Include(p => p.Services)  
+                    .ThenInclude(s => s.ServiceType)
+                    
+                .FirstOrDefaultAsync(q => q.Id == id);
+
+            return provider;
+        }
+
         public async Task<IReadOnlyList<Provider>> GetAllToApprove()
         {
             return await _dbContext.Set<Provider>().Where(p => p.IsApproved == false).ToListAsync();

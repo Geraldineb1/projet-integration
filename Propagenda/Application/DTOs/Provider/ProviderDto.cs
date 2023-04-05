@@ -17,6 +17,7 @@ namespace Application.DTOs.Provider
         public bool IsActive { get; set; }
         public bool IsApproved { get; set; }
         public string ApplicationUserId { get; set; }
+        public List<ServiceWithoutProviderDto> Services { get; set; }
         
     }
 }
