@@ -23,7 +23,7 @@ namespace Application.Features.Providers.Handlers.Queries
         }
         public async Task<List<ProviderDto>> Handle(GetProvidersToApproveListRequest request, CancellationToken cancellationToken)
         {
-            var providers = await _providerRepository.GetAll();
+            var providers = await _providerRepository.GetAllToApprove();
             return _mapper.Map<List<ProviderDto>>(providers);
         }
     }

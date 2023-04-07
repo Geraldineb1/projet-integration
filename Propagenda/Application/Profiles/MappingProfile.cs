@@ -23,6 +23,7 @@ namespace Application.Profiles
             CreateMap<Service, ServiceDto>().ReverseMap();
             CreateMap<Service, ServiceListDto>().ReverseMap();
             CreateMap<Service, ChangeServiceActivationDto>().ReverseMap();
+            CreateMap<Service, ChangeServiceApprovalDto>().ReverseMap();
             CreateMap<Service, CreateServiceDto>().ReverseMap();
             CreateMap<Service, UpdateServiceDto>().ReverseMap();
             CreateMap<Service, ServiceWithoutProviderDto>().ReverseMap();
@@ -31,6 +32,7 @@ namespace Application.Profiles
             CreateMap<Provider, CreateProviderDto>().ReverseMap();
             CreateMap<Provider, UpdateProviderDto>().ReverseMap();
             CreateMap<Provider, ChangeProviderActivationDto>().ReverseMap();
+            CreateMap<Provider, ChangeProviderApprovalDto>().ReverseMap();
 
 
             CreateMap<Event, EventDto>().ReverseMap();

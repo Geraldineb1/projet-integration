@@ -31,13 +31,13 @@ namespace PropagendaAPI.Controllers
         }
 
         // GET: api/<ProviderController/AllToApprove>
-        /*[HttpGet]
+        [HttpGet("~/to-approve")]
         public async Task<ActionResult<List<ProviderDto>>> AllToApprove()
         {
             var providers = await _mediator.Send(new GetProvidersToApproveListRequest());
 
             return Ok(providers);
-        }*/
+        }
 
         // GET api/<ProviderController>/5
         [HttpGet("{id}")]
@@ -69,6 +69,15 @@ namespace PropagendaAPI.Controllers
         public async Task<ActionResult> ChangeActivation(int id, [FromBody] ChangeProviderActivationDto activationStatus)
         {
             var command = new UpdateProviderCommand {Id = id, ChangeProviderActivationDto = activationStatus };
+            await _mediator.Send(command);
+            return NoContent();
+        }
+
+        // PUT api/<ProviderController>/changeactivation/5
+        [HttpPut("changeapproval/{id}")]
+        public async Task<ActionResult> ChangeApproval(int id, [FromBody] ChangeProviderApprovalDto activationStatus)
+        {
+            var command = new UpdateProviderCommand { Id = id, ChangeProviderApprovalDto = activationStatus };
             await _mediator.Send(command);
             return NoContent();
         }

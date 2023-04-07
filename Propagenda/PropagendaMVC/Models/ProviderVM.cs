@@ -41,10 +41,18 @@ namespace PropagendaMVC.Models
         public string Bio { get; set; }
         public string Link { get; set; }
         public bool IsActive { get; set; }
+        public bool IsApproved { get; set; }
         public string ApplicationUserId { get; set; }
-        public List<ServiceDto> Services { get; set; }
+        public List<ServiceWithoutProviderDto> Services { get; set; }
     }
-    
+
+    public class ProviderToApproveVM
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public bool IsApproved { get; set; }
+    }
+
 
 
 

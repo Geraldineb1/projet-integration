@@ -97,7 +97,7 @@ namespace PropagendaMVC.Services
         public async Task<List<ProviderVM>> GetProvidersToApprove()
         {
             AddBearerToken();
-            var providers = await _client.ProviderAllAsync();
+            var providers = await _client.ToApproveAsync();
             return _mapper.Map<List<ProviderVM>>(providers);
         }
 
@@ -109,6 +109,22 @@ namespace PropagendaMVC.Services
                 UpdateProviderDto providerDto = _mapper.Map<UpdateProviderDto>(provider);
                 AddBearerToken();
                 await _client.ProviderPUTAsync(id, providerDto);
+                return new Response<int>() { Success = true };
+            }
+            catch (ApiException ex)
+            {
+                return ConvertApiExceptions<int>(ex);
+            }
+        }
+
+        public async Task<Response<int>> UpdateApproval(int id, ProviderToApproveVM provider)
+        {
+            try
+            {
+
+                ChangeProviderApprovalDto providerDto = _mapper.Map<ChangeProviderApprovalDto>(provider);
+                AddBearerToken();
+                await _client.ChangeapprovalAsync(id, providerDto);
                 return new Response<int>() { Success = true };
             }
             catch (ApiException ex)

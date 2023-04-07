@@ -10,5 +10,10 @@ namespace PropagendaMVC.Contracts
         Task<Response<int>> CreateProvider(CreateProviderVM provider);
 
         Task<Response<int>> UpdateProvider(int id, UpdateProviderVM provider);
+
+        Task<List<ProviderVM>> GetProvidersToApprove();
+
+        Task<Response<int>> UpdateApproval(int id, ProviderToApproveVM provider);
+
     }
 }

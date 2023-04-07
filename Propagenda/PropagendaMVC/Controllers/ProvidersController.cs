@@ -21,6 +21,12 @@ namespace PropagendaMVC.Controllers
             return View(model);
         }
 
+        public async Task<ActionResult> ProvidersToApprove()
+        {
+            var model = await _serviceProvider.GetProvidersToApprove();
+            return View(model);
+        }
+
         // GET: ProvidersController/Details/5
         public async Task<ActionResult> Details(int id)
         {
@@ -88,6 +94,40 @@ namespace PropagendaMVC.Controllers
                 ModelState.AddModelError("", response.ValidationErrors);
             }
             catch(Exception ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+            }
+            return View(provider);
+        }
+
+        // GET: ProvidersController/Edit-approval/5
+        public async Task<ActionResult> EditApproval(int id)
+        {
+            var model = await _serviceProvider.GetProviderDetails(id);
+            ProviderToApproveVM providerVM = new ProviderToApproveVM();
+            providerVM.Name = model.Name;
+            providerVM.IsApproved = model.IsApproved;
+
+            return View(providerVM);
+        }
+
+        // POST: ProvidersController/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> EditApproval(int id, ProviderToApproveVM provider)
+        {
+            try
+            {
+
+                var response = await _serviceProvider.UpdateApproval(id, provider);
+                if (response.Success)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+
+                ModelState.AddModelError("", response.ValidationErrors);
+            }
+            catch (Exception ex)
             {
                 ModelState.AddModelError("", ex.Message);
             }

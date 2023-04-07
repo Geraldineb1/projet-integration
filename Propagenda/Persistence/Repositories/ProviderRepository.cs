@@ -58,6 +58,11 @@ namespace Persistence.Repositories
         public async Task ChangeApprovalStatus(Provider provider, bool isApproved)
         {
             provider.IsApproved = isApproved;
+            if(isApproved == true)
+            {
+                provider.IsActive = true;
+            }
+            else provider.IsActive = false;
             _dbContext.Entry(provider).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
         }
