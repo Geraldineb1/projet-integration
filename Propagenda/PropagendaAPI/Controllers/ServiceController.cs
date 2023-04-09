@@ -1,4 +1,5 @@
 ﻿using Application.DTOs.Service;
+using Application.Features.ServiceReservations.Requests.Commands;
 using Application.Features.Services.Requests.Commands;
 using Application.Features.Services.Requests.Queries;
 using Application.Responses;
@@ -50,6 +51,15 @@ namespace PropagendaAPI.Controllers
         public async Task<ActionResult> Put(int id, [FromBody] UpdateServiceDto service)
         {
             var command = new UpdateServiceCommand {Id = id, ServiceDto = service };
+            await _mediator.Send(command);
+            return NoContent();
+        }
+
+        // PUT api/<ServiceController>/changeapproval/5
+        [HttpPut("changeapproval/{id}")]
+        public async Task<ActionResult> ChangeApproval(int id, [FromBody] ChangeServiceApprovalDto approvalStatus)
+        {
+            var command = new UpdateServiceReservationCommand { Id = id, ChangeServiceApprovalDto = approvalStatus };
             await _mediator.Send(command);
             return NoContent();
         }

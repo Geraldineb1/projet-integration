@@ -39,7 +39,7 @@ namespace PropagendaMVC.Models
 
             
             
-        }
+    }
         public class ServiceListVM
         {
             public int Id { get; set; }
@@ -62,5 +62,11 @@ namespace PropagendaMVC.Models
             public bool isActive { get; set; }
         }
 
-    
+        public class ServiceToApproveVM
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public bool IsApproved { get; set; }
+        }
+
 }

@@ -15,7 +15,7 @@ namespace PropagendaMVC.Models
 
 
         [Required]
-        public string Description { get; set; } // il y a une faute de frappe en DB: c'est Descrition au lieu de description
+        public string Description { get; set; }
 
 
         [Required]

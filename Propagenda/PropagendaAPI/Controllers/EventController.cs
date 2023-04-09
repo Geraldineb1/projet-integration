@@ -2,6 +2,7 @@
 using Application.Features.Event.Requests.Queries;
 using Application.Features.Events.Requests.Commands;
 using Application.Features.Events.Requests.Queries;
+using Application.Features.ServiceReservations.Requests.Commands;
 using Application.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
