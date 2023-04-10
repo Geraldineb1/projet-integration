@@ -101,6 +101,13 @@ namespace PropagendaMVC.Services
             return _mapper.Map<List<ProviderVM>>(providers);
         }
 
+        public async Task<List<ProviderVM>> GetProvidersByUser()
+        {
+            AddBearerToken();
+            var providers = await _client.ProviderByUserAsync();
+            return _mapper.Map<List<ProviderVM>>(providers);
+        }
+
         public async Task<Response<int>> UpdateProvider(int id, UpdateProviderVM provider)
         {
             try

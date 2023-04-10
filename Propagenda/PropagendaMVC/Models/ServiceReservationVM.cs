@@ -10,26 +10,24 @@ namespace PropagendaMVC.Models
     public class CreateServiceReservationVM
     {
         [Required]
-        public DateTime RequestDate { get; set; }
-
-
-        [Required]
-        public DateTime DateService { get; set; } 
-
+        public int ServiceId {get; set;}
 
         [Required]
-        public bool isAccepted { get; set; }
+        public DateTimeOffset DateService { get; set; }
 
+        public DateTimeOffset RequestDate { get; set; }
 
-        [Required]
-        public bool isCompleted { get; set; }
+    }
 
+    public class UpdateServiceReservationVM
+    {
+
+        public bool IsAccepted { get; set; }
     }
 
     public class ServiceReservationToApproveVM
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public bool IsApproved { get; set; }
+        public bool IsAccepted { get; set; }
     }
 }

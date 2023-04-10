@@ -36,6 +36,7 @@ namespace Persistence
             services.AddScoped<IServiceTypeRepository, ServiceTypeRepository>();
             services.AddScoped<ITicketRepository, TicketRepository>();
             services.AddScoped<ITicketReservationRepository, TicketReservationRepository>();
+            services.AddScoped<IServiceServiceReservationRepository, ServiceServiceReservationRepository>();
 
             services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
 

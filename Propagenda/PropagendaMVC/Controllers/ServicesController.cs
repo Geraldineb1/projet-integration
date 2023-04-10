@@ -118,7 +118,7 @@ namespace PropagendaMVC.Controllers
         {
             var model = await _serviceService.GetServiceDetails(id);
             ServiceToApproveVM serviceVM = new ServiceToApproveVM();
-            serviceVM.Name = model.Name;
+            serviceVM.Title = model.Title;
             serviceVM.IsApproved = model.IsApproved;
 
             return View(serviceVM);

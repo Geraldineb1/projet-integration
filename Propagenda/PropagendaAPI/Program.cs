@@ -1,6 +1,7 @@
 using Application;
 using Microsoft.OpenApi.Models;
 using Persistence;
+using Persistence.Repositories;
 using PropagendaMVC.Contracts;
 using PropagendaMVC.Services;
 

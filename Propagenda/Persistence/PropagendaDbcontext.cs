@@ -24,18 +24,16 @@ namespace Persistence
 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(PropagendaDbContext).Assembly);
 
-            /*modelBuilder.Entity<Service>()
-                    .HasMany(t => t.Reservations)
-                    .WithMany(t => t.Services)
-                    .UsingEntity(j => j.ToTable("ServiceReservationService"));*/
-            
             /*modelBuilder.Entity<Ticket>(Entity =>
             {
                 Entity.ToTable("Tickets");
                 Entity.HasOne(t => t.TicketReservation).WithMany(tr => tr.Tickets).HasForeignKey("TicketReservationId").OnDelete(DeleteBehavior.ClientSetNull);
             });*/
 
-            
+            modelBuilder.Entity<ServiceServiceReservation>().HasKey(ssr => new {ssr.ServicesId, ssr.ServiceReservationsId});
+
+            modelBuilder.Entity<ServiceServiceReservation>().HasOne<Service>(ssr => ssr.Service).WithMany(s => s.SSR).HasForeignKey(ssr => ssr.ServicesId);
+            modelBuilder.Entity<ServiceServiceReservation>().HasOne<ServiceReservation>(ssr => ssr.ServiceReservation).WithMany(s => s.SSR).HasForeignKey(ssr => ssr.ServiceReservationsId);
 
 
         }
@@ -47,6 +45,7 @@ namespace Persistence
         public DbSet<ServiceType> ServiceTypes { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<TicketReservation> TicketReservations { get; set; }
+        public DbSet<ServiceServiceReservation> ServiceServiceReservation { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {

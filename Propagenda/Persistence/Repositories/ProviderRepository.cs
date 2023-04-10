@@ -38,6 +38,11 @@ namespace Persistence.Repositories
             return await _dbContext.Set<Provider>().Where(p => p.IsApproved == false).ToListAsync();
         }
 
+        public async Task<IReadOnlyList<Provider>> GetAllByUser(string id)
+        {
+            return await _dbContext.Set<Provider>().Where(p => p.ApplicationUserId == id).ToListAsync();
+        }
+
         new public async Task<Provider> Add(Provider provider)
         {
             await _dbContext.AddAsync(provider);

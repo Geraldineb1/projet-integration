@@ -22,7 +22,7 @@ namespace PropagendaMVC.Controllers
 
         public async Task<ActionResult> ServiceReservationsToApprove()
         {
-            var model = await _serviceServiceReservation.GetServiceReservationsToApprove();
+            var model = await _serviceReservationService.GetServiceReservationsToApprove();
             return View(model);
         }
 
@@ -93,10 +93,9 @@ namespace PropagendaMVC.Controllers
         // GET: ServiceReservationsController/Edit-approval/5
         public async Task<ActionResult> EditApproval(int id)
         {
-            var model = await _serviceServiceReservation.GetServiceReservationDetails(id);
+            var model = await _serviceReservationService.GetServiceReservationDetails(id);
             ServiceReservationToApproveVM serviceReservationVM = new ServiceReservationToApproveVM();
-            serviceReservationVM.Name = model.Name;
-            serviceReservationVM.IsApproved = model.IsApproved;
+            serviceReservationVM.IsAccepted = model.IsAccepted;
 
             return View(serviceReservationVM);
         }
@@ -109,7 +108,7 @@ namespace PropagendaMVC.Controllers
             try
             {
 
-                var response = await _serviceServiceReservation.UpdateApproval(id, serviceReservation);
+                var response = await _serviceReservationService.UpdateApproval(id, serviceReservation);
                 if (response.Success)
                 {
                     return RedirectToAction(nameof(Index));

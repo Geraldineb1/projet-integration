@@ -10,6 +10,7 @@ namespace Application.Persistence.Contracts
         Task<Provider> GetProviderWithServices(int id);
 
         Task<IReadOnlyList<Provider>> GetAllToApprove();
+        Task<IReadOnlyList<Provider>> GetAllByUser(string id);
 
 
     }

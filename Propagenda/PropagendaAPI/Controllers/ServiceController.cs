@@ -59,7 +59,7 @@ namespace PropagendaAPI.Controllers
         [HttpPut("changeapproval/{id}")]
         public async Task<ActionResult> ChangeApproval(int id, [FromBody] ChangeServiceApprovalDto approvalStatus)
         {
-            var command = new UpdateServiceReservationCommand { Id = id, ChangeServiceApprovalDto = approvalStatus };
+            var command = new UpdateServiceCommand { Id = id, ChangeServiceApprovalDto = approvalStatus };
             await _mediator.Send(command);
             return NoContent();
         }

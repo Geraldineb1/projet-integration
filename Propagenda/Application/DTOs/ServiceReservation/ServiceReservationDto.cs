@@ -15,6 +15,6 @@ namespace Application.DTOs.ServiceReservation
         public DateTime DateService { get; set; }
         public bool IsAccepted { get; set; }
         public bool IsCompleted { get; set; }
-        public int UserId { get; set; }
+        public string ApplicationUserId { get; set; }
     }
 }

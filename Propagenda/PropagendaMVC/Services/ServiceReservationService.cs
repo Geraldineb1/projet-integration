@@ -60,11 +60,11 @@ namespace PropagendaMVC.Services
             }
         }
 
-        public async Task<ServiceReservationVM> GetServiceReservationDetails(int id)
+        public async Task<UpdateServiceReservationVM> GetServiceReservationDetails(int id)
         {
             AddBearerToken();
             var serviceReservation = await _client.ServiceReservationGETAsync(id);
-            return _mapper.Map<ServiceReservationVM>(serviceReservation);
+            return _mapper.Map<UpdateServiceReservationVM>(serviceReservation);
         }
 
         public async Task<List<ServiceReservationVM>> GetServiceReservations()
@@ -77,7 +77,7 @@ namespace PropagendaMVC.Services
         public async Task<List<ServiceReservationVM>> GetServiceReservationsToApprove()
         {
             AddBearerToken();
-            var serviceReservation = await _client.ToApproveAsync();
+            var serviceReservations = await _client.ToApproveAsync();
             return _mapper.Map<List<ServiceReservationVM>>(serviceReservations);
         }
 
@@ -103,7 +103,7 @@ namespace PropagendaMVC.Services
 
                 ChangeServiceReservationApprovalDto serviceReservationDto = _mapper.Map<ChangeServiceReservationApprovalDto>(serviceReservation);
                 AddBearerToken();
-                await _client.ChangeapprovalAsync(id, serviceReservationDto);
+                await _client.Changeapproval3Async(id, serviceReservationDto);
                 return new Response<int>() { Success = true };
             }
             catch (ApiException ex)

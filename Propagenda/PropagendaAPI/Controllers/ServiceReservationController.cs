@@ -1,6 +1,7 @@
 ﻿using Application.DTOs.ServiceReservation;
 using Application.Features.ServiceReservations.Requests.Commands;
 using Application.Features.ServiceReservations.Requests.Queries;
+using Application.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -37,7 +38,7 @@ namespace PropagendaAPI.Controllers
 
         // POST api/<ServiceReservationController>
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] CreateServiceReservationDto serviceRsvp)
+        public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateServiceReservationDto serviceRsvp)
         {
             var command = new CreateServiceReservationCommand { ServiceReservationDto = serviceRsvp };
             var response = await _mediator.Send(command);

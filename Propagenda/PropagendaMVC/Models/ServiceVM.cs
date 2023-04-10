@@ -35,10 +35,11 @@ namespace PropagendaMVC.Models
 
             [Required]
             public int ProviderId { get; set; }
-            public bool isActive { get; set; }
+            public bool IsActive { get; set; }
+            public bool IsApproved { get; set; }
 
-            
-            
+
+
     }
         public class ServiceListVM
         {
@@ -59,13 +60,13 @@ namespace PropagendaMVC.Models
             public ServiceTypeDto Servicetype { get; set; }
 
             public ProviderDto Provider { get; set; }
-            public bool isActive { get; set; }
+            public bool IsActive { get; set; }
         }
 
         public class ServiceToApproveVM
         {
             public int Id { get; set; }
-            public string Name { get; set; }
+            public string Title { get; set; }
             public bool IsApproved { get; set; }
         }
 

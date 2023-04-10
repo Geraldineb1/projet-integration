@@ -30,6 +30,7 @@ builder.Services.AddScoped<IProviderService, ProviderService>();
 builder.Services.AddScoped<IEventService, EventService>();
 builder.Services.AddScoped<IServiceService, ServiceService>();
 builder.Services.AddScoped<ITicketReservationService, TicketReservationService>();
+builder.Services.AddScoped<IServiceReservationService, ServiceReservationService>();
 
 builder.Services.AddSingleton<ILocalStorageService, LocalStorageService>();
 builder.Services.AddControllersWithViews();

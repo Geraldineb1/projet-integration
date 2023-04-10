@@ -2,6 +2,7 @@
 using Application.Persistence.Contracts;
 using AutoMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace Application.Features.ServiceReservations.Handlers.Commands
     {
         private readonly IServiceReservationRepository _serviceReservationRepository;
         private readonly IMapper _mapper;
+        private readonly DbContext _dbContext;
 
         public UpdateServiceReservationCommandHandler(IServiceReservationRepository serviceReservationRepository, IMapper mapper)
         {

@@ -9,10 +9,7 @@ namespace Domain
 {
     public class Service : BaseDomainEntity
     {
-        public Service()
-        {
-            this.Reservations = new List<ServiceReservation>();
-        }
+        
         public string Title { get; set; }
         public string Description { get; set; }
         public string Image { get; set; }
@@ -27,7 +24,7 @@ namespace Domain
         public Provider Provider { get; set; }
         public int ProviderId { get; set; }
 
-        public virtual IList<ServiceReservation> Reservations { get; set; }
+        public  IList<ServiceServiceReservation> SSR { get; set; }
 
 
 
