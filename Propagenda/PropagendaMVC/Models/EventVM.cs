@@ -32,7 +32,15 @@ namespace PropagendaMVC.Models
 
         [Required]
         public int TicketsAmount { get; set; }
+        [Required]
         public int TicketPrice { get; set; }
+        public bool IsActive { get; set; }
 
+    }
+
+    public class EventToApproveVM
+    {
+        public int Id { get; set; }
+        public bool IsApproved { get; set; }
     }
 }

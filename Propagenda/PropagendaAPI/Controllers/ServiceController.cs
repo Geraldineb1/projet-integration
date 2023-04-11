@@ -37,6 +37,15 @@ namespace PropagendaAPI.Controllers
             return Ok(service);
         }
 
+        // GET: api/<ProviderController/services-by-user>
+        [HttpGet("~/services-by-user")]
+        public async Task<ActionResult<List<ServiceDto>>> AllServicesByUser()
+        {
+            var services = await _mediator.Send(new GetServicesByUserRequest());
+
+            return Ok(services);
+        }
+
         // POST api/<ServiceController>
         [HttpPost]
         public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateServiceDto service)

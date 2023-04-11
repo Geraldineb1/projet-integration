@@ -17,6 +17,8 @@ namespace Domain
         public int TicketsAmount { get; set; }
         public int NbSoldTickets { get; set; }
         public int TicketPrice { get; set; }
+        public bool IsApproved { get; set; }
+        public bool IsActive { get; set; }
 
         public ApplicationUser ApplicationUser { get; set; }
         public string ApplicationUserId { get; set; }

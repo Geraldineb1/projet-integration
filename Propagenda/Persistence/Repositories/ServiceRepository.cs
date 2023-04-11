@@ -34,6 +34,16 @@ namespace Persistence.Repositories
             return services;
         }
 
+        public async Task<List<Service>> GetAllServicesByUser(string id)
+        {
+            var services = await _dbContext.Services
+                .Include(q => q.ServiceType)
+                .Include(q => q.Provider)
+                .Where(p => p.Provider.ApplicationUserId == id)
+                .ToListAsync();
+            return services;
+        }
+
         public async Task<Service> GetServiceWithDetails(int id)
         {
             var service = await _dbContext.Services

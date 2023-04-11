@@ -53,6 +53,13 @@ namespace PropagendaMVC.Services
             return _mapper.Map<List<ServiceVM>>(services);
         }
 
+        public async Task<List<ServiceListVM>> GetServicesByUser()
+        {
+            AddBearerToken();
+            var services = await _client.ServicesByUserAsync();
+            return _mapper.Map<List<ServiceListVM>>(services);
+        }
+
         public async Task<Response<int>> DeleteService(int id)
             {
                 try

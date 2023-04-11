@@ -11,6 +11,7 @@ namespace PropagendaMVC.Contracts
         Task<Response<int>> UpdateService(int id, ServiceVM service);
         Task<Response<int>> DeleteService(int id);
         Task<List<ServiceVM>> GetServicesToApprove();
+        Task<List<ServiceListVM>> GetServicesByUser();
         Task<Response<int>> UpdateApproval(int id, ServiceToApproveVM provider);
     }
 }

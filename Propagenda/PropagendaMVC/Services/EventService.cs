@@ -80,6 +80,41 @@ namespace PropagendaMVC.Services
             return _mapper.Map<List<EventVM>>(events);
         }
 
+        public async Task<List<EventVM>> GetEventsByUser()
+        {
+            AddBearerToken();
+            var events = await _client.EventsByUserAsync();
+            return _mapper.Map<List<EventVM>>(events);
+        }
+
+        public async Task<List<EventVM>> GetEventsToApprove()
+        {
+            AddBearerToken();
+            var events = await _client.EventsToApproveAsync();
+            return _mapper.Map<List<EventVM>>(events);
+        }
+        public async Task<EventToApproveVM> GetEventToApprove(int id)
+        {
+            AddBearerToken();
+            var singleEvent = await _client.EventGETAsync(id);
+            return _mapper.Map<EventToApproveVM>(singleEvent);
+        }
+
+        public async Task<Response<int>> ApproveEvent(int id, EventToApproveVM singleEvent)
+        {
+            try
+            {
+                ChangeEventApprovalDto eventDto = _mapper.Map<ChangeEventApprovalDto>(singleEvent);
+                AddBearerToken();
+                await _client.ApproveEventAsync(id, eventDto);
+                return new Response<int>() { Success = true };
+            }
+            catch (ApiException ex)
+            {
+                return ConvertApiExceptions<int>(ex);
+            }
+        }
+
         public async Task<Response<int>> UpdateEvent(int id, EventVM singleEvent)
         {
             try

@@ -19,6 +19,42 @@ namespace Persistence.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
+        public async Task<List<Event>> GetAllEventsByUser(string id)
+        {
+            var events = await _dbContext.Events
+                .Include(q => q.ApplicationUser)
+                .Where(p => p.ApplicationUserId == id)
+                .ToListAsync();
+            return events;
+        }
+
+        public async Task<List<Event>> GetAllEventsToApprove()
+        {
+            var events = await _dbContext.Events
+                .Include(q => q.ApplicationUser)
+                .Where(p => p.IsApproved == false && p.IsActive == true)
+                .ToListAsync();
+            return events;
+        }
+
+        public async Task ChangeActivationStatus(Event singleEvent, bool status)
+        {
+            singleEvent.IsActive = status;
+            _dbContext.Entry(singleEvent).State = EntityState.Modified;
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task ChangeApprovalStatus(Event singleEvent, bool status)
+        {
+            if(status == false)
+            {
+                singleEvent.IsActive = false;
+            } 
+            singleEvent.IsApproved = status;
+            _dbContext.Entry(singleEvent).State = EntityState.Modified;
+            await _dbContext.SaveChangesAsync();
+        }
+
 
 
     }

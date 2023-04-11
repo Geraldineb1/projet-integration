@@ -40,6 +40,33 @@ namespace PropagendaAPI.Controllers
             return Ok(singleEvent);
         }
 
+        // GET: api/<EventController>
+        [HttpGet("~/events-by-user")]
+        public async Task<ActionResult<List<EventDto>>> AllEventsByUser()
+        {
+            var eventList = await _mediator.Send(new GetEventsByUserRequest());
+
+            return Ok(eventList);
+        }
+
+        // GET: api/<EventController>
+        [HttpGet("~/events-to-approve")]
+        public async Task<ActionResult<List<EventDto>>> AllEventsToApprove()
+        {
+            var eventList = await _mediator.Send(new GetEventsToApproveRequest());
+
+            return Ok(eventList);
+        }
+
+        // PUT api/<EventController>/5
+        [HttpPut("approve-event/{id}")]
+        public async Task<ActionResult> ApproveEvent(int id, [FromBody] ChangeEventApprovalDto singleEvent)
+        {
+            var command = new UpdateEventCommand { Id = id, ChangeEventApprovalDto = singleEvent };
+            await _mediator.Send(command);
+            return NoContent();
+        }
+
         // POST api/<EventController>
         [HttpPost]
         public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateEventDto Event)
@@ -57,6 +84,8 @@ namespace PropagendaAPI.Controllers
             await _mediator.Send(command);
             return NoContent();
         }
+
+
 
     }
 }

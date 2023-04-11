@@ -22,6 +22,8 @@ namespace PropagendaMVC
 
             CreateMap<CreateEventDto, CreateEventVM>().ReverseMap();
             CreateMap<EventDto, EventVM>().ReverseMap();
+            CreateMap<ChangeEventApprovalDto, EventToApproveVM>().ReverseMap();
+            CreateMap<EventDto, EventToApproveVM>().ReverseMap();
 
             CreateMap<TicketReservationDto, TicketReservationVM>().ReverseMap();
             CreateMap<TicketReservationDto, TicketReservationListVM>().ReverseMap();

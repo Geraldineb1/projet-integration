@@ -23,11 +23,28 @@ namespace Application.Features.Events.Handlers.Commands
 
         public async Task<Unit> Handle(UpdateEventCommand request, CancellationToken cancellationToken)
         {
-            var serviceType = await _eventRepository.Get(request.EventDto.Id);
+            /*var serviceType = await _eventRepository.Get(request.EventDto.Id);
 
             _mapper.Map(request.EventDto, serviceType);
 
-            await _eventRepository.Update(serviceType);
+            await _eventRepository.Update(serviceType);*/
+
+            var singleEvent = await _eventRepository.Get(request.Id);
+
+            if (request.EventDto != null)
+            {
+                _mapper.Map(request.EventDto, singleEvent);
+
+                await _eventRepository.Update(singleEvent);
+            }
+            else if (request.ChangeEventActivationDto != null)
+            {
+                await _eventRepository.ChangeActivationStatus(singleEvent, request.ChangeEventActivationDto.IsActive);
+            }
+            else if (request.ChangeEventApprovalDto != null)
+            {
+                await _eventRepository.ChangeApprovalStatus(singleEvent, request.ChangeEventApprovalDto.IsApproved);
+            }
 
             return Unit.Value;
         }

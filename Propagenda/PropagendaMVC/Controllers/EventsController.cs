@@ -27,6 +27,18 @@ namespace PropagendaMVC.Controllers
             return View(model);
         }
 
+        public async Task<ActionResult> EventsByUser()
+        {
+            var model = await _eventService.GetEventsByUser();
+            return View(model);
+        }
+
+        public async Task<ActionResult> EventsToApprove()
+        {
+            var model = await _eventService.GetEventsToApprove();
+            return View(model);
+        }
+
         // GET: EventController/Create
         public async Task<ActionResult> Create()
         {
@@ -65,11 +77,40 @@ namespace PropagendaMVC.Controllers
         // POST: EventController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(int id, EventVM serviceType)
+        public async Task<ActionResult> Edit(int id, EventVM singleEvent)
         {
             try
             {
-                var response = await _eventService.UpdateEvent(id, serviceType);
+                var response = await _eventService.UpdateEvent(id, singleEvent);
+                if (response.Success)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                ModelState.AddModelError("", response.ValidationErrors);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+            }
+
+            return View(singleEvent);
+        }
+
+        // GET: EventController/Edit/5
+        public async Task<ActionResult> ApproveEvent(int id)
+        {
+            var model = await _eventService.GetEventToApprove(id);
+            return View(model);
+        }
+
+        // POST: EventController/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ApproveEvent(int id, EventToApproveVM serviceType)
+        {
+            try
+            {
+                var response = await _eventService.ApproveEvent(id, serviceType);
                 if (response.Success)
                 {
                     return RedirectToAction(nameof(Index));
