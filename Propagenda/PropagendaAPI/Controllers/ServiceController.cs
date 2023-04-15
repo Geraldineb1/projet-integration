@@ -46,6 +46,15 @@ namespace PropagendaAPI.Controllers
             return Ok(services);
         }
 
+        // GET: api/<ProviderController/services-by-user>
+        [HttpGet("~/services-to-approve")]
+        public async Task<ActionResult<List<ServiceDto>>> AllServicesToApprove()
+        {
+            var services = await _mediator.Send(new GetServicesToApproveRequest());
+
+            return Ok(services);
+        }
+
         // POST api/<ServiceController>
         [HttpPost]
         public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateServiceDto service)

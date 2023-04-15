@@ -24,10 +24,8 @@ namespace Persistence.Repositories
         public async Task<Provider> GetProviderWithServices(int id)
         {
             var provider = await _dbContext.Providers
-                
-                 .Include(p => p.Services)  
+                .Include(p => p.Services)  
                     .ThenInclude(s => s.ServiceType)
-                    
                 .FirstOrDefaultAsync(q => q.Id == id);
 
             return provider;

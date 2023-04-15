@@ -44,6 +44,16 @@ namespace Persistence.Repositories
             return services;
         }
 
+        public async Task<List<Service>> GetAllServicesToApprove()
+        {
+            var services = await _dbContext.Services
+                .Include(q => q.ServiceType)
+                .Include(q => q.Provider)
+                .Where(s => s.isApproved == false)
+                .ToListAsync();
+            return services;
+        }
+
         public async Task<Service> GetServiceWithDetails(int id)
         {
             var service = await _dbContext.Services
