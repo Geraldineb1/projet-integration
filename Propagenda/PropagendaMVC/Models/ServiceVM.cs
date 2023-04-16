@@ -11,37 +11,39 @@ namespace PropagendaMVC.Models
 
     public class CreateServiceVM
     {
-            [Required]
-            public string Title { get; set; }
+        [Required]
+        public string Title { get; set; }
 
-            [Required]
-            public string Description { get; set; }
+        [Required]
+        public string Description { get; set; }
 
-            [Required]
-            [Display(Name = "Type Image")]
-            public string Image { get; set; }
+        [Required]
+        [Display(Name = "Type Image")]
+        public string Image { get; set; }
 
-            [Required]
-            public int Price { get; set; }
+        [Required]
+        public int Price { get; set; }
 
-            [Required]
-            public string LocationArea { get; set; }
+        [Required]
+        public string LocationArea { get; set; }
 
-            [Required]
-            public string LocationAddress { get; set; }
+        [Required]
+        public string LocationAddress { get; set; }
 
-            [Required]
-            public int ServiceTypeId { get; set; }
+        [Required]
+        public int ServiceTypeId { get; set; }
 
-            [Required]
-            public int ProviderId { get; set; }
-            public bool IsActive { get; set; }
-            public bool IsApproved { get; set; }
+        [Required]
+        public int ProviderId { get; set; }
+        public bool IsActive { get; set; }
+        public bool IsApproved { get; set; }
+
+       
 
 
 
     }
-        public class ServiceListVM
+    public class ServiceListVM
         {
             public int Id { get; set; }
             public string Title { get; set; }

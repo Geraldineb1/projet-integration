@@ -34,7 +34,7 @@
     }*@
 
     <div>
-        @Html.ActionLink("Edit", "Edit", new {  id = Model.Id  }) @if(User.IsInRole("Administrator") || User.IsInRole("Employee")){ @Html.ActionLink("Approval", "ApproveEvent", new {id = Model.Id})}
+        @if(User.IsInRole("Administrator") || User.IsInRole("Employee")){ @Html.ActionLink("Approval", "ApproveEvent", new {id = Model.Id})}
     
     </div>
 

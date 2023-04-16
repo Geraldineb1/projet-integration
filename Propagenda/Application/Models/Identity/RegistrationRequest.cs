@@ -10,9 +10,11 @@ namespace Application.Models.Identity
     public class RegistrationRequest
     {
         [Required]
+        [MinLength(2)]
         public string FirstName { get; set; }
 
         [Required]
+        [MinLength(2)]
         public string LastName { get; set; }
 
         [Required]
@@ -20,7 +22,7 @@ namespace Application.Models.Identity
         public string Email { get; set; }
 
         [Required]
-        [MinLength(6)]
+        [MinLength(2)]
         public string UserName { get; set; }
 
         [Required]

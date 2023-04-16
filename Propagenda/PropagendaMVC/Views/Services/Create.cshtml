@@ -1,7 +1,17 @@
 ﻿@model PropagendaMVC.Models.CreateServiceVM
+@using PropagendaMVC.Contracts;
+@inject IServiceTypeService ServiceTypeService
 
 @{
     ViewData["Title"] = "Create";
+
+    var svTypes = await ServiceTypeService.GetServiceTypes();
+    List<SelectListItem> serviceTypes = new List<SelectListItem>();
+    foreach(var svType in svTypes)
+    {
+        serviceTypes.Add(new SelectListItem { Text = svType.Label, Value = svType.Id.ToString() });
+    }
+    ViewData["ServiceTypes"] = serviceTypes;
 }
 
 <h1>Create</h1>
@@ -42,16 +52,13 @@
                 <input asp-for="LocationAddress" class="form-control" />
                 <span asp-validation-for="LocationAddress" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="ServiceTypeId" class="control-label"></label>
-                <input asp-for="ServiceTypeId" class="form-control" type="number" />
-                <span asp-validation-for="ServiceTypeId" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
-                </label>
-            </div>
+
+            @Html.DropDownList("ServiceTypeId", (IEnumerable
+        <SelectListItem>)ViewData["ServiceTypes"]) 
+
+            
+
+            
             <input asp-for="ProviderId" class="form-control" type="hidden" value="@ViewContext.RouteData.Values["id"]"/>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

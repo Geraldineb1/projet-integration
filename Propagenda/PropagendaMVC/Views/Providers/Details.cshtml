@@ -49,12 +49,16 @@
             }
         </div>
     </div>
-    <div class=row>
-        <div class="col-md-6">
-            @Html.ActionLink("Add service", "Create", "Services", new {  id = Model.Id  })
-        </div>
+    @if (User.IsInRole("Provider"))
+    {
+        <div class=row>
+            <div class="col-md-6">
+                @Html.ActionLink("Add service", "Create", "Services", new {  id = Model.Id  })
+            </div>
 
-    </div>
+        </div>
+    }
+    
 </div>
 
 

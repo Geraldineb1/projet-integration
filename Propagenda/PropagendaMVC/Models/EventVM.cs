@@ -6,6 +6,7 @@ namespace PropagendaMVC.Models
     public class EventVM : CreateEventVM
     {
         public int Id { get; set; }
+        public bool IsApproved { get; set; }
     }
 
     public class CreateEventVM

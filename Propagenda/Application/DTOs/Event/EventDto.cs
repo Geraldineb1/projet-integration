@@ -17,6 +17,8 @@ namespace Application.DTOs.Event
         public int TicketsAmount { get; set; }
         public int NbSoldTickets { get; set; }
         public int TicketPrice { get; set; }
+        public bool IsActive { get; set; }
+        public bool IsApproved { get; set; }
 
         
     }

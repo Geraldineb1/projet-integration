@@ -4328,6 +4328,12 @@ namespace PropagendaMVC.Services.Base
         [Newtonsoft.Json.JsonProperty("ticketPrice", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TicketPrice { get; set; }
 
+        [Newtonsoft.Json.JsonProperty("isActive", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool IsActive { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("isApproved", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool IsApproved { get; set; }
+
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.18.2.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
@@ -4393,10 +4399,12 @@ namespace PropagendaMVC.Services.Base
     {
         [Newtonsoft.Json.JsonProperty("firstName", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
+        [System.ComponentModel.DataAnnotations.StringLength(int.MaxValue, MinimumLength = 2)]
         public string FirstName { get; set; }
 
         [Newtonsoft.Json.JsonProperty("lastName", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
+        [System.ComponentModel.DataAnnotations.StringLength(int.MaxValue, MinimumLength = 2)]
         public string LastName { get; set; }
 
         [Newtonsoft.Json.JsonProperty("email", Required = Newtonsoft.Json.Required.Always)]
@@ -4405,7 +4413,7 @@ namespace PropagendaMVC.Services.Base
 
         [Newtonsoft.Json.JsonProperty("userName", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
-        [System.ComponentModel.DataAnnotations.StringLength(int.MaxValue, MinimumLength = 6)]
+        [System.ComponentModel.DataAnnotations.StringLength(int.MaxValue, MinimumLength = 2)]
         public string UserName { get; set; }
 
         [Newtonsoft.Json.JsonProperty("address", Required = Newtonsoft.Json.Required.Always)]

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using PropagendaMVC.Contracts;
 using PropagendaMVC.Models;
 
@@ -7,9 +8,11 @@ namespace PropagendaMVC.Controllers
     public class ServicesController : Controller
     {
         private readonly IServiceService _serviceService;
-        public ServicesController(IServiceService serviceService)
+        private readonly IServiceTypeService _serviceTypeService;
+        public ServicesController(IServiceService serviceService, IServiceTypeService serviceTypeService)
         {
             this._serviceService = serviceService;
+            this._serviceTypeService = serviceTypeService;
         }
 
         // GET: ServiceController
@@ -51,6 +54,8 @@ namespace PropagendaMVC.Controllers
         {
             try
             {
+
+                
                 var response = await _serviceService.CreateService(service);
                 if (response.Success)
                 {
@@ -62,6 +67,8 @@ namespace PropagendaMVC.Controllers
             {
                 ModelState.AddModelError("", ex.Message);
             }
+
+            
 
             return View(service);
         }
@@ -80,6 +87,7 @@ namespace PropagendaMVC.Controllers
         {
             try
             {
+
                 var response = await _serviceService.UpdateService(id, service);
                 if (response.Success)
                 {

@@ -37,7 +37,7 @@ namespace PropagendaAPI.Controllers
             return Ok(service);
         }
 
-        // GET: api/<ProviderController/services-by-user>
+        // GET: api/<ServiceController/services-by-user>
         [HttpGet("~/services-by-user")]
         public async Task<ActionResult<List<ServiceDto>>> AllServicesByUser()
         {

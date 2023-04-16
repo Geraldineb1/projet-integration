@@ -1,4 +1,5 @@
-﻿@{
+﻿@model PropagendaMVC.Models.HomeVM
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -12,9 +13,11 @@
         <p class="wow fadeInDown"> Events - Booking - Agenda </p>
       </li>
       <li>
-        <a target="_blank" href="https://mdbootstrap.com/getting-started/" class="btn btn-primary btn-lg wow fadeInLeft" data-wow-delay="0.2s" rel="nofollow"> Register </a>
-        <a target="_blank" href="https://mdbootstrap.com/material-design-for-bootstrap/" class="btn btn-default btn-lg wow fadeInRight" data-wow-delay="0.2s" rel="nofollow"> Log In </a>
-      </li>
+                @if (!User.Identity.IsAuthenticated) 
+                {
+                    <a target="_blank" href="https://mdbootstrap.com/getting-started/" class="btn btn-primary btn-lg wow fadeInLeft" data-wow-delay="0.2s" rel="nofollow"> Register </a>
+                }
+            </li>
     </ul>
   </div>
 </div>
@@ -40,102 +43,126 @@
   </div>
 </div>*@
 
-<!--Section: Best features-->
-<section id="best-features">
+<section id="Services">
         <div class="row justify-content-center">
+            <h2>Services</h2>
 
-        <!--First columnn-->
-        <div class="col-lg-3">
-            <!--Card-->
-            <div class="card wow fadeIn">
+            @foreach(var singleEvent in Model.Services)
+            {
+                <!--First columnn-->
+                <div class="col-lg-3">
+                    <!--Card-->
+                    <div class="card wow fadeIn">
 
-                <!--Card image-->
-                <div class="view overlay hm-white-slight">
-                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20(25).jpg" class="img-fluid" alt="">
-                    <a>
-                        <div class="mask"></div>
-                    </a>
+                        <!--Card image-->
+                        <div class="view overlay hm-white-slight">
+                            <img src="https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20(25).jpg" class="img-fluid" alt="">
+                            <a>
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <!--/.Card image-->
+                        <!--Card content-->
+                        <div class="card-block text-center">
+                            <!--Title-->
+                            <br /> <br />
+                            <h4 class="card-title">@singleEvent.Title</h4>
+                            <hr>
+                            <!--Text-->
+                            <p class="card-text">@singleEvent.Description</p>
+                            <p> <button type="button" class="btn btn-default btn-lg"> Voir plus </button> </p>
+                        </div>
+                        <!--/.Card content-->
+
+                    </div>
+                    <!--/.Card-->
                 </div>
-                <!--/.Card image-->
-                <!--Card content-->
-                <div class="card-block text-center">
-                    <!--Title-->
-                    <br /> <br />
-                    <h4 class="card-title">360 Advertising</h4>
-                    <hr>
-                    <!--Text-->
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident fuga animi architecto dolores dicta cum quo velit.</p>
-                    <p> <button type="button" class="btn btn-default btn-lg"> Voir plus </button> </p>
-                </div>
-                <!--/.Card content-->
-
-            </div>
-            <!--/.Card-->
-        </div>
-        <!--First columnn-->
-        <!--Second columnn-->
-        <div class="col-lg-3">
-            <!--Card-->
-            <div class="card wow fadeIn" data-wow-delay="0.2s">
-
-                <!--Card image-->
-                <div class="view overlay hm-white-slight">
-                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20(14).jpg" class="img-fluid" alt="">
-                    <a>
-                        <div class="mask"></div>
-                    </a>
-                </div>
-                <!--/.Card image-->
-                <!--Card content-->
-                <div class="card-block text-center">
-                    <br /> <br />
-                    <!--Title-->
-                    <h4 class="card-title">Top-class Team</h4>
-                    <hr>
-                    <!--Text-->
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident fuga animi architecto dolores dicta cum quo velit.</p>
-                    <p> <button type="button" class="btn btn-default btn-lg"> Voir plus </button> </p>
-                </div>
-                <!--/.Card content-->
-
-            </div>
-            <!--/.Card-->
-        </div>
-        <!--Second columnn-->
-        <!--Third columnn-->
-        <div class="col-lg-3">
-            <!--Card-->
-            <div class="card wow fadeIn" data-wow-delay="0.4s">
-
-                <!--Card image-->
-                <div class="view overlay hm-white-slight">
-                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20(21).jpg" class="img-fluid" alt="">
-                    <a>
-                        <div class="mask"></div>
-                    </a>
-                </div>
-                <!--/.Card image-->
-                <!--Card content-->
-                <div class="card-block text-center">
-                    <br /> <br />
-                    <!--Title-->
-                    <h4 class="card-title">Newest Technolgies</h4>
-                    <hr>
-                    <!--Text-->
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident fuga animi architecto dolores dicta cum quo velit.</p>
-                    <p> <button type="button" class="btn btn-default btn-lg"> Voir plus </button> </p>
-                </div>
-                <!--/.Card content-->
-
-            </div>
-            <!--/.Card-->
-        </div>
-        <!--Third columnn-->
-
+                <!--First columnn-->
+            }
     </div>
 
 </section>
-<!--/Section: Best features-->
+
+<section id="Providers">
+        <div class="row justify-content-center">
+            <h2>Providers</h2>
+
+            @foreach(var singleEvent in Model.Providers)
+            {
+                <!--First columnn-->
+                <div class="col-lg-3">
+                    <!--Card-->
+                    <div class="card wow fadeIn">
+
+                        <!--Card image-->
+                        <div class="view overlay hm-white-slight">
+                            <img src="https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20(25).jpg" class="img-fluid" alt="">
+                            <a>
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <!--/.Card image-->
+                        <!--Card content-->
+                        <div class="card-block text-center">
+                            <!--Title-->
+                            <br /> <br />
+                            <h4 class="card-title">@singleEvent.Name</h4>
+                            <hr>
+                            <!--Text-->
+                            <p class="card-text">@singleEvent.Bio</p>
+                            <p> <button type="button" class="btn btn-default btn-lg"> Voir plus </button> </p>
+                        </div>
+                        <!--/.Card content-->
+
+                    </div>
+                    <!--/.Card-->
+                </div>
+                <!--First columnn-->
+            }
+    </div>
+
+</section>
+
+<!--Section: Best features-->
+<section id="Events">
+        <div class="row justify-content-center">
+            <h2>Events</h2>
+
+            @foreach(var singleEvent in Model.Events)
+            {
+                <!--First columnn-->
+                <div class="col-lg-3">
+                    <!--Card-->
+                    <div class="card wow fadeIn">
+
+                        <!--Card image-->
+                        <div class="view overlay hm-white-slight">
+                            <img src="https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20(25).jpg" class="img-fluid" alt="">
+                            <a>
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <!--/.Card image-->
+                        <!--Card content-->
+                        <div class="card-block text-center">
+                            <!--Title-->
+                            <br /> <br />
+                            <h4 class="card-title">@singleEvent.Title</h4>
+                            <hr>
+                            <!--Text-->
+                            <p class="card-text">@singleEvent.Description</p>
+                            <p> <button type="button" class="btn btn-default btn-lg"> Voir plus </button> </p>
+                        </div>
+                        <!--/.Card content-->
+
+                    </div>
+                    <!--/.Card-->
+                </div>
+                <!--First columnn-->
+            }
+    </div>
+
+</section>
 
 <div class="px-4 py-5 my-5 text-center">
     <div class="col-lg-6 mx-auto">

@@ -35,7 +35,9 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+            if (item.IsActive && item.IsApproved)
+            {
+                <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
@@ -58,6 +60,8 @@
                 @Html.ActionLink("Details", "Details", new { id=item.Id })
             </td>
         </tr>
+            }
+            
 }
     </tbody>
 </table>

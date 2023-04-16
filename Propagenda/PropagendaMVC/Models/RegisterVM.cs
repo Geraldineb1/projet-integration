@@ -5,11 +5,11 @@ namespace PropagendaMVC.Models
     public class RegisterVM
     {
         [Required]
-        [MinLength(6)]
+        [MinLength(2)]
         public string FirstName { get; set; }
 
         [Required]
-        [MinLength(6)]
+        [MinLength(2)]
         public string LastName { get; set; }
 
         [Required]
@@ -18,7 +18,7 @@ namespace PropagendaMVC.Models
         public string Email { get; set; }
 
         [Required]
-        [MinLength(6)]
+        [MinLength(2)]
         public string UserName { get; set; }
 
         [Required]

@@ -36,6 +36,7 @@ namespace Application.Features.Events.Handlers.Commands
 
             var eventToCreate = _mapper.Map<Domain.Event>(request.EventDto);
             eventToCreate.ApplicationUserId = userId;
+            eventToCreate.IsActive = true;
 
             eventToCreate = await _eventRepository.Add(eventToCreate);
 
