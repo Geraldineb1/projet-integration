@@ -7,6 +7,7 @@ namespace PropagendaMVC.Contracts
     {
         Task<List<ServiceReservationVM>> GetServiceReservations();
         Task<UpdateServiceReservationVM> GetServiceReservationDetails(int id);
+        Task<List<ServiceReservationByUserVM>> GetServiceReservationsByUser();
         Task<Response<int>> CreateServiceReservation(CreateServiceReservationVM serviceReservation);
         Task<Response<int>> UpdateServiceReservation(int id, ServiceReservationVM serviceReservation);
         Task<Response<int>> DeleteServiceReservation(int id);

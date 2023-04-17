@@ -3,6 +3,7 @@ using Application.DTOs.Event;
 using Application.DTOs.Provider;
 using Application.DTOs.Service;
 using Application.DTOs.ServiceReservation;
+using Application.DTOs.ServiceServiceReservation;
 using Application.DTOs.ServiceType;
 using Application.DTOs.Ticket;
 using Application.DTOs.TicketReservation;
@@ -42,6 +43,9 @@ namespace Application.Profiles
             CreateMap<ServiceReservation, CreateServiceReservationDto>().ReverseMap();
             CreateMap<ServiceReservation, ChangeServiceReservationApprovalDto>().ReverseMap();
             CreateMap<ServiceReservation, ChangeServiceReservationCompletionDto>().ReverseMap();
+            CreateMap<ServiceReservation, ServiceReservationByUserDto>().ReverseMap();
+
+            CreateMap<ServiceServiceReservation, ServiceServicereservationDto>().ReverseMap();
 
             CreateMap<ServiceType, ServiceTypeDto>().ReverseMap();
             CreateMap<ServiceType, CreateServiceTypeDto>().ReverseMap();

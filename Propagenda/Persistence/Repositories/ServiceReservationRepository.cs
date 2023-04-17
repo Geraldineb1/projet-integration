@@ -26,9 +26,10 @@ namespace Persistence.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<List<ServiceReservation>> GetAllServiceReservationsByUser(string id)
+        public async Task<IReadOnlyList<ServiceReservation>> GetAllByUser(string id)
         {
             var serviceReservations = await _dbContext.ServiceReservations
+                .Include(q => q.SSR).ThenInclude(q => q.Service)
                 .Where(p => p.ApplicationUserId == id)
                 .ToListAsync();
             return serviceReservations;

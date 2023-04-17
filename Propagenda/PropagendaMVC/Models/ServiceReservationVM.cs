@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PropagendaMVC.Services.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace PropagendaMVC.Models
 {
@@ -10,7 +11,7 @@ namespace PropagendaMVC.Models
     public class CreateServiceReservationVM
     {
         [Required]
-        public int ServiceId {get; set;}
+        public int ServiceId { get; set; }
 
         [Required]
         public DateTimeOffset DateService { get; set; }
@@ -29,5 +30,15 @@ namespace PropagendaMVC.Models
     {
         public int Id { get; set; }
         public bool IsAccepted { get; set; }
+    }
+
+    public class ServiceReservationByUserVM
+    {
+        public int Id { get; set; }
+
+        public ServiceServicereservationDto SSR { get; set; }
+        public DateTimeOffset DateService { get; set; }
+
+        public DateTimeOffset RequestDate { get; set; }
     }
 }

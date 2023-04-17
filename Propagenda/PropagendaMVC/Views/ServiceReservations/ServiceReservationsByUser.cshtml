@@ -1,0 +1,47 @@
+﻿@model IEnumerable<PropagendaMVC.Models.ServiceReservationByUserVM>
+
+@{
+    ViewData["Title"] = "ServiceReservationsByUser";
+}
+
+<h1>ServiceReservationsByUser</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Service
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateService)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RequestDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SSR.Service.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateService)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {  id=item.Id  }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

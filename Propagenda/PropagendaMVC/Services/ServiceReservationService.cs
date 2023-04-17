@@ -81,6 +81,13 @@ namespace PropagendaMVC.Services
             return _mapper.Map<List<ServiceReservationVM>>(serviceReservations);
         }
 
+        public async Task<List<ServiceReservationByUserVM>> GetServiceReservationsByUser()
+        {
+            AddBearerToken();
+            var serviceReservations = await _client.ServicereservationsByUserAsync();
+            return _mapper.Map<List<ServiceReservationByUserVM>>(serviceReservations);
+        }
+
         public async Task<Response<int>> UpdateServiceReservation(int id, ServiceReservationVM serviceReservation)
         {
             try
