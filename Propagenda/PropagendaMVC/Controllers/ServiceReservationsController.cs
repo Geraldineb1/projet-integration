@@ -26,6 +26,12 @@ namespace PropagendaMVC.Controllers
             return View(model);
         }
 
+        public async Task<ActionResult> ServiceReservationsByUser()
+        {
+            var model = await _serviceReservationService.ServiceReservation();
+            return View(model);
+        }
+
         // GET: ServiceReservationController/Details/5
         public async Task<ActionResult> Details(int id)
         {

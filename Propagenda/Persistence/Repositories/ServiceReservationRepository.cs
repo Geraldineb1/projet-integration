@@ -25,5 +25,13 @@ namespace Persistence.Repositories
             _dbContext.Entry(serviceReservation).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task<List<ServiceReservation>> GetAllServiceReservationsByUser(string id)
+        {
+            var serviceReservations = await _dbContext.ServiceReservations
+                .Where(p => p.ApplicationUserId == id)
+                .ToListAsync();
+            return serviceReservations;
+        }
     }
 }

@@ -6,5 +6,6 @@ namespace Application.Persistence.Contracts
     {
         Task ChangeApprovalStatus(ServiceReservation serviceReservation, bool isApproved);
         Task ChangeCompletionStatus(ServiceReservation serviceReservation, bool isComplete);
+        Task<IReadOnlyList<ServiceReservation>> GetAllByUser(string id);
     }
 }
