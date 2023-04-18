@@ -27,7 +27,25 @@ body {
     -o-background-size: cover;
     background-size: cover;
     text-align: center;
+    position: relative;
 }
+
+
+.header.view .full-bg-img {
+   position: relative;
+   z-index: 10;
+}
+
+.header.view:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: rgb(0, 0, 0, 0.3);
+    }
+
 .view.hm-black-strong {
     padding: 75px;
     margin-bottom: 50px;
@@ -42,4 +60,54 @@ body {
 
 ul {
     list-style: none;
+}
+
+.card {
+    height: calc(100% - 20px);
+    margin-bottom: 20px;
+    display: block;
+    padding-bottom: 62px;
+}
+
+.btn-lg {
+    background-color: #D14D72;
+    color: white;
+    padding: 8px;
+    border: 0;
+}
+
+.btn-lg:hover {
+   background-color: #D14D72;
+}
+
+.view.header .btn-lg {
+    padding: 20px 32px;
+}
+
+.card .btn {
+    position: absolute;
+    background-color: #D14D72;
+    color: white;
+    padding: 8px;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+}
+
+.card .card-title {
+    padding: 20px 20px 10px 20px;
+}
+
+.card .view {
+    height: auto;
+}
+
+.card-text {
+    text-align: left;
+    padding: 10px 20px 20px 20px;
+}
+
+.lead {
+    text-align: left;
+    margin-top: 20px;
 }
