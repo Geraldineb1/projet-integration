@@ -63,7 +63,8 @@ namespace PropagendaMVC.Models
 
             public ProviderDto Provider { get; set; }
             public bool IsActive { get; set; }
-        }
+            public bool IsApproved { get; set; }
+    }
 
         public class ServiceToApproveVM
         {

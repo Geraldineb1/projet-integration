@@ -32,6 +32,8 @@ namespace PropagendaMVC
             CreateMap<ServiceDto, ServiceVM>().ReverseMap();
             CreateMap<CreateServiceDto, CreateServiceVM>().ReverseMap();
             CreateMap<ServiceDto, ServiceListVM>().ReverseMap();
+            CreateMap<ServiceDto, ServiceToApproveVM>().ReverseMap();
+            CreateMap<ChangeServiceApprovalDto, ServiceToApproveVM>().ReverseMap();
             CreateMap<UpdateServiceDto, ServiceVM>().ReverseMap();
 
             CreateMap<CreateServiceReservationDto, CreateServiceReservationVM>().ReverseMap();

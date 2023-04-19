@@ -21,10 +21,10 @@ namespace Domain
         public ServiceType? ServiceType { get; set; }
         public int ServiceTypeId { get; set; }
 
-        public Provider Provider { get; set; }
+        public Provider? Provider { get; set; }
         public int ProviderId { get; set; }
 
-        public  IList<ServiceServiceReservation> SSR { get; set; }
+        public  IList<ServiceServiceReservation>? SSR { get; set; }
 
 
 

@@ -52,6 +52,12 @@ namespace PropagendaMVC.Services
             var services = await _client.ServicesToApproveAsync();
             return _mapper.Map<List<ServiceVM>>(services);
         }
+        public async Task<ServiceToApproveVM> GetServiceToApprove(int id)
+        {
+            AddBearerToken();
+            var service = await _client.ServiceGETAsync(id);
+            return _mapper.Map<ServiceToApproveVM>(service);
+        }
 
         public async Task<List<ServiceListVM>> GetServicesByUser()
         {

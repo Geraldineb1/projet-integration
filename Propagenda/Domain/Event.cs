@@ -21,12 +21,12 @@ namespace Domain
         public bool IsApproved { get; set; }
         public bool IsActive { get; set; }
 
-        public ApplicationUser ApplicationUser { get; set; }
+        public ApplicationUser? ApplicationUser { get; set; }
         public string ApplicationUserId { get; set; }
 
         public IList<TicketReservation>? TicketReservation { get; set; }
 
-        public IList<Ticket> TicketList { get; set; }
+        public IList<Ticket>? TicketList { get; set; }
 
 
 

@@ -103,6 +103,35 @@ namespace PropagendaMVC.Controllers
             return View(service);
         }
 
+        // GET: EventController/Edit/5
+        public async Task<ActionResult> ApproveService(int id)
+        {
+            var model = await _serviceService.GetServiceToApprove(id);
+            return View(model);
+        }
+
+        // POST: EventController/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ApproveService(int id, ServiceToApproveVM service)
+        {
+            try
+            {
+                var response = await _serviceService.UpdateApproval(id, service);
+                if (response.Success)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                ModelState.AddModelError("", response.ValidationErrors);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+            }
+
+            return View(service);
+        }
+
 
 
         // POST: ServiceController/Delete/5
