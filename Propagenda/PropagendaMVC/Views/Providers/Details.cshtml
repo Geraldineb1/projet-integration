@@ -16,24 +16,40 @@
 
              @foreach (var item in Model.Services)
                 {
-                    if (item.IsActive)
-                    {
+                <!--First columnn-->
+                <div class="col-lg-4">
+                    <!--Card-->
+                    <div class="card wow fadeIn">
 
-                        <div class="col">
-                          <div class="card shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                            <div class="card-body">
-                                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
-                              <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
-                              <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    @Html.ActionLink("Discover", "Details", "Services", new {  id=item.Id  })
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                        <!--Card image-->
+                        <div class="view overlay hm-white-slight">
+                            <img src="https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20(25).jpg" class="img-fluid" alt="">
+                            <a>
+                                <div class="mask"></div>
+                            </a>
                         </div>
-                    }
+                        <!--/.Card image-->
+                        <!--Card content-->
+                        <div class="card-block">
+                            <!--Title-->
+
+                            <h4 class="card-title">@item.Title</h4>
+                            <hr>
+                            <!--Text-->
+                            <p class="card-text">@item.Description</p>
+                            <p>
+                                @Html.ActionLink("Voir plus", "Details", "Services",
+                            routeValues: new { id = item.Id },
+                            htmlAttributes: new { @class = "btn btn-default btn-lg" })
+                            </p>
+
+                        </div>
+                        <!--/.Card content-->
+
+                    </div>
+                    <!--/.Card-->
+                </div>
+                <!--First columnn-->
                 }
 
 
