@@ -39,6 +39,8 @@
                                 <hr>
                                 <!--Text-->
                                 <p class="card-text">@item.Description</p>
+                                <p class="card-text">@item.EventDate</p>
+                                <p class="card-text">@item.VenueName</p>
                                 <p>
                                     @Html.ActionLink("Voir plus", "Details", "Events",
                             routeValues: new { id = item.Id },
@@ -56,6 +58,9 @@
             }
         </div>
     </div>
+
+    <button onclick="history.go(-1)">Back</button>
+
 </div>
 
 
