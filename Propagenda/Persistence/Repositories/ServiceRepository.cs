@@ -21,6 +21,7 @@ namespace Persistence.Repositories
         public async Task ChangeApprovalStatus(Service service, bool isApproved)
         {
             service.isApproved = isApproved;
+            service.isActive = isApproved;
             _dbContext.Entry(service).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
         }

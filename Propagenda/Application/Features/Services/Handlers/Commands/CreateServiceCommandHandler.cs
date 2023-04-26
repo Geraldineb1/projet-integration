@@ -37,7 +37,9 @@ namespace Application.Features.Services.Handlers.Commands
                 response.Errors = validationResult.Errors.Select(q => q.ErrorMessage).ToList();
             }
 
+            
             var service = _mapper.Map<Service>(request.ServiceDto);
+            service.Image = "service.jpg";
 
             service = await _serviceRepository.Add(service);
 
