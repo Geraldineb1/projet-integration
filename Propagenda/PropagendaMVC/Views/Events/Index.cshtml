@@ -1,67 +1,66 @@
 ﻿@model IEnumerable<PropagendaMVC.Models.EventVM>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Events";
 }
 
-<h1>Index</h1>
+<h1>Events</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EventDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.VenueName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.VenueAddress)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TicketsAmount)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-            if (item.IsActive && item.IsApproved)
+
+<div class="album py-5">
+    <div class="container">
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            @foreach (var item in Model)
             {
-                <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EventDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VenueName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VenueAddress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TicketsAmount)
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details", new { id=item.Id })
-            </td>
-        </tr>
+                if (item.IsActive && item.IsApproved)
+                {
+                    <!--First columnn-->
+                    <div class="col-lg-4">
+                        <!--Card-->
+                        <div class="card wow fadeIn">
+
+                            <!--Card image-->
+                            <div class="view overlay hm-white-slight">
+                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20(25).jpg" class="img-fluid" alt="">
+                                <a>
+                                    <div class="mask"></div>
+                                </a>
+                            </div>
+                            <!--/.Card image-->
+                            <!--Card content-->
+                            <div class="card-block">
+                                <!--Title-->
+
+                                <h4 class="card-title">@item.Title</h4>
+                                <hr>
+                                <!--Text-->
+                                <p class="card-text">@item.Description</p>
+                                <p class="card-text">@item.EventDate</p>
+                                <p class="card-text">@item.VenueName</p>
+                                <p>
+                                    @Html.ActionLink("Voir plus", "Details", "Events",
+                            routeValues: new { id = item.Id },
+                            htmlAttributes: new { @class = "btn btn-default btn-lg" })
+                                </p>
+
+                            </div>
+                            <!--/.Card content-->
+
+                        </div>
+                        <!--/.Card-->
+                    </div>
+                    <!--First columnn-->
+                }
             }
-            
-}
-    </tbody>
-</table>
+        </div>
+    </div>
+
+    <button onclick="history.go(-1)">Back</button>
+
+</div>
+
+

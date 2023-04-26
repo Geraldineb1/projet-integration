@@ -73,6 +73,9 @@
 </div>
 
 <div>
-    @Html.ActionLink("Edit", "Edit", new {  id = Model.Id  }) |
-    <a asp-action="Index">Back to List</a>
+    @Html.ActionLink("Edit", "Services", new {  id = Model.Id  }) |
+    <a asp-action="Index">Services List</a>
+    <br />
+    <br />
+    <button onclick="history.go(-1)">Back</button>
 </div>
