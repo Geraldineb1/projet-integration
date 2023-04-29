@@ -17,6 +17,6 @@ namespace Application.DTOs.ServiceReservation
         public bool IsAccepted { get; set; }
         public bool IsCompleted { get; set; }
         public string ApplicationUserId { get; set; }
-        public ServiceServicereservationDto SSR { get; set; }
+        public List<ServiceServicereservationDto> SSR { get; set; }
     }
 }

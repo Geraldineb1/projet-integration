@@ -11,7 +11,7 @@ namespace Application.Features.Events.Requests.Commands
     public class UpdateEventCommand : IRequest<Unit>
     {
         public int Id { get; set; }
-        public EventDto EventDto { get; set; }
+        public UpdateEventDto EventDto { get; set; }
 
         public ChangeEventApprovalDto ChangeEventApprovalDto { get; set; }
         public ChangeEventActivationDto ChangeEventActivationDto { get; set; }

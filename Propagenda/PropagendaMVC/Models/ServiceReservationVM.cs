@@ -36,7 +36,7 @@ namespace PropagendaMVC.Models
     {
         public int Id { get; set; }
 
-        public ServiceServicereservationDto SSR { get; set; }
+        public List<ServiceServicereservationDto> SSR { get; set; }
         public DateTimeOffset DateService { get; set; }
 
         public DateTimeOffset RequestDate { get; set; }

@@ -28,6 +28,13 @@ namespace Persistence.Repositories
             return events;
         }
 
+        public new async Task<List<Event>> GetAll()
+        {
+            var events = await _dbContext.Events.OrderByDescending(e => e.Id)
+                .ToListAsync();
+            return events;
+        }
+
         public async Task<List<Event>> GetAllEventsToApprove()
         {
             var events = await _dbContext.Events
@@ -46,11 +53,16 @@ namespace Persistence.Repositories
 
         public async Task ChangeApprovalStatus(Event singleEvent, bool status)
         {
-            if(status == false)
+            if (status == false)
             {
                 singleEvent.IsActive = false;
-            } 
-            singleEvent.IsApproved = status;
+                singleEvent.IsApproved = false;
+            }
+            else if(status == true)
+            {
+                singleEvent.IsActive = true;
+                singleEvent.IsApproved = true;
+            }
             _dbContext.Entry(singleEvent).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
         }

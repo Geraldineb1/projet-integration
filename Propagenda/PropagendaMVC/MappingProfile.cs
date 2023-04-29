@@ -16,12 +16,14 @@ namespace PropagendaMVC
             CreateMap<CreateProviderDto, CreateProviderVM>().ReverseMap();
             CreateMap<ProviderDto, ProviderVM>().ReverseMap();
             CreateMap<UpdateProviderDto, UpdateProviderVM>().ReverseMap();
+            CreateMap<UpdateProviderDto, ProviderVM>().ReverseMap();
             CreateMap<ProviderDto, UpdateProviderVM>().ReverseMap();
             CreateMap<ProviderDto, ProviderWithServicesVM>().ReverseMap();
             CreateMap<ChangeProviderApprovalDto, ProviderToApproveVM>().ReverseMap();
 
             CreateMap<CreateEventDto, CreateEventVM>().ReverseMap();
             CreateMap<EventDto, EventVM>().ReverseMap();
+            CreateMap<UpdateEventDto, EventVM>().ReverseMap();
             CreateMap<ChangeEventApprovalDto, EventToApproveVM>().ReverseMap();
             CreateMap<EventDto, EventToApproveVM>().ReverseMap();
 

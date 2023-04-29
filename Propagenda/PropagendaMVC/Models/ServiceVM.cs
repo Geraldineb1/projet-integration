@@ -7,6 +7,7 @@ namespace PropagendaMVC.Models
     public class ServiceVM : CreateServiceVM
     {
             public int Id { get; set; }
+            public bool IsPromoted { get; set; }
     }
 
     public class CreateServiceVM
@@ -64,6 +65,7 @@ namespace PropagendaMVC.Models
             public ProviderDto Provider { get; set; }
             public bool IsActive { get; set; }
             public bool IsApproved { get; set; }
+            public bool IsPromoted { get; set; }
     }
 
         public class ServiceToApproveVM

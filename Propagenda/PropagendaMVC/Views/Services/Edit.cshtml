@@ -52,6 +52,14 @@
                     <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
                 </label>
             </div>
+            @if(User.IsInRole("Administrator") || User.IsInRole("Employee"))
+            { 
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="IsPromoted" /> @Html.DisplayNameFor(model => model.IsPromoted)
+                    </label>
+                </div> 
+            }
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

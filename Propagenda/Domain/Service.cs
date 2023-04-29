@@ -18,6 +18,7 @@ namespace Domain
         public string LocationAddress { get; set; }
         public bool isActive { get; set; }
         public bool isApproved { get; set; }
+        public bool IsPromoted { get; set; } 
         public ServiceType? ServiceType { get; set; }
         public int ServiceTypeId { get; set; }
 

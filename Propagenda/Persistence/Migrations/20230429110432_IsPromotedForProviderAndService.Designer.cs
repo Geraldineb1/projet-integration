@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence;
 
@@ -11,9 +12,10 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(PropagendaDbContext))]
-    partial class PropagendaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230429110432_IsPromotedForProviderAndService")]
+    partial class IsPromotedForProviderAndService
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -104,7 +106,7 @@ namespace Persistence.Migrations
                             Id = "279fc88b-0a5e-4bec-b074-eee865a0c9ae",
                             AccessFailedCount = 0,
                             Address = "rue de la paix 25",
-                            ConcurrencyStamp = "f7128203-7805-44a9-8506-efc5eb68d352",
+                            ConcurrencyStamp = "19e62abd-bd13-464b-813d-84976499789e",
                             Email = "admin@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -112,9 +114,9 @@ namespace Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAuN+YRWj2zA7Xa/Z5OunVbSpangk0+vw/dHZZAu8TyN6kyjq6Li6CPESDidKT8WKA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMapE7EUYkOJb3XtBl6CGW5yTc/K+ixcO5HWBk6X1PNlinoDl/sbhpKX6fVlKJw25A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8db21426-850e-449e-8863-c3a86432fe09",
+                            SecurityStamp = "8ce7727c-9491-4a49-af3d-3cf8abce8afb",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -123,7 +125,7 @@ namespace Persistence.Migrations
                             Id = "047a1feb-b527-43af-8194-f1e3c92b7607",
                             AccessFailedCount = 0,
                             Address = "rue de la paix 25",
-                            ConcurrencyStamp = "97087462-484b-4af6-8b28-70d471f97803",
+                            ConcurrencyStamp = "ccf371dd-0f1e-4a5c-8d8d-29617bd2b1ac",
                             Email = "employee@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -131,9 +133,9 @@ namespace Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "EMPLOYEE@LOCALHOST.COM",
                             NormalizedUserName = "EMPLOYEE@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMhxesB6ILM3PMO1VomNbHZcrIallUjj2MTP7LfoiYMThgl7UnTIfe3qSupcPdD3fQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAiwoUrNvPuc+ZvVuUygKOkpqgof0yK3jTJxMwSybSCSuvG6DmON4g8mQeWRtcWxmQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2af37b5a-a607-4101-a06f-eda48c67ef71",
+                            SecurityStamp = "6ae88413-d514-4200-99d4-e5eb1aef054b",
                             TwoFactorEnabled = false,
                             UserName = "employee@localhost.com"
                         },
@@ -142,7 +144,7 @@ namespace Persistence.Migrations
                             Id = "ed742fb6-87ff-40a9-a30b-717211f5d456",
                             AccessFailedCount = 0,
                             Address = "rue de la paix 25",
-                            ConcurrencyStamp = "22fff8e6-337a-4d3f-b594-a56986e967dc",
+                            ConcurrencyStamp = "59014b91-609a-43df-8c08-72d931ee1c4c",
                             Email = "clien@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -150,9 +152,9 @@ namespace Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "CLIENT@LOCALHOST.COM",
                             NormalizedUserName = "CLIENT@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGgiDBrNVKgK4IGRAq+qfOkPCZkCw/7C0vF08Evr0vJ+qufzrWGCI1yu/68nCqKDoQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEE+dOIY00WGqEK4oQq2M1/adZRZqskLwVBoYDAMg5kOPZzYdhuPT538uK+cfGZOpvg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "91178d50-47ff-487d-8f7b-6491d3e9cbbc",
+                            SecurityStamp = "1d1f91a7-ace4-47f6-9a63-6d139e85f165",
                             TwoFactorEnabled = false,
                             UserName = "client@localhost.com"
                         });
@@ -230,10 +232,6 @@ namespace Persistence.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Bio")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -484,28 +482,28 @@ namespace Persistence.Migrations
                         new
                         {
                             Id = "cac43a6e-f7bb-4448-baaf-1add431ccbbf",
-                            ConcurrencyStamp = "b2bbcefd-b3dd-42be-b9cf-df75c74bfeb2",
+                            ConcurrencyStamp = "939a19a2-b5ff-46ac-b525-ab884320dc85",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
                             Id = "cbc43a8e-f7bb-4445-baaf-1add431ffbbf",
-                            ConcurrencyStamp = "c5d3e11f-88c4-472d-a5d3-8ea4da6ec751",
+                            ConcurrencyStamp = "b60511aa-4ba7-4f95-ac5f-88265fb29bca",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "cbc43a9e-f7bb-4445-baaf-1add431ffbbf",
-                            ConcurrencyStamp = "7a752714-499a-4b47-a1a0-c22cb9fb7927",
+                            ConcurrencyStamp = "8296ed59-491b-458a-b539-80fa135285a0",
                             Name = "Client",
                             NormalizedName = "CLIENT"
                         },
                         new
                         {
                             Id = "8d012e04-e5c3-4ee0-baed-53d4778470a6",
-                            ConcurrencyStamp = "45428461-7b8f-4d5c-90ad-89fda122e77a",
+                            ConcurrencyStamp = "28a355c4-40c7-463b-96ec-61ee49ddf711",
                             Name = "Provider",
                             NormalizedName = "PROVIDER"
                         });

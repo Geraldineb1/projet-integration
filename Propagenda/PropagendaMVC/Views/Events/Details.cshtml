@@ -26,15 +26,18 @@
 @if (User.Identity.IsAuthenticated)
 {
     
-    @*@if( ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(x => x.Type == "uid").Value == Model.ApplicationUserId || User.IsInRole("Administrator") || User.IsInRole("Employee")){
+    @if( ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(x => x.Type == "uid").Value == currentuserID || User.IsInRole("Administrator") || User.IsInRole("Employee")){
     <div>
         @Html.ActionLink("Edit", "Edit", new {  id = Model.Id  }) |
     
     </div>
-    }*@
+    }
 
     <div>
-        @if(User.IsInRole("Administrator") || User.IsInRole("Employee")){ @Html.ActionLink("Approval", "ApproveEvent", new {id = Model.Id})}
+        @if(User.IsInRole("Administrator") || User.IsInRole("Employee"))
+        { 
+            @Html.ActionLink("Approval", "ApproveEvent", new {id = Model.Id}) 
+        }
     
     </div>
 

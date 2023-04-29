@@ -19,6 +19,7 @@ namespace Application.DTOs.Service
         public string LocationAddress { get; set; }
         public bool isActive { get; set; }
         public bool isApproved { get; set; }
+        public bool IsPromoted { get; set; }
         public ServiceTypeDto ServiceType { get; set; }
         public ProviderDto Provider { get; set; }
 

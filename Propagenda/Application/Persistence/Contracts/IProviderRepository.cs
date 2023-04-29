@@ -8,7 +8,7 @@ namespace Application.Persistence.Contracts
         Task ChangeApprovalStatus(Provider provider, bool isApproved);
 
         Task<Provider> GetProviderWithServices(int id);
-
+        new Task<List<Provider>> GetAll();
         Task<IReadOnlyList<Provider>> GetAllToApprove();
         Task<IReadOnlyList<Provider>> GetAllByUser(string id);
 

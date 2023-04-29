@@ -67,12 +67,12 @@ namespace PropagendaMVC.Services.Base
 
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task EventPUTAsync(int id, EventDto body);
+        System.Threading.Tasks.Task EventPUTAsync(int id, UpdateEventDto body);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task EventPUTAsync(int id, EventDto body, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task EventPUTAsync(int id, UpdateEventDto body, System.Threading.CancellationToken cancellationToken);
 
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -860,7 +860,7 @@ namespace PropagendaMVC.Services.Base
 
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task EventPUTAsync(int id, EventDto body)
+        public virtual System.Threading.Tasks.Task EventPUTAsync(int id, UpdateEventDto body)
         {
             return EventPUTAsync(id, body, System.Threading.CancellationToken.None);
         }
@@ -868,7 +868,7 @@ namespace PropagendaMVC.Services.Base
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task EventPUTAsync(int id, EventDto body, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task EventPUTAsync(int id, UpdateEventDto body, System.Threading.CancellationToken cancellationToken)
         {
             if (id == null)
                 throw new System.ArgumentNullException("id");
@@ -4417,8 +4417,11 @@ namespace PropagendaMVC.Services.Base
         [Newtonsoft.Json.JsonProperty("isActive", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsActive { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("isApproved", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool IsApproved { get; set; }
+        [Newtonsoft.Json.JsonProperty("isApproved", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? IsApproved { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("isPromoted", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool IsPromoted { get; set; }
 
     }
 
@@ -4471,6 +4474,9 @@ namespace PropagendaMVC.Services.Base
 
         [Newtonsoft.Json.JsonProperty("isApproved", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsApproved { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("isPromoted", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool IsPromoted { get; set; }
 
         [Newtonsoft.Json.JsonProperty("applicationUserId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string ApplicationUserId { get; set; }
@@ -4552,6 +4558,9 @@ namespace PropagendaMVC.Services.Base
         [Newtonsoft.Json.JsonProperty("isApproved", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsApproved { get; set; }
 
+        [Newtonsoft.Json.JsonProperty("isPromoted", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool IsPromoted { get; set; }
+
         [Newtonsoft.Json.JsonProperty("serviceType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public ServiceTypeDto ServiceType { get; set; }
 
@@ -4587,8 +4596,8 @@ namespace PropagendaMVC.Services.Base
         [Newtonsoft.Json.JsonProperty("applicationUserId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string ApplicationUserId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("ssr", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public ServiceServicereservationDto Ssr { get; set; }
+        [Newtonsoft.Json.JsonProperty("ssr", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.ICollection<ServiceServicereservationDto> Ssr { get; set; }
 
     }
 
@@ -4684,6 +4693,47 @@ namespace PropagendaMVC.Services.Base
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.18.2.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class UpdateEventDto
+    {
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int Id { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("title", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Title { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Description { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("image", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Image { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("eventDate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.DateTimeOffset EventDate { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("venueName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string VenueName { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("venueAddress", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string VenueAddress { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("ticketsAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int TicketsAmount { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("nbSoldTickets", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int NbSoldTickets { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("ticketPrice", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int TicketPrice { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("isActive", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool IsActive { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("isPromoted", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool IsPromoted { get; set; }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.18.2.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class UpdateProviderDto
     {
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -4700,6 +4750,9 @@ namespace PropagendaMVC.Services.Base
 
         [Newtonsoft.Json.JsonProperty("isActive", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsActive { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("isPromoted", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool IsPromoted { get; set; }
 
     }
 
@@ -4732,6 +4785,9 @@ namespace PropagendaMVC.Services.Base
 
         [Newtonsoft.Json.JsonProperty("providerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int ProviderId { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("isPromoted", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool IsPromoted { get; set; }
 
     }
 

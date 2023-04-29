@@ -8,6 +8,7 @@ namespace PropagendaMVC.Models
         public int Id { get; set; }
         public string Image { get; set; }
         public bool IsApproved { get; set; }
+        public bool IsPromoted { get; set; }
     }
 
     public class CreateEventVM

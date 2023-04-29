@@ -26,6 +26,16 @@ namespace Persistence.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
+        public new async Task<List<Service>> GetAll()
+        {
+            var services = await _dbContext.Services
+                .Include(q => q.ServiceType)
+                .Include(q => q.Provider)
+                .OrderByDescending(e => e.Id)
+                .ToListAsync();
+            return services;
+        }
+
         public async Task<List<Service>> GetServicesWithDetails()
         {
             var services = await _dbContext.Services

@@ -31,6 +31,13 @@ namespace Persistence.Repositories
             return provider;
         }
 
+        public new async Task<List<Provider>> GetAll()
+        {
+            var providers = await _dbContext.Providers.OrderByDescending(e => e.Id)
+                .ToListAsync();
+            return providers;
+        }
+
         public async Task<IReadOnlyList<Provider>> GetAllToApprove()
         {
             return await _dbContext.Set<Provider>().Where(p => p.IsApproved == false).ToListAsync();

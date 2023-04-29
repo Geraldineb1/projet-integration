@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence;
 
@@ -11,9 +12,10 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(PropagendaDbContext))]
-    partial class PropagendaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230428132942_AddISPromotedToEvent")]
+    partial class AddISPromotedToEvent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -104,7 +106,7 @@ namespace Persistence.Migrations
                             Id = "279fc88b-0a5e-4bec-b074-eee865a0c9ae",
                             AccessFailedCount = 0,
                             Address = "rue de la paix 25",
-                            ConcurrencyStamp = "f7128203-7805-44a9-8506-efc5eb68d352",
+                            ConcurrencyStamp = "4ba7cba7-98c4-42e9-9a95-552cd6cccd65",
                             Email = "admin@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -112,9 +114,9 @@ namespace Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAuN+YRWj2zA7Xa/Z5OunVbSpangk0+vw/dHZZAu8TyN6kyjq6Li6CPESDidKT8WKA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECYRBSgMWCjLAsQvmumf/rk1VP4YSUVfVDFP+d5LDzcSfL1JxudVKDWF4tkwXTMhYA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8db21426-850e-449e-8863-c3a86432fe09",
+                            SecurityStamp = "a328a22e-d6db-48f6-95f8-590ae6025abe",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -123,7 +125,7 @@ namespace Persistence.Migrations
                             Id = "047a1feb-b527-43af-8194-f1e3c92b7607",
                             AccessFailedCount = 0,
                             Address = "rue de la paix 25",
-                            ConcurrencyStamp = "97087462-484b-4af6-8b28-70d471f97803",
+                            ConcurrencyStamp = "b15153ea-e172-432d-b4b4-5d9d94af8483",
                             Email = "employee@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -131,9 +133,9 @@ namespace Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "EMPLOYEE@LOCALHOST.COM",
                             NormalizedUserName = "EMPLOYEE@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMhxesB6ILM3PMO1VomNbHZcrIallUjj2MTP7LfoiYMThgl7UnTIfe3qSupcPdD3fQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGOVJZzImIbJ+zZhrJ9HLZxR9q6RLj6xAVXk2F7NWE6T1JhAbOWWW6LhWyhI+B8wvg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2af37b5a-a607-4101-a06f-eda48c67ef71",
+                            SecurityStamp = "13e69016-7842-4a93-9bdf-df699349b442",
                             TwoFactorEnabled = false,
                             UserName = "employee@localhost.com"
                         },
@@ -142,7 +144,7 @@ namespace Persistence.Migrations
                             Id = "ed742fb6-87ff-40a9-a30b-717211f5d456",
                             AccessFailedCount = 0,
                             Address = "rue de la paix 25",
-                            ConcurrencyStamp = "22fff8e6-337a-4d3f-b594-a56986e967dc",
+                            ConcurrencyStamp = "1bf57ccf-5181-4f29-bd9c-73ce0223392b",
                             Email = "clien@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -150,9 +152,9 @@ namespace Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "CLIENT@LOCALHOST.COM",
                             NormalizedUserName = "CLIENT@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGgiDBrNVKgK4IGRAq+qfOkPCZkCw/7C0vF08Evr0vJ+qufzrWGCI1yu/68nCqKDoQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHHimk9f8RMYLAuYEJKeXgtlBWGxAtafq9LyOK+kWzmyGpkpZuTUKq/DKrR6G+Ly1A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "91178d50-47ff-487d-8f7b-6491d3e9cbbc",
+                            SecurityStamp = "876ea0f8-404f-441f-a335-bbc4b9834c59",
                             TwoFactorEnabled = false,
                             UserName = "client@localhost.com"
                         });
@@ -233,17 +235,10 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Image")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsApproved")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsPromoted")
                         .HasColumnType("bit");
 
                     b.Property<string>("Link")
@@ -276,9 +271,6 @@ namespace Persistence.Migrations
                     b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsPromoted")
-                        .HasColumnType("bit");
 
                     b.Property<string>("LocationAddress")
                         .IsRequired()
@@ -484,28 +476,28 @@ namespace Persistence.Migrations
                         new
                         {
                             Id = "cac43a6e-f7bb-4448-baaf-1add431ccbbf",
-                            ConcurrencyStamp = "b2bbcefd-b3dd-42be-b9cf-df75c74bfeb2",
+                            ConcurrencyStamp = "f01158b9-1bda-403c-a220-59c76f5b3236",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
                             Id = "cbc43a8e-f7bb-4445-baaf-1add431ffbbf",
-                            ConcurrencyStamp = "c5d3e11f-88c4-472d-a5d3-8ea4da6ec751",
+                            ConcurrencyStamp = "c353ec09-3708-4851-82c9-2cbe51d6d7f6",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "cbc43a9e-f7bb-4445-baaf-1add431ffbbf",
-                            ConcurrencyStamp = "7a752714-499a-4b47-a1a0-c22cb9fb7927",
+                            ConcurrencyStamp = "75dac6d2-c0e4-42e2-bc61-de04e3cdbbc3",
                             Name = "Client",
                             NormalizedName = "CLIENT"
                         },
                         new
                         {
                             Id = "8d012e04-e5c3-4ee0-baed-53d4778470a6",
-                            ConcurrencyStamp = "45428461-7b8f-4d5c-90ad-89fda122e77a",
+                            ConcurrencyStamp = "3a075c5d-6485-441f-9138-5006591da44f",
                             Name = "Provider",
                             NormalizedName = "PROVIDER"
                         });

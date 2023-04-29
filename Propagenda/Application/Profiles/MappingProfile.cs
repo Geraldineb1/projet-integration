@@ -38,12 +38,13 @@ namespace Application.Profiles
 
             CreateMap<Event, EventDto>().ReverseMap();
             CreateMap<Event, CreateEventDto>().ReverseMap();
+            CreateMap<Event, UpdateEventDto>().ReverseMap();
 
             CreateMap<ServiceReservation, ServiceReservationDto>().ReverseMap();
             CreateMap<ServiceReservation, CreateServiceReservationDto>().ReverseMap();
             CreateMap<ServiceReservation, ChangeServiceReservationApprovalDto>().ReverseMap();
             CreateMap<ServiceReservation, ChangeServiceReservationCompletionDto>().ReverseMap();
-            CreateMap<ServiceReservation, ServiceReservationByUserDto>().ReverseMap();
+            //CreateMap<ServiceReservation, ServiceReservationByUserDto>().ReverseMap();
 
             CreateMap<ServiceServiceReservation, ServiceServicereservationDto>().ReverseMap();
 

@@ -119,7 +119,7 @@ namespace PropagendaMVC.Services
         {
             try
             {
-                EventDto eventDto = _mapper.Map<EventDto>(singleEvent);
+                UpdateEventDto eventDto = _mapper.Map<UpdateEventDto>(singleEvent);
                 AddBearerToken();
                 await _client.EventPUTAsync(id, eventDto);
                 return new Response<int>() { Success = true };
