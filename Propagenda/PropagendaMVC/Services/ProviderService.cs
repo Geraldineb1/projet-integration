@@ -87,11 +87,11 @@ namespace PropagendaMVC.Services
             return _mapper.Map<ProviderWithServicesVM>(provider);
         }
 
-        public async Task<List<ProviderVM>> GetProviders()
+        public async Task<List<ProviderWithServicesVM>> GetProviders()
         {
             AddBearerToken();
             var providers = await _client.ProviderAllAsync();
-            return _mapper.Map<List<ProviderVM>>(providers);
+            return _mapper.Map<List<ProviderWithServicesVM>>(providers);
         }
 
         public async Task<List<ProviderVM>> GetProvidersToApprove()

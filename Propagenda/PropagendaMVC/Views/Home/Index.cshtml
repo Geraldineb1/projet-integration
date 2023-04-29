@@ -97,7 +97,7 @@
 
            @for(int i = 0; i < Model.Providers.Count(); i++)
             {
-                @if(Model.Providers[i].IsActive && Model.Providers[i].IsApproved && Model.Providers[i].IsPromoted)
+                @if(Model.Providers[i].IsActive && Model.Providers[i].IsApproved && Model.Providers[i].IsPromoted && (Model.Providers[i].Services.Count() > 0))
                 {
                     <!--First columnn-->
                     <div class="col-lg-4">
@@ -167,6 +167,8 @@
                                 <h4 class="card-title">@Model.Events[i].Title</h4>
                                 <hr>
                                 <!--Text-->
+                                <p class="card-text">@Model.Events[i].EventDate.ToString("dd MMM yyyy")</p>
+                                <p class="card-text">@Model.Events[i].VenueName</p>
                                 <p class="card-text">@Model.Events[i].Description</p>
                             <p>
                                 @Html.ActionLink("Voir plus", "Details", "Events",

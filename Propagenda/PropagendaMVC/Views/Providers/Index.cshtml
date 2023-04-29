@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PropagendaMVC.Models.ProviderVM>
+﻿@model IEnumerable<PropagendaMVC.Models.ProviderWithServicesVM>
 
 @{
     ViewData["Title"] = "Index";
@@ -33,7 +33,7 @@
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         @foreach (var item in Model)
         {
-            if (item.IsActive && item.IsApproved)
+            if (item.IsActive && item.IsApproved && (item.Services.Count() > 0))
             {
                     <!--First columnn-->
                     <div class="col-lg-4">

@@ -5,7 +5,7 @@ namespace PropagendaMVC.Contracts
 {
     public interface IProviderService
     {
-        Task<List<ProviderVM>> GetProviders();
+        Task<List<ProviderWithServicesVM>> GetProviders();
         Task<ProviderWithServicesVM> GetProviderDetails(int id);
         Task<Response<int>> CreateProvider(CreateProviderVM provider);
         Task<Response<int>> UpdateProvider(int id, UpdateProviderVM provider);

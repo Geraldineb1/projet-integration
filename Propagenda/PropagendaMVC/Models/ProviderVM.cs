@@ -6,7 +6,6 @@ namespace PropagendaMVC.Models
     public class ProviderVM : CreateProviderVM
     {
         public int Id { get; set; }
-        public string Image { get; set; }
         public bool IsPromoted { get; set; }
     }
 
@@ -14,7 +13,8 @@ namespace PropagendaMVC.Models
     {
         [Required]
         public string Name { get; set; }
-
+        [Required]
+        public string Image { get; set; }
         [Required]
         public string Bio { get; set; }
         [Required]
@@ -30,6 +30,7 @@ namespace PropagendaMVC.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string Image { get; set; }
         public string Bio { get; set; }
         public string Link { get; set; }
         public bool IsActive { get; set; }
@@ -42,9 +43,11 @@ namespace PropagendaMVC.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Bio { get; set; }
+        public string Image { get; set; }
         public string Link { get; set; }
         public bool IsActive { get; set; }
         public bool IsApproved { get; set; }
+        public bool IsPromoted { get; set; }
         public string ApplicationUserId { get; set; }
         public List<ServiceWithoutProviderDto> Services { get; set; }
     }

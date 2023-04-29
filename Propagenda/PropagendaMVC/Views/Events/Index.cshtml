@@ -39,7 +39,7 @@
                                 <hr>
                                 <!--Text-->
                                 <p class="card-text">@item.Description</p>
-                                <p class="card-text">@item.EventDate</p>
+                                <p class="card-text">@item.EventDate.ToString("dd MMM yyyy")</p>
                                 <p class="card-text">@item.VenueName</p>
                                 <p>
                                     @Html.ActionLink("Voir plus", "Details", "Events",

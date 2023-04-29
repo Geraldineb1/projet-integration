@@ -30,7 +30,7 @@ namespace Persistence.Repositories
 
         public new async Task<List<Event>> GetAll()
         {
-            var events = await _dbContext.Events.OrderByDescending(e => e.Id)
+            var events = await _dbContext.Events.OrderBy(e => e.EventDate)
                 .ToListAsync();
             return events;
         }

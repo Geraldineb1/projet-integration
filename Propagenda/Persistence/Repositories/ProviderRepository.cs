@@ -33,7 +33,10 @@ namespace Persistence.Repositories
 
         public new async Task<List<Provider>> GetAll()
         {
-            var providers = await _dbContext.Providers.OrderByDescending(e => e.Id)
+            var providers = await _dbContext.Providers
+                .Include(p => p.Services)
+                    .ThenInclude(s => s.ServiceType)
+                .OrderByDescending(e => e.Id)
                 .ToListAsync();
             return providers;
         }
