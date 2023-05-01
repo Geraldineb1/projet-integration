@@ -4,28 +4,28 @@
     ViewData["Title"] = "ProvidersByUser";
 }
 
-<h1>My providers</h1>
+<h1>Mes prestataires</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Ajouter un prestataire</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                Nom
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Bio)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Link)
+                Lien
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IsActive)
+                Status Actif
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IsApproved)
+                Approuvé
             </th>
             <th></th>
         </tr>

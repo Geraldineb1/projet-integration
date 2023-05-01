@@ -9,6 +9,7 @@ namespace Application.DTOs.ServiceReservation
     public class CreateServiceReservationDto
     {
         public DateTime DateService { get; set; }
+        public string Comment { get; set; }
         
         public int ServiceId { get; set; }
 

@@ -4,16 +4,14 @@
     ViewData["Title"] = "ServicesByUser";
 }
 
-<h1>ServicesByUser</h1>
+<h1>Mes services</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                Titre
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Description)
@@ -22,16 +20,16 @@
                 @Html.DisplayNameFor(model => model.Image)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                Prix horaire
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LocationArea)
+                Zone
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LocationAddress)
+                Adresse
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IsActive)
+                statut activité
             </th>
             <th>Provider</th>
             <th></th>
@@ -61,7 +59,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.IsActive)
             </td>
-            <td>@Html.DisplayFor(AbandonedMutexException=> item.Provider.Name)</td>
+            <td>@Html.DisplayFor(modelItem => item.Provider.Name)</td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id=item.Id })
             </td>

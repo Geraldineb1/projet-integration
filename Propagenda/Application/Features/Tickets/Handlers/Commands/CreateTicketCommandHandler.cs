@@ -7,6 +7,7 @@ using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,6 +32,7 @@ namespace Application.Features.Tickets.Handlers.Commands
                 throw new Exception();
 
             var ticket = _mapper.Map<Ticket>(request.TicketDto);
+            ticket.TicketNumber = RandomNumberGenerator.GetInt32(6);
 
             ticket = await _ticketRepository.Add(ticket);
 

@@ -4,11 +4,9 @@
     ViewData["Title"] = "ServiceReservationsByUser";
 }
 
-<h1>ServiceReservationsByUser</h1>
+<h1>Mes demandes de service</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -16,12 +14,13 @@
                 Service
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DateService)
+                Date du service
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RequestDate)
+                Date de la demande
             </th>
-            <th></th>
+            <th>Commentaire</th>
+            <th>Status</th>
         </tr>
     </thead>
     <tbody>
@@ -37,9 +36,9 @@
                 @Html.DisplayFor(modelItem => item.RequestDate)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new {  id=item.Id  }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })
+                @Html.DisplayFor(modelItem => item.Comment)
             </td>
+            <td></td>
         </tr>
 }
     </tbody>

@@ -5,7 +5,7 @@
                             {
                                 <li class="nav-item">
                                     <a class="nav-link " title="Manage" asp-controller="Providers" asp-action="Create">
-                                        JOIN THE TEAM
+                                        DEVENIR PRESTATAIRE
                                     </a>
                                 </li>
                             }
@@ -13,24 +13,24 @@
                             {*@
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"aria-haspopup="true" aria-expanded="false">
-                                        Manage
+                                        Gérer
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                         @if(User.IsInRole("Administrator") || User.IsInRole("Employee"))
                                         {
-                                            <a class="nav-link text-dark" asp-area="" asp-controller="ServiceTypes" asp-action="Index">Service Types</a>
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="ServiceTypes" asp-action="Index">Type de service</a>
                                             <a class="nav-link text-dark" asp-area="" asp-controller="TicketReservations" asp-action="Index">Ticket Reservations</a>
-                                            <a class="nav-link text-dark" asp-area="" asp-controller="Services" asp-action="ServicesToApprove">Services to Approve</a>
-                                            <a class="nav-link text-dark" asp-area="" asp-controller="Providers" asp-action="ProvidersToApprove">Providers to Approve</a>
-                                            <a class="nav-link text-dark" asp-area="" asp-controller="Events" asp-action="EventsToApprove">Events to Approve</a>
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="Services" asp-action="ServicesToApprove">Approuver services</a>
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="Providers" asp-action="ProvidersToApprove">Approuver prestataires</a>
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="Events" asp-action="EventsToApprove">Approuver événements</a>
                                         }
                                         @if(User.IsInRole("Provider"))
                                         {
-                                            <a class="nav-link text-dark" asp-area="" asp-controller="Providers" asp-action="ProvidersByUser">My Providers</a>
-                                            <a class="nav-link text-dark" asp-area="" asp-controller="Services" asp-action="ServicesByUser">My Services</a>
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="Providers" asp-action="ProvidersByUser">Mes prestataires</a>
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="Services" asp-action="ServicesByUser">Mes services</a>
                                         }
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Events" asp-action="EventsByUser">My Events</a>
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="ServiceReservations" asp-action="ServiceReservationsByUser">My Service Requests</a>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Events" asp-action="EventsByUser">Mes événements</a>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="ServiceReservations" asp-action="ServiceReservationsByUser">Demandes de service</a>
                                         
                                     </div>
                                 </li>
@@ -58,13 +58,13 @@
             <li class="nav-item">
 
                 <a class="nav-link" asp-action="Register" asp-controller="Users">
-                    Register
+                    S'inscrire
                 </a>
             </li>
             <li class="nav-item">
 
                 <a class="nav-link" asp-action="Login" asp-controller="Users">
-                    Login
+                    Se connecter
                 </a>
             </li>
         }

@@ -8,6 +8,9 @@ namespace PropagendaMVC.Models
     {
             public int Id { get; set; }
             public bool IsPromoted { get; set; }
+            public ServiceTypeDto Servicetype { get; set; }
+
+            public ProviderDto Provider { get; set; }
     }
 
     public class CreateServiceVM
@@ -51,7 +54,7 @@ namespace PropagendaMVC.Models
 
             public string Description { get; set; }
 
-            [Display(Name = "Type Image")]
+            
             public string Image { get; set; }
 
             public int Price { get; set; }

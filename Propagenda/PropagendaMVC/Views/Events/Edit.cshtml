@@ -4,13 +4,13 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit event</h1>
+<h1>Modifier l'événement : @Model.Title</h1>
 
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
             <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
                 <input asp-for="Title" class="form-control" />
@@ -76,6 +76,6 @@
     <a asp-action="Index">Events List</a>
     <br />
     <br />
-    <button onclick="history.go(-1)">Back</button>
+    <button onclick="history.go(-2)">Back</button>
 </div>
 

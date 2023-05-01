@@ -4,25 +4,23 @@
     ViewData["Title"] = "ProviderToApprove";
 }
 
-<h1>ProviderToApprove</h1>
+<h1>Prestataires à approuver</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+               Nom
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Bio)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Link)
+                Lien
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IsApproved)
+                Approuvé
             </th>
             <th></th>
         </tr>
@@ -43,7 +41,7 @@
                 @Html.DisplayFor(modelItem => item.IsApproved)
             </td>
             <td>
-                @Html.ActionLink("Edit", "EditApproval", new { id = item.Id }) |
+                @Html.ActionLink("Approuver", "EditApproval", new { id = item.Id }) |
             </td>
         </tr>
 }

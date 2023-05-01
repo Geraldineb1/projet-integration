@@ -15,6 +15,8 @@ namespace PropagendaMVC.Models
 
         [Required]
         public DateTimeOffset DateService { get; set; }
+        [Required]
+        public string Comment { get; set; }
 
         public DateTimeOffset RequestDate { get; set; }
 
@@ -35,6 +37,7 @@ namespace PropagendaMVC.Models
     public class ServiceReservationByUserVM
     {
         public int Id { get; set; }
+        public string Comment { get; set; }
 
         public List<ServiceServicereservationDto> SSR { get; set; }
         public DateTimeOffset DateService { get; set; }

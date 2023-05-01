@@ -4,19 +4,14 @@
     ViewData["Title"] = "ServicesToApprove";
 }
 
-<h1>ServicesToApprove</h1>
+<h1>Services à approuver</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
+                Titre
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Description)
@@ -25,25 +20,25 @@
                 @Html.DisplayNameFor(model => model.Image)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                Prix
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LocationArea)
+                Zone
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LocationAddress)
+                Adresse
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ServiceTypeId)
+                Type service
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProviderId)
+                Prestataire
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IsActive)
+                status activité
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IsApproved)
+                Approuvé
             </th>
             <th></th>
         </tr>
@@ -51,9 +46,6 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
@@ -73,10 +65,10 @@
                 @Html.DisplayFor(modelItem => item.LocationAddress)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ServiceTypeId)
+                @Html.DisplayFor(modelItem => item.Servicetype.Label)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProviderId)
+                @Html.DisplayFor(modelItem => item.Provider.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IsActive)
@@ -85,10 +77,10 @@
                 @Html.DisplayFor(modelItem => item.IsApproved)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new {  id=item.Id  }) |
+                @Html.ActionLink("Modifier", "Edit", new {  id=item.Id  }) |
                 |
-                @Html.ActionLink("Approve", "ApproveService", new {  id=item.Id  })
-                @Html.ActionLink("Details", "Details", new {  id=item.Id  })
+                @Html.ActionLink("Approuver", "ApproveService", new {  id=item.Id  })
+                @Html.ActionLink("Détails", "Details", new {  id=item.Id  })
             </td>
         </tr>
 }

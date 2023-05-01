@@ -4,13 +4,13 @@
     ViewData["Title"] = "ApproveEvent";
 }
 
-<h1>Approve Event</h1>
+<h1>Approuver l'événement</h1>
 
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="ApproveEvent">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
             <input type="hidden" asp-for="Id" value="@ViewContext.RouteData.Values["id"]" />
             <div class="form-group form-check">
                 <label class="form-check-label">
@@ -28,6 +28,6 @@
     <a asp-action="Index">Events List</a>
     <br />
     <br />
-    <button onclick="history.go(-1)">Back</button>
+    <button onclick="history.go(-2)">Back</button>
 </div>
 

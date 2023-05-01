@@ -10,25 +10,25 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                Titre
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EventDate)
+                Date événement
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.VenueName)
+                Lieu
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.VenueAddress)
+                Adresse
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TicketsAmount)
+                Total Tickets
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TicketPrice)
+                Prix Ticket
             </th>
             <th></th>
         </tr>
@@ -43,7 +43,7 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.EventDate.ToString("dd MMM yyyy"))
+                @item.EventDate.ToString("dd MMM yyyy")
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.VenueName)

@@ -17,6 +17,9 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 .AddCookie(options =>
 {
     options.LoginPath = new PathString("/users/login");
+    options.Cookie.IsEssential = true;
+    options.SlidingExpiration = true; // here 1
+    options.ExpireTimeSpan = TimeSpan.FromHours(0.5);// here 2
 });
 
 
