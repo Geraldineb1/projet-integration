@@ -6,9 +6,13 @@
 
 <h1>Prestataires</h1>
 
-<p>
-    <a asp-action="Create">Devenir prestataire</a>
-</p>
+@if (User.Identity.IsAuthenticated)
+{
+   <p>
+        <a asp-action="Create">Devenir prestataire</a>
+    </p> 
+}
+
 
 
 @*@foreach (var item in Model)
