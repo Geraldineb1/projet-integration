@@ -15,7 +15,7 @@
       <li>
                 @if (!User.Identity.IsAuthenticated) 
                 {
-                    <a target="_blank" href="https://mdbootstrap.com/getting-started/" class="btn btn-primary btn-lg wow fadeInLeft" data-wow-delay="0.2s" rel="nofollow"> S'enregistrer </a>
+                    <a  class="btn btn-primary btn-lg wow fadeInLeft" data-wow-delay="0.2s"  asp-action="Register" asp-controller="Users"> S'enregistrer </a>
                 }
             </li>
     </ul>
@@ -192,7 +192,7 @@
     <div class="col-lg-6 mx-auto">
       <p class="lead mb-4">N'attendez plus pour rejoindre notre communauté dynamique, et profitez de tous les avantages qu'offre notre application. Inscrivez-vous dès maintenant et commencez à booker vos événements en toute simplicité!</p>
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-        <button type="button" class="btn btn-primary btn-lg px-4 gap-3">S'inscrire</button>
+          <a class="btn btn-primary btn-lg px-4 gap-3" asp-action="Register" asp-controller="Users">S'inscrire</a>
       </div>
     </div>
 </div>
