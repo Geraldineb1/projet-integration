@@ -12,7 +12,7 @@
 <div class="album py-5">
     <div class="container">
 
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <div class="row justify-content-md-center row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         @foreach (var item in Model)
         {
             if (item.IsActive && item.IsApproved)
@@ -55,7 +55,13 @@
         }
       </div>
     </div>
-
-    <button onclick="history.go(-1)">Back</button>
+    <div class="py-3  text-center">
+    <div class="col-lg-6 mx-auto">
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <button type="button" class="btn btn_retour btn-primary btn-lg px-4 gap-3" onclick="history.go(-1)" style="background-color: #a4a9ae;">Retour</button>
+      </div>
+    </div>
+    </div>
+    
 
   </div>

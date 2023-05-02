@@ -6,8 +6,78 @@
     var currentuserID = (User.Identity.IsAuthenticated)?((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "uid").Value:"";
 }
 
+<div class="container">
+    <h1 >
+               Détails de la prestation
+        </h1>
+<div class="container-xxl">
+    <div class="profil py-5">
 
 
+        <div class="card2 card-profil" style="border-radius: 18px;">
+    <div class="card-flex-stretch" style="display: block;">
+        <div class="card-img">
+             <img style="width: 100%; height: 587px;" src="~/images/@Model.Image"/>
+        </div>
+
+        <div class="card-body" style="padding: 100px 78px;text-align: center;">
+                    <div class="card-title" style="display: flex;justify-content: end;"> @if( ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(x => x.Type == "uid").Value == currentuserID || User.IsInRole("Administrator") || User.IsInRole("Employee")){
+   
+    <button class="btn btn-default btn-lg" style="width: max-content;" > @Html.ActionLink("Modifier", "Edit", new {  id = Model.Id  },new { @class = "myLink"})</button>
+    }</div>
+       
+            <div class="card-title" style="text-transform: uppercase;"> <h2>@Html.DisplayFor(model => model.Title)</h2></div>
+            <div class="card-title" style="text-transform: uppercase;"> <h1>@Html.DisplayFor(model => model.Description)</h1></div>
+            <p class="lead2 mb-4">@Model.EventDate.ToString("dd MMM yyyy")</p> 
+            <p class="lead2 mb-4">@Html.DisplayFor(model => model.TicketPrice) €</p>
+            <p class="lead2 mb-4">@Html.DisplayFor(model => model.VenueName) <br/>@Html.DisplayFor(model => model.VenueAddress)</p>
+
+            <div class="m-t-3  justify-content-between">
+               
+                @if (User.Identity.IsAuthenticated)
+{
+    
+    
+     @if(User.IsInRole("Administrator") || User.IsInRole("Employee"))
+        { 
+            <button class="btn btn-default btn-lg" style="width: max-content;"> @Html.ActionLink("Approuver", "ApproveEvent", new {id = Model.Id},new { @class = "myLink"}) </button>
+        }
+   
+       
+     <button class="btn btn-default btn-lg" style="width: max-content;" > @Html.ActionLink("Tickets", "Create", "TicketReservations", new {  id = Model.Id  },new { @class = "myLink"}) </button>
+       
+   
+
+    
+}
+else
+{
+   @* <a class="nav-link" asp-action="Login" asp-controller="Users">
+        Tickets
+    </a>*@
+ <button class="btn btn-default btn-lg"><a style="color: #fff;text-decoration: none;" asp-action="Login" asp-controller="Users">Tickets</a></button>
+
+}
+                
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+
+</div>
+
+  <div class="py-3  text-center">
+    <div class="col-lg-6 mx-auto">
+
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <button type="button" class="btn btn_retour btn-primary btn-lg px-4 gap-3" onclick="history.go(-1)" style="background-color: #a4a9ae;">Retour</button>
+      </div>
+    </div>
+    </div>
+
+@*
 <div class="container-fluid">
     <div class="row">
         <h1>@Html.DisplayFor(model => model.Title)</h1>
@@ -31,7 +101,7 @@
     
     @if( ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(x => x.Type == "uid").Value == currentuserID || User.IsInRole("Administrator") || User.IsInRole("Employee")){
     <div>
-        @Html.ActionLink("Edit", "Edit", new {  id = Model.Id  }) |
+        @Html.ActionLink("Modifier", "Edit", new {  id = Model.Id  }) |
     
     </div>
     }
@@ -39,7 +109,7 @@
     <div>
         @if(User.IsInRole("Administrator") || User.IsInRole("Employee"))
         { 
-            @Html.ActionLink("Approval", "ApproveEvent", new {id = Model.Id}) 
+            @Html.ActionLink("Approuver", "ApproveEvent", new {id = Model.Id}) 
         }
     
     </div>
@@ -54,5 +124,5 @@ else
         Tickets
     </a>
 }
-
-<button onclick="history.go(-1)">Back</button>
+<br />
+<button onclick="history.go(-1)">Retour</button>*@

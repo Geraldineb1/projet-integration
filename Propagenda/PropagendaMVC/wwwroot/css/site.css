@@ -111,3 +111,84 @@ ul {
     text-align: left;
     margin-top: 20px;
 }
+.lead2 {
+    text-align: center;
+    margin-top: 20px;
+}
+h3, .headerSearch h2, .headerSearch h1, .contactBox h2, .profil h1 {
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    color: #425563;
+    line-height: 1.4
+}
+
+    h3 strong, .headerSearch h2 strong, .headerSearch h1 strong, .contactBox h2 strong, .profil h1 strong {
+        font-weight: 500
+    }
+
+h4, .section h3, .section .headerSearch h2, .headerSearch .section h2, .section .headerSearch h1, .headerSearch .section h1, .section .contactBox h2, .contactBox .section h2, .section .profil h1, .profil .section h1, .filterSearch h2 {
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    color: #425563;
+    line-height: 1.4
+}
+.card2-app:focus-visible {
+    -webkit-box-shadow: 0 0 0 3px #fff;
+    box-shadow: 0 0 0 3px #fff;
+    border: 3px solid #2496f6
+}
+
+.card2.card-profil {
+    border: 2px solid #2E7CA3;
+    -webkit-box-shadow: inherit;
+    box-shadow: inherit;
+    overflow: hidden
+}
+
+    .card2.card-profil .card-body {
+        padding-left: 0
+    }
+
+
+
+.card2.card-profil .card-img {
+    display: none
+}
+
+@media (min-width: 992px) {
+    .card2.card-profil .card-img {
+        display: block
+    }
+}
+
+
+
+@media (min-width: 576px) {
+    .card2.card-profil .btn {
+        width: calc(50% - 12px);
+        margin-bottom: 0
+    }
+}
+.card2 .card-title {
+    font-size: 1.8rem;
+    line-height: 1.4;
+    font-weight: 500;
+    margin-bottom: 12px;
+    color: #425563
+}
+
+
+@media (min-width: 992px) {
+    .card2 .card-flex-stretch {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+        align-items: stretch
+    }
+}
+.myLink {
+    color: #fff;
+    text-decoration: none;
+}

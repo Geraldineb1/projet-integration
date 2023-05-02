@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Index";
 }
-
+@*
 <h1>Prestataires</h1>
 
 @if (User.Identity.IsAuthenticated)
@@ -11,8 +11,17 @@
    <p>
         <a asp-action="Create">Devenir prestataire</a>
     </p> 
-}
+}*@
+<div class="row justify-content-between">
 
+    <h1 style="width:50%">Prestataires</h1>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <button style="width: max-content;" class="btn btn-default btn-lg" ><a style="color: #fff;text-decoration: none;" asp-action="Create">Devenir prestataire</a></button>
+ 
+}
+</div>
 
 
 @*@foreach (var item in Model)
@@ -34,7 +43,7 @@
 <div class="album py-5">
     <div class="container">
 
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <div class="row justify-content-md-center row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         @foreach (var item in Model)
         {
             if (item.IsActive && item.IsApproved && (item.Services.Count() > 0))
@@ -78,7 +87,13 @@
         }
       </div>
     </div>
+     <div class="py-3  text-center">
+    <div class="col-lg-6 mx-auto">
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <button type="button" class="btn btn_retour btn-primary btn-lg px-4 gap-3" onclick="history.go(-1)" style="background-color: #a4a9ae;">Retour</button>
+      </div>
+    </div>
+    </div>
 
-    <button onclick="history.go(-1)">Back</button>
 
   </div>
