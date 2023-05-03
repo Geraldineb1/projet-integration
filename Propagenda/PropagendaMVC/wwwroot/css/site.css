@@ -1,20 +1,20 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
 .view {
@@ -22,7 +22,8 @@ body {
 }
 
 .view {
-    background: url("/images/concert-3.jpg")no-repeat center center fixed; -webkit-background-size: cover;
+    background: url("/images/concert-3.jpg")no-repeat center center fixed;
+    -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
@@ -32,19 +33,19 @@ body {
 
 
 .header.view .full-bg-img {
-   position: relative;
-   z-index: 10;
+    position: relative;
+    z-index: 10;
 }
 
 .header.view:after {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        background-color: rgb(0, 0, 0, 0.3);
-    }
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgb(0, 0, 0, 0.3);
+}
 
 .view.hm-black-strong {
     padding: 75px;
@@ -76,9 +77,9 @@ ul {
     border: 0;
 }
 
-.btn-lg:hover {
-   background-color: #D14D72;
-}
+    .btn-lg:hover {
+        background-color: #D14D72;
+    }
 
 .view.header .btn-lg {
     padding: 20px 32px;
@@ -111,10 +112,12 @@ ul {
     text-align: left;
     margin-top: 20px;
 }
+
 .lead2 {
     text-align: center;
     margin-top: 20px;
 }
+
 h3, .headerSearch h2, .headerSearch h1, .contactBox h2, .profil h1 {
     font-size: 1.8rem;
     text-transform: uppercase;
@@ -132,6 +135,7 @@ h4, .section h3, .section .headerSearch h2, .headerSearch .section h2, .section 
     color: #425563;
     line-height: 1.4
 }
+
 .card2-app:focus-visible {
     -webkit-box-shadow: 0 0 0 3px #fff;
     box-shadow: 0 0 0 3px #fff;
@@ -151,9 +155,9 @@ h4, .section h3, .section .headerSearch h2, .headerSearch .section h2, .section 
 
 
 
-.card2.card-profil .card-img {
-    display: none
-}
+    .card2.card-profil .card-img {
+        display: none
+    }
 
 @media (min-width: 992px) {
     .card2.card-profil .card-img {
@@ -169,6 +173,7 @@ h4, .section h3, .section .headerSearch h2, .headerSearch .section h2, .section 
         margin-bottom: 0
     }
 }
+
 .card2 .card-title {
     font-size: 1.8rem;
     line-height: 1.4;
@@ -188,6 +193,7 @@ h4, .section h3, .section .headerSearch h2, .headerSearch .section h2, .section 
         align-items: stretch
     }
 }
+
 .myLink {
     color: #fff;
     text-decoration: none;

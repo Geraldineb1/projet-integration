@@ -8,11 +8,11 @@
 
     <h1 style="width:50%">Evénements</h1>
 
-@if (User.Identity.IsAuthenticated)
-{
-    <button style="width: max-content;" class="btn btn-default btn-lg" ><a style="color: #fff;text-decoration: none;" asp-action="Create">Ajouter un événement</a></button>
- 
-}
+    @if (User.Identity.IsAuthenticated)
+    {
+        <button style="width: max-content;" class="btn btn-default btn-lg"><a style="color: #fff;text-decoration: none;" asp-action="Create">Ajouter un événement</a></button>
+
+    }
 </div>
 
 
@@ -67,11 +67,11 @@
     </div>
 
     <div class="py-3  text-center">
-    <div class="col-lg-6 mx-auto">
-      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-        <button type="button" class="btn btn_retour btn-primary btn-lg px-4 gap-3" onclick="history.go(-1)" style="background-color: #a4a9ae;">Retour</button>
-      </div>
-    </div>
+        <div class="col-lg-6 mx-auto">
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <button type="button" class="btn btn_retour btn-primary btn-lg px-4 gap-3" onclick="history.go(-1)" style="background-color: #a4a9ae;">Retour</button>
+            </div>
+        </div>
     </div>
 
 </div>
